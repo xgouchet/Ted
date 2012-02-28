@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="TedTitle">
+        <item name="android:textSize">24dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:paddingTop">14dp</item>
+    </style>
+
+    <style name="TedSubTitle">
+        <item name="android:textSize">18dp</item>
+        <item name="android:paddingTop">10dp</item>
+    </style>
+
+    <style name="TedContent">
+        <item name="android:paddingTop">6dp</item>
+        <item name="android:textSize">14dp</item>
+    </style>
+
+</resources>

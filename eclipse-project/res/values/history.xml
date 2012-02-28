@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="release1">1.0 (27 feb. 2012)</string>
+    <string name="release1_log">"- Brand new release version\n
+        - Supports multiple encoding (including UTF-8)\n
+        - Prevent data loss when saving really big files (note that Ted is not meant to open big files though)\n
+        - Added new color theme (ask for more if needed)\n
+        - Replaced the autosave with a warning and popup (prevent saving unwanted changes)"</string>
+    <string name="beta9">βetα 0.9 (7 jan. 2010)</string>
+    <string name="beta9_log">"- Bug fixed : severall crash on start\n
+- Added a search tool\n
+- Ted is listed when opening html, rss, css, php and xml files from any file browser (ask for other types if needed)"</string>
+    <string name="beta8">βetα 0.8 (23 dec. 2010)</string>
+    <string name="beta8_log">"- Automatic save can be disabled in the settings"</string>
+    <string name="beta7">βetα 0.7 (19 dec. 2010)</string>
+    <string name="beta7_log">"- App can be installed on the SD Card (on Android 2.2)\n
+- Automatic detection of end of line in opened files, possibility to define a default end of line for new files\n 
+- Bigger dialog boxes\n
+- Bug fixed when openning big files"</string>
+    <string name="beta6">βetα 0.6 (8 dec. 2010)</string>
+    <string name="beta6_log">"- Possibility to change text size in the settings. \n
+- Possibility to open read-only text files from other location than the SD card \n
+- Added a backup function for unsaved text "</string>
+    <string name="beta5">βetα 0.5 (29 nov. 2010)</string>
+    <string name="beta5_log">"- Bug fixed while opening some files\n
+- New Graphics"</string>
+    <string name="beta4">βetα 0.4 (27 nov. 2010)</string>
+    <string name="beta4_log">"- Remembers the files opened recently (number of recent files can be changed)\n
+- display lines numbers (can be changed in the settings)\n
+- automatically break lines to keep a width of one page (can be changed in the settings)"</string>
+    <string name="beta3">βetα 0.3 (25 nov. 2010)</string>
+    <string name="beta3_log">"- Bug fixed : crash when trying to open online files"</string>
+    <string name="beta2">βetα 0.2 (13 nov. 2010)</string>
+    <string name="beta2_log">"- Open existing files \n- Save and save as"</string>
+
+</resources>

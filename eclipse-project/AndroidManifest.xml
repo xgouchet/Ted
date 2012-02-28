@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    android:installLocation="auto"
+    package="fr.xgouchet.texteditor"
+    android:versionCode="10"
+    android:versionName="Release 1.0" >
+
+    <uses-sdk android:minSdkVersion="8" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name" >
+
+        <!-- Ted main activity ... ie a text field :) -->
+        <activity
+            android:name=".TedActivity"
+            android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|fontScale" >
+
+            <!-- Launcher Intent -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <!-- Default Text file view / edit -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.intent.action.EDIT" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data
+                    android:mimeType="text/*"
+                    android:scheme="file" />
+            </intent-filter>
+
+            <!-- File not recognized as Text Files by Android -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.intent.action.EDIT" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data
+                    android:host="*"
+                    android:pathPattern=".*\\.js"
+                    android:scheme="file" />
+                <data
+                    android:host="*"
+                    android:pathPattern=".*\\.htm"
+                    android:scheme="file" />
+                <data
+                    android:host="*"
+                    android:pathPattern=".*\\.html"
+                    android:scheme="file" />
+                <data
+                    android:host="*"
+                    android:pathPattern=".*\\.xhtml"
+                    android:scheme="file" />
+                <data
+                    android:host="*"
+                    android:pathPattern=".*\\.php"
+                    android:scheme="file" />
+            </intent-filter>
+            <intent-filter>
+            </intent-filter>
+        </activity>
+
+        <!-- Ted settings activity -->
+        <activity
+            android:name=".TedSettingsActivity"
+            android:label="@string/title_settings" >
+            <intent-filter>
+                <action android:name="fr.xgouche.texteditor.ACTION_TED_SETTINGS" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <!-- Ted save as activity -->
+        <activity
+            android:name=".TedSaveAsActivity"
+            android:label="@string/title_save_as" >
+            <intent-filter>
+                <action android:name="fr.xgouchet.texteditor.ACTION_TED_SAVE_AS" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <!-- Ted open activity -->
+        <activity
+            android:name=".TedOpenActivity"
+            android:label="@string/title_open" >
+            <intent-filter>
+                <action android:name="fr.xgouchet.texteditor.ACTION_TED_OPEN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <!-- Ted open recent activity -->
+        <activity
+            android:name=".TedOpenRecentActivity"
+            android:label="@string/title_open_recent" >
+            <intent-filter>
+                <action android:name="fr.xgouchet.texteditor.ACTION_TED_OPEN_RECENT" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <!-- Ted about activity -->
+        <activity
+            android:name=".TedAboutActivity"
+            android:label="@string/title_about" >
+            <intent-filter>
+                <action android:name="fr.xgouchet.texteditor.ACTION_TED_ABOUT" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

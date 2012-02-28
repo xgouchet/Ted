@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Ted</string>
+
+    <!-- Titles -->
+    <string name="title_editor">Ted - %1$s</string>
+    <string name="title_editor_dirty">Ted - %1$s *</string>
+    <string name="title_editor_readonly">Ted - [%1$s]</string>
+    <string name="title_save_as">Ted - Save as ... </string>
+    <string name="title_open">Ted - Open </string>
+    <string name="title_open_recent">Ted - Open Recent</string>
+    <string name="title_settings">Ted - Settings </string>
+    <string name="title_about">Ted - About ... </string>
+
+    <!-- Config screen strings -->
+    <string name="config_cat_display">Display</string>
+    <string name="config_cat_save">Saving</string>
+    <string name="config_cat_search">Search</string>
+    <string name="config_line_numbers">Show line numbers</string>
+    <string name="config_word_wrap">Word wrap</string>
+    <string name="config_text_size">Text size</string>
+    <string name="config_color_theme">Color theme</string>
+    <string name="config_end_of_lines">End of lines</string>
+    <string name="config_max_recent">Maximum recent files</string>
+    <string name="config_search_wrap">Search wrap</string>
+    <string name="config_search_match_case">Search match case</string>
+    <string name="config_encoding">Encoding</string>
+
+    <!-- Options Menu in TED -->
+    <string name="menu_new">New</string>
+    <string name="menu_open">Open</string>
+    <string name="menu_open_recent">Recent files</string>
+    <string name="menu_save">Save</string>
+    <string name="menu_save_as">Save as</string>
+    <string name="menu_settings">Settings</string>
+    <string name="menu_about">About</string>
+    <string name="menu_search">Search</string>
+
+    <!-- Misc UI strings -->
+    <string name="ui_save_title">Save ?</string>
+    <string name="ui_save_text">"Do you want to save your document? \nAny unsaved changes will be lost. "</string>
+    <string name="ui_save">Save</string>
+    <string name="ui_no_save">"Don't save"</string>
+    <string name="ui_cancel">Cancel</string>
+    <string name="ui_hint_file_name">File name</string>
+    <string name="ui_hint_search">Search</string>
+    <string name="ui_contact">Contact</string>
+    <string name="ui_licence">Licence</string>
+    <string name="ui_history">History</string>
+    <string name="ui_mail">android@xgouchet.fr</string>
+    <string name="ui_market">Find other apps in market</string>
+    <string name="ui_choose_mail">Open mail using ... </string>
+
+    <!-- Misc Strings -->
+    <string name="lorem_ipsum">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas porttitor neque semper sem fermentum pretium. Sed pharetra dui faucibus massa malesuada in condimentum mi gravida."</string>
+    <string name="feedback">"Please feel free to contact me for any feedback, feature request or bug report. "</string>
+    <string name="license">"This software is provided 'as-is', without any express or implied warranty.	In no event will the author be held liable for any damages arising from the use of this software."</string>
+    <string name="art_licence">"Most icons for this app come from the Gartoon theme for Gnome (GNU GPL), made by Zeus (zeussama@gmail.com). "</string>
+
+</resources>
