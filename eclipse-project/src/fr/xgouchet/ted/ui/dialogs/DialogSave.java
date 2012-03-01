@@ -1,12 +1,12 @@
-package fr.xgouchet.texteditor.ui.dialogs;
+package fr.xgouchet.ted.ui.dialogs;
 
 import android.app.Activity;
 import android.app.Dialog;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
-import fr.xgouchet.texteditor.R;
-import fr.xgouchet.texteditor.common.Constants;
+import fr.xgouchet.ted.R;
+import fr.xgouchet.ted.common.Constants;
 
 public class DialogSave extends Dialog implements Constants,
 		View.OnClickListener {

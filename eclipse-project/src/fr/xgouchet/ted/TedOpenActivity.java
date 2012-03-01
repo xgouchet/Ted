@@ -1,6 +1,6 @@
-package fr.xgouchet.texteditor;
+package fr.xgouchet.ted;
 
-import static fr.xgouchet.texteditor.ui.Toaster.showToast;
+import static fr.xgouchet.ted.ui.Toaster.showToast;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,21 +10,19 @@ import java.util.Collections;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import fr.xgouchet.texteditor.common.ComparatorFilesAlpha;
-import fr.xgouchet.texteditor.common.Constants;
-import fr.xgouchet.texteditor.ui.adapter.FileListAdapter;
+import fr.xgouchet.ted.common.ComparatorFilesAlpha;
+import fr.xgouchet.ted.common.Constants;
+import fr.xgouchet.ted.ui.adapter.FileListAdapter;
 
-public class TedSaveAsActivity extends Activity implements Constants,
+public class TedOpenActivity extends Activity implements Constants,
 		OnClickListener, OnItemClickListener {
 
 	/**
@@ -34,20 +32,14 @@ public class TedSaveAsActivity extends Activity implements Constants,
 		super.onCreate(savedInstanceState);
 
 		// Setup content view
-		setContentView(R.layout.layout_save_as);
+		setContentView(R.layout.layout_open);
 
 		// buttons
 		findViewById(R.id.buttonCancel).setOnClickListener(this);
-		findViewById(R.id.buttonSave).setOnClickListener(this);
 
 		// widgets
-		mFileName = (EditText) findViewById(R.id.editFileName);
 		mFoldersList = (ListView) findViewById(R.id.listItems);
 		mFoldersList.setOnItemClickListener(this);
-
-		// drawables
-		mWriteable = getResources().getDrawable(R.drawable.folder_rw);
-		mLocked = getResources().getDrawable(R.drawable.folder_r);
 	}
 
 	/**
@@ -75,9 +67,6 @@ public class TedSaveAsActivity extends Activity implements Constants,
 			setResult(RESULT_CANCELED);
 			finish();
 			break;
-		case R.id.buttonSave:
-			if (setSaveResult())
-				finish();
 		}
 	}
 
@@ -85,10 +74,16 @@ public class TedSaveAsActivity extends Activity implements Constants,
 	 * @see android.widget.AdapterView.OnItemClickListener#onItemClick(android.widget.AdapterView,
 	 *      android.view.View, int, long)
 	 */
-	public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+	public void onItemClick(AdapterView<?> parent, View view, int position,
+			long id) {
 		File file;
 
 		file = mList.get(position);
+		try {
+			file = file.getCanonicalFile();
+		} catch (IOException e) {
+			file = mList.get(position);
+		}
 
 		// safe check : null pointer exception
 		if (file == null)
@@ -101,8 +96,8 @@ public class TedSaveAsActivity extends Activity implements Constants,
 		if (file.isDirectory()) {
 			fillFolderView(file);
 		} else {
-			if (file.canWrite())
-				mFileName.setText(file.getName());
+			if (setOpenResult(file))
+				finish();
 		}
 	}
 
@@ -146,13 +141,7 @@ public class TedSaveAsActivity extends Activity implements Constants,
 
 		// update path
 		mCurrentFolder = file;
-
-		if (mCurrentFolder.canWrite())
-			mFileName.setCompoundDrawablesWithIntrinsicBounds(
-					R.drawable.folder_rw, 0, 0, 0);
-		else
-			mFileName.setCompoundDrawablesWithIntrinsicBounds(
-					R.drawable.folder_r, 0, 0, 0);
+		setTitle(mCurrentFolder.getPath());
 	}
 
 	/**
@@ -182,34 +171,22 @@ public class TedSaveAsActivity extends Activity implements Constants,
 	}
 
 	/**
-	 * Sets the result data when the user presses save
+	 * Set the result of this activity to open a file
 	 * 
-	 * @return if the result is OK (if not, it means the user must change its
-	 *         selection / input)
+	 * @param file
+	 *            the file to return
+	 * @return if the result was set correctly
 	 */
-	protected boolean setSaveResult() {
+	protected boolean setOpenResult(File file) {
 		Intent result;
-		String fileName;
 
-		if ((mCurrentFolder == null) || (!mCurrentFolder.exists())) {
-			showToast(this, R.string.toast_folder_doesnt_exist, true);
-			return false;
-		}
-
-		if (!mCurrentFolder.canWrite()) {
-			showToast(this, R.string.toast_folder_cant_write, true);
-			return false;
-		}
-
-		fileName = mFileName.getText().toString();
-		if (fileName.length() == 0) {
-			showToast(this, R.string.toast_filename_empty, true);
+		if (!file.canRead()) {
+			showToast(this, R.string.toast_file_cant_read, true);
 			return false;
 		}
 
 		result = new Intent();
-		result.putExtra("path", mCurrentFolder.getAbsolutePath()
-				+ File.separator + fileName);
+		result.putExtra("path", file.getAbsolutePath());
 
 		setResult(RESULT_OK, result);
 		return true;
@@ -224,13 +201,4 @@ public class TedSaveAsActivity extends Activity implements Constants,
 
 	/** the current folder */
 	protected File mCurrentFolder;
-
-	/** the edit text input */
-	protected EditText mFileName;
-
-	/** */
-	protected Drawable mWriteable;
-	/** */
-	protected Drawable mLocked;
-
 }

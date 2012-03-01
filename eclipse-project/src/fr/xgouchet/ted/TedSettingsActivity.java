@@ -1,11 +1,11 @@
-package fr.xgouchet.texteditor;
+package fr.xgouchet.ted;
 
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
-import fr.xgouchet.texteditor.common.Settings;
-import fr.xgouchet.texteditor.ui.view.AdvancedEditText;
+import fr.xgouchet.ted.common.Settings;
+import fr.xgouchet.ted.ui.view.AdvancedEditText;
 
 public class TedSettingsActivity extends PreferenceActivity implements
 		OnSharedPreferenceChangeListener {
@@ -16,8 +16,7 @@ public class TedSettingsActivity extends PreferenceActivity implements
 	protected void onCreate(Bundle icicle) {
 		super.onCreate(icicle);
 
-		getPreferenceManager().setSharedPreferencesName(
-				"fr.xgouchet.texteditor");
+		getPreferenceManager().setSharedPreferencesName("fr.xgouchet.ted");
 
 		addPreferencesFromResource(R.xml.ted_prefs);
 		setContentView(R.layout.layout_prefs);
@@ -41,7 +40,7 @@ public class TedSettingsActivity extends PreferenceActivity implements
 			String key) {
 		Settings.updateFromPreferences(sharedPreferences);
 		mSampleTED.updateFromSettings();
-		
+
 	}
 
 	protected AdvancedEditText mSampleTED;

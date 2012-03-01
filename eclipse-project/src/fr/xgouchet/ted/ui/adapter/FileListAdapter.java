@@ -1,4 +1,4 @@
-package fr.xgouchet.texteditor.ui.adapter;
+package fr.xgouchet.ted.ui.adapter;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
-import fr.xgouchet.texteditor.R;
+import fr.xgouchet.ted.R;
 
 /**
  * A File List Adapter used to display folders and files

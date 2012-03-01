@@ -1,4 +1,4 @@
-package fr.xgouchet.texteditor;
+package fr.xgouchet.ted;
 
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
@@ -7,7 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import fr.xgouchet.texteditor.ui.Toaster;
+import fr.xgouchet.ted.ui.Toaster;
 
 public class TedAboutActivity extends Activity implements OnClickListener {
 

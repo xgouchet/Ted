@@ -7,12 +7,14 @@
         <item>Negative</item>
         <item>Matrix</item>
         <item>Sky</item>
+        <item>Virus</item>
     </string-array>
     <string-array name="color_theme_values">
         <item>0</item>
         <item>1</item>
         <item>2</item>
         <item>3</item>
+        <item>4</item>
     </string-array>
 
     <!-- Text size -->

@@ -1,4 +1,4 @@
-package fr.xgouchet.texteditor.common;
+package fr.xgouchet.ted.common;
 
 import java.io.File;
 
@@ -39,7 +39,7 @@ public interface Constants {
 	public static final String BACKUP_FILE_NAME = "temp.bak";
 
 	/** name of the shared preferences for this app ( = {@value} ) */
-	public static final String PREFERENCES_NAME = "fr.xgouchet.texteditor";
+	public static final String PREFERENCES_NAME = "fr.xgouchet.ted";
 	/** Preference tag to retrieve the recent files ( = {@value} ) */
 	public static final String PREFERENCE_RECENTS = "recent_files";
 	/** Preference tag to retrieve the recent files ( = {@value} ) */
@@ -92,6 +92,8 @@ public interface Constants {
 	public static final int COLOR_MATRIX = 2;
 	/** color theme negative : darkblue on skyblue ( = {@value} ) */
 	public static final int COLOR_SKY = 3;
+	/** color theme negative : red on black ( = {@value} ) */
+	public static final int COLOR_VIRUS = 4;
 
 	/** Request code for Save As Activity */
 	public static final int REQUEST_SAVE_AS = 107;

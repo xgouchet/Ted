@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     android:installLocation="auto"
-    package="fr.xgouchet.texteditor"
+    package="fr.xgouchet.ted"
     android:versionCode="10"
     android:versionName="Release 1.0" >
 
@@ -74,7 +74,7 @@
             android:name=".TedSettingsActivity"
             android:label="@string/title_settings" >
             <intent-filter>
-                <action android:name="fr.xgouche.texteditor.ACTION_TED_SETTINGS" />
+                <action android:name="fr.xgouche.ted.ACTION_TED_SETTINGS" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
@@ -85,7 +85,7 @@
             android:name=".TedSaveAsActivity"
             android:label="@string/title_save_as" >
             <intent-filter>
-                <action android:name="fr.xgouchet.texteditor.ACTION_TED_SAVE_AS" />
+                <action android:name="fr.xgouchet.ted.ACTION_TED_SAVE_AS" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
@@ -96,7 +96,7 @@
             android:name=".TedOpenActivity"
             android:label="@string/title_open" >
             <intent-filter>
-                <action android:name="fr.xgouchet.texteditor.ACTION_TED_OPEN" />
+                <action android:name="fr.xgouchet.ted.ACTION_TED_OPEN" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
@@ -107,7 +107,7 @@
             android:name=".TedOpenRecentActivity"
             android:label="@string/title_open_recent" >
             <intent-filter>
-                <action android:name="fr.xgouchet.texteditor.ACTION_TED_OPEN_RECENT" />
+                <action android:name="fr.xgouchet.ted.ACTION_TED_OPEN_RECENT" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
@@ -118,7 +118,7 @@
             android:name=".TedAboutActivity"
             android:label="@string/title_about" >
             <intent-filter>
-                <action android:name="fr.xgouchet.texteditor.ACTION_TED_ABOUT" />
+                <action android:name="fr.xgouchet.ted.ACTION_TED_ABOUT" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>

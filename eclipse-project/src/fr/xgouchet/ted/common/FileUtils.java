@@ -1,4 +1,4 @@
-package fr.xgouchet.texteditor.common;
+package fr.xgouchet.ted.common;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

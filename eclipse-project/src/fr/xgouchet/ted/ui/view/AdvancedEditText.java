@@ -1,4 +1,4 @@
-package fr.xgouchet.texteditor.ui.view;
+package fr.xgouchet.ted.ui.view;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -11,9 +11,9 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnKeyListener;
 import android.widget.EditText;
-import fr.xgouchet.texteditor.R;
-import fr.xgouchet.texteditor.common.Constants;
-import fr.xgouchet.texteditor.common.Settings;
+import fr.xgouchet.ted.R;
+import fr.xgouchet.ted.common.Constants;
+import fr.xgouchet.ted.common.Settings;
 
 /**
  * TODO create a syntax highlighter
@@ -127,6 +127,11 @@ public class AdvancedEditText extends EditText implements Constants,
 			setBackgroundResource(R.drawable.textfield_sky);
 			setTextColor(Color.rgb(0, 0, 64));
 			mPaintNumbers.setColor(Color.rgb(0, 128, 255));
+			break;
+		case COLOR_VIRUS:
+			setBackgroundResource(R.drawable.textfield_black);
+			setTextColor(Color.RED);
+			mPaintNumbers.setColor(Color.rgb(128, 0, 0));
 			break;
 		case COLOR_CLASSIC:
 		default:

@@ -1,4 +1,4 @@
-package fr.xgouchet.texteditor.ui;
+package fr.xgouchet.ted.ui;
 
 import android.content.Context;
 import android.graphics.Color;

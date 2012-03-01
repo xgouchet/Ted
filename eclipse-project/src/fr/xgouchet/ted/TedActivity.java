@@ -1,6 +1,6 @@
-package fr.xgouchet.texteditor;
+package fr.xgouchet.ted;
 
-import static fr.xgouchet.texteditor.ui.Toaster.showToast;
+import static fr.xgouchet.ted.ui.Toaster.showToast;
 
 import java.io.File;
 import java.net.URI;
@@ -22,12 +22,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
-import fr.xgouchet.texteditor.common.Constants;
-import fr.xgouchet.texteditor.common.FileUtils;
-import fr.xgouchet.texteditor.common.RecentFiles;
-import fr.xgouchet.texteditor.common.Settings;
-import fr.xgouchet.texteditor.ui.dialogs.DialogSave;
-import fr.xgouchet.texteditor.ui.view.AdvancedEditText;
+import fr.xgouchet.ted.common.Constants;
+import fr.xgouchet.ted.common.FileUtils;
+import fr.xgouchet.ted.common.RecentFiles;
+import fr.xgouchet.ted.common.Settings;
+import fr.xgouchet.ted.ui.dialogs.DialogSave;
+import fr.xgouchet.ted.ui.view.AdvancedEditText;
 
 public class TedActivity extends Activity implements Constants, TextWatcher,
 		OnClickListener {
@@ -41,8 +41,8 @@ public class TedActivity extends Activity implements Constants, TextWatcher,
 
 		setContentView(R.layout.layout_editor);
 
-		Settings.updateFromPreferences(getSharedPreferences(
-				"fr.xgouchet.texteditor", MODE_PRIVATE));
+		Settings.updateFromPreferences(getSharedPreferences("fr.xgouchet.ted",
+				MODE_PRIVATE));
 
 		// editor
 		mEditor = (AdvancedEditText) findViewById(R.id.editor);
@@ -447,7 +447,7 @@ public class TedActivity extends Activity implements Constants, TextWatcher,
 			public void run() {
 				Intent open;
 
-				open = new Intent("fr.xgouchet.texteditor.ACTION_TED_OPEN");
+				open = new Intent("fr.xgouchet.ted.ACTION_TED_OPEN");
 				try {
 					startActivityForResult(open, REQUEST_OPEN);
 				} catch (ActivityNotFoundException e) {
@@ -475,8 +475,7 @@ public class TedActivity extends Activity implements Constants, TextWatcher,
 			public void run() {
 				Intent open;
 
-				open = new Intent(
-						"fr.xgouchet.texteditor.ACTION_TED_OPEN_RECENT");
+				open = new Intent("fr.xgouchet.ted.ACTION_TED_OPEN_RECENT");
 				try {
 					startActivityForResult(open, REQUEST_OPEN);
 				} catch (ActivityNotFoundException e) {
@@ -521,7 +520,7 @@ public class TedActivity extends Activity implements Constants, TextWatcher,
 		Log.d(TAG, "saveContentAs");
 		Intent saveAs;
 
-		saveAs = new Intent("fr.xgouchet.texteditor.ACTION_TED_SAVE_AS");
+		saveAs = new Intent("fr.xgouchet.ted.ACTION_TED_SAVE_AS");
 		try {
 			startActivityForResult(saveAs, REQUEST_SAVE_AS);
 		} catch (ActivityNotFoundException e) {
@@ -531,7 +530,7 @@ public class TedActivity extends Activity implements Constants, TextWatcher,
 
 	protected void aboutActivity() {
 		Intent about = new Intent();
-		about.setAction("fr.xgouchet.texteditor.ACTION_TED_ABOUT");
+		about.setAction("fr.xgouchet.ted.ACTION_TED_ABOUT");
 		try {
 			startActivity(about);
 		} catch (ActivityNotFoundException e) {
@@ -544,7 +543,7 @@ public class TedActivity extends Activity implements Constants, TextWatcher,
 	 */
 	protected void settingsActivity() {
 		Intent settings = new Intent();
-		settings.setAction("fr.xgouche.texteditor.ACTION_TED_SETTINGS");
+		settings.setAction("fr.xgouche.ted.ACTION_TED_SETTINGS");
 		try {
 			startActivity(settings);
 		} catch (ActivityNotFoundException e) {

@@ -1,4 +1,4 @@
-package fr.xgouchet.texteditor.common;
+package fr.xgouchet.ted.common;
 
 import android.content.SharedPreferences;
 

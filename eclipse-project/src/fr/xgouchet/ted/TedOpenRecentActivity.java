@@ -1,4 +1,4 @@
-package fr.xgouchet.texteditor;
+package fr.xgouchet.ted;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -12,9 +12,9 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import fr.xgouchet.texteditor.common.Constants;
-import fr.xgouchet.texteditor.common.RecentFiles;
-import fr.xgouchet.texteditor.ui.adapter.PathListAdapter;
+import fr.xgouchet.ted.common.Constants;
+import fr.xgouchet.ted.common.RecentFiles;
+import fr.xgouchet.ted.ui.adapter.PathListAdapter;
 
 public class TedOpenRecentActivity extends Activity implements Constants,
 		OnClickListener, OnItemClickListener {
