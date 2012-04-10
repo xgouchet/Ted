@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string name="app_name">Ted</string>
+    
     <!-- Titles -->
     <string name="title_save_as">Ted - Sauver sous ... </string>
     <string name="title_open">Ted - Ouvrir </string>
@@ -22,17 +24,10 @@
     <string name="config_title_search_wrap">Recherche en boucle</string>
     <string name="config_title_search_match_case">Recherche sensible à la casse</string>
     <string name="config_title_encoding">Encodage</string>
-    <string name="config_title_scroll_fling">Fling to scroll faster</string>
-    <string name="config_summary_line_numbers">Show line numbers</string>
-    <string name="config_summary_word_wrap">Word wrap</string>
-    <string name="config_summary_text_size">Text size</string>
-    <string name="config_summary_color_theme">Color theme</string>
-    <string name="config_summary_end_of_lines">End of lines</string>
-    <string name="config_summary_max_recent">Maximum recent files</string>
-    <string name="config_summary_search_wrap">Search wrap</string>
-    <string name="config_summary_search_match_case">Search match case</string>
-    <string name="config_summary_encoding">Encoding</string>
-    <string name="config_summary_scroll_fling">Décocher en cas de problèmes de performances</string>
+    <string name="config_title_scroll_fling">Défilement par lancé</string>
+    <string name="config_summary_line_numbers">Les numéros de lignes sont affichés en début de ligne</string>
+    <string name="config_summary_word_wrap">"Les lignes trop longues sont ajustées à la taille de l'écran"</string>
+    <string name="config_summary_scroll_fling">"Décocher l'option en cas de problèmes de performances"</string>
 
     <!-- Options Menu in TED -->
     <string name="menu_new">Nouveau</string>
@@ -45,7 +40,6 @@
     <string name="menu_search">Rechercher</string>
 
     <!-- Misc UI strings -->
-    <string name="ui_save_title">Sauver ?</string>
     <string name="ui_save_text">"Voulez vous sauver votre document? \nTout changement non sauvé sera perdu. "</string>
     <string name="ui_save">Sauver</string>
     <string name="ui_no_save">"Ne pas sauver"</string>

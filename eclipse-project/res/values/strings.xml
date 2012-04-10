@@ -30,7 +30,6 @@
     <string name="config_title_scroll_fling">Fling to scroll faster</string>
     <string name="config_summary_line_numbers">Display the line number at the left of the page</string>
     <string name="config_summary_word_wrap">Lines will break in new lines if they are too wide for the screen</string>
-    <string name="config_summary_search_wrap">Search from the top of the document if the end of the document is reached</string>
     <string name="config_summary_scroll_fling">Uncheck if you have performance issues</string>
 
     <!-- Options Menu in TED -->
@@ -44,7 +43,6 @@
     <string name="menu_search">Search</string>
 
     <!-- Misc UI strings -->
-    <string name="ui_save_title">Save ?</string>
     <string name="ui_save_text">"Do you want to save your document? \nAny unsaved changes will be lost. "</string>
     <string name="ui_save">Save</string>
     <string name="ui_no_save">"Don't save"</string>

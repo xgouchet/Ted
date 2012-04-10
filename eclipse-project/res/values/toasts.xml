@@ -16,19 +16,15 @@
     <string name="toast_save_delete">Unable to save (error while copying temp file to save location)</string>
     <string name="toast_save_rename">Unable to save (error while copying temp file to save location)</string>
     <string name="toast_save_success">File saved</string>
-    <string name="toast_io_exception">Error while loading the folder to display</string>
     <string name="toast_folder_doesnt_exist">"Can't display folder cause it doesn't exist"</string>
     <string name="toast_folder_not_folder">"Can't display folder cause it isn't a fodler"</string>
     <string name="toast_folder_cant_read">"Can't display folder cause it isn't readable"</string>
     <string name="toast_folder_cant_write">"Can't use this folder cause it isn't writeable"</string>
-    <string name="toast_file_null">"Can't open file, file is null or doesn't exist"</string>
-    <string name="toast_file_not_file">"Can't open file cause it isn't a file"</string>
     <string name="toast_file_cant_read">"Can't open file cause it isn't readable"</string>
-    <string name="toast_filename_empty">"Can't save a file without a filename"</string>
-    <string name="toast_recent_removed">"Recent file removed cause the file doesn't exist anymore"</string>
     <string name="toast_search_not_found">No match was found in the current file</string>
     <string name="toast_search_eof">No more match found in the current file</string>
     <string name="toast_search_no_input">Type a text to search in the search bar</string>
     <string name="toast_no_market">Market is not present on this device</string>
+    <string name="toast_filename_empty">The filename must not be empty</string>
 
 </resources>
