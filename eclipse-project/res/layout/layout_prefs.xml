@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <fr.xgouchet.ted.ui.view.AdvancedEditText
+    <fr.xgouchet.texteditor.ui.view.AdvancedEditText
         android:id="@+id/sampleEditor"
         android:layout_width="fill_parent"
         android:layout_height="64dp"

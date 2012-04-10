@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     android:installLocation="auto"
-    package="fr.xgouchet.ted"
+    package="fr.xgouchet.texteditor"
     android:versionCode="10"
     android:versionName="Release 1.0" >
 
@@ -16,7 +16,8 @@
         <!-- Ted main activity ... ie a text field :) -->
         <activity
             android:name=".TedActivity"
-            android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|fontScale" >
+            android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|fontScale"
+            android:windowSoftInputMode="adjustResize" >
 
             <!-- Launcher Intent -->
             <intent-filter>
@@ -72,9 +73,10 @@
         <!-- Ted settings activity -->
         <activity
             android:name=".TedSettingsActivity"
-            android:label="@string/title_settings" >
+            android:label="@string/title_settings"
+            android:windowSoftInputMode="stateHidden" >
             <intent-filter>
-                <action android:name="fr.xgouche.ted.ACTION_TED_SETTINGS" />
+                <action android:name="fr.xgouchet.texteditor.ACTION_TED_SETTINGS" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
@@ -83,9 +85,10 @@
         <!-- Ted save as activity -->
         <activity
             android:name=".TedSaveAsActivity"
-            android:label="@string/title_save_as" >
+            android:label="@string/title_save_as"
+            android:windowSoftInputMode="adjustResize" >
             <intent-filter>
-                <action android:name="fr.xgouchet.ted.ACTION_TED_SAVE_AS" />
+                <action android:name="fr.xgouchet.texteditor.ACTION_TED_SAVE_AS" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
@@ -94,9 +97,10 @@
         <!-- Ted open activity -->
         <activity
             android:name=".TedOpenActivity"
-            android:label="@string/title_open" >
+            android:label="@string/title_open"
+            android:windowSoftInputMode="stateHidden" >
             <intent-filter>
-                <action android:name="fr.xgouchet.ted.ACTION_TED_OPEN" />
+                <action android:name="fr.xgouchet.texteditor.ACTION_TED_OPEN" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
@@ -105,9 +109,10 @@
         <!-- Ted open recent activity -->
         <activity
             android:name=".TedOpenRecentActivity"
-            android:label="@string/title_open_recent" >
+            android:label="@string/title_open_recent"
+            android:windowSoftInputMode="stateHidden" >
             <intent-filter>
-                <action android:name="fr.xgouchet.ted.ACTION_TED_OPEN_RECENT" />
+                <action android:name="fr.xgouchet.texteditor.ACTION_TED_OPEN_RECENT" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
@@ -116,9 +121,10 @@
         <!-- Ted about activity -->
         <activity
             android:name=".TedAboutActivity"
-            android:label="@string/title_about" >
+            android:label="@string/title_about"
+            android:windowSoftInputMode="stateHidden" >
             <intent-filter>
-                <action android:name="fr.xgouchet.ted.ACTION_TED_ABOUT" />
+                <action android:name="fr.xgouchet.texteditor.ACTION_TED_ABOUT" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>

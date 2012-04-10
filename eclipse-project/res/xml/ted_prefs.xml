@@ -1,29 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-    android:key="ecg_config"
+    android:key="ted_settings"
     android:title="@string/title_settings" >
 
     <PreferenceCategory android:title="@string/config_cat_display" >
         <CheckBoxPreference
             android:defaultValue="true"
             android:key="show_line_numbers"
-            android:title="@string/config_line_numbers" />
+            android:summaryOn="@string/config_summary_line_numbers"
+            android:title="@string/config_title_line_numbers" />
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="auto_break_lines"
-            android:title="@string/config_word_wrap" />
+            android:summaryOn="@string/config_summary_word_wrap"
+            android:title="@string/config_title_word_wrap" />
 
         <ListPreference
             android:entries="@array/color_theme_names"
             android:entryValues="@array/color_theme_values"
             android:key="color_theme"
-            android:title="@string/config_color_theme" />
+            
+            android:title="@string/config_title_color_theme" />
         <ListPreference
             android:defaultValue="12"
             android:entries="@array/text_size_names"
             android:entryValues="@array/text_size_values"
             android:key="text_size"
-            android:title="@string/config_text_size" />
+            android:title="@string/config_title_text_size" />
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/config_cat_save" >
         <ListPreference
@@ -31,29 +34,36 @@
             android:entries="@array/eol_names"
             android:entryValues="@array/eol_values"
             android:key="end_of_lines"
-            android:title="@string/config_end_of_lines" />
+            android:title="@string/config_title_end_of_lines" />
         <ListPreference
             android:defaultValue="UTF-8"
             android:entries="@array/encoding_names"
             android:entryValues="@array/encoding_values"
             android:key="encoding"
-            android:title="@string/config_encoding" />
+            android:title="@string/config_title_encoding" />
         <ListPreference
             android:defaultValue="10"
             android:entries="@array/max_recent_files"
             android:entryValues="@array/max_recent_files"
             android:key="max_recent_files"
-            android:title="@string/config_max_recent" />
+            android:title="@string/config_title_max_recent" />
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/config_cat_search" >
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="search_wrap"
-            android:title="@string/config_search_wrap" />
+            android:title="@string/config_title_search_wrap" />
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="search_match_case"
-            android:title="@string/config_search_match_case" />
+            android:title="@string/config_title_search_match_case" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/config_cat_misc" >
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="fling_to_scroll"
+            android:summary="@string/config_summary_scroll_fling"
+            android:title="@string/config_title_scroll_fling" />
     </PreferenceCategory>
 
 </PreferenceScreen>

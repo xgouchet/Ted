@@ -12,15 +12,27 @@
     <string name="config_cat_display">Affichage</string>
     <string name="config_cat_save">Sauvegarde</string>
     <string name="config_cat_search">Recherche</string>
-    <string name="config_line_numbers">Afficher les numéros de ligne</string>
-    <string name="config_word_wrap">Coupure de lignes automatique</string>
-    <string name="config_text_size">Taille du texte</string>
-    <string name="config_color_theme">Thèmes de couleurs</string>
-    <string name="config_end_of_lines">Fin de lignes</string>
-    <string name="config_max_recent">Fichiers récents</string>
-    <string name="config_search_wrap">Recherche en boucle</string>
-    <string name="config_search_match_case">Recherche sensible à la casse</string>
-    <string name="config_encoding">Encodage</string>
+    <string name="config_cat_misc">Divers</string>
+    <string name="config_title_line_numbers">Afficher les numéros de ligne</string>
+    <string name="config_title_word_wrap">Coupure de lignes automatique</string>
+    <string name="config_title_text_size">Taille du texte</string>
+    <string name="config_title_color_theme">Thèmes de couleurs</string>
+    <string name="config_title_end_of_lines">Fin de lignes</string>
+    <string name="config_title_max_recent">Fichiers récents</string>
+    <string name="config_title_search_wrap">Recherche en boucle</string>
+    <string name="config_title_search_match_case">Recherche sensible à la casse</string>
+    <string name="config_title_encoding">Encodage</string>
+    <string name="config_title_scroll_fling">Fling to scroll faster</string>
+    <string name="config_summary_line_numbers">Show line numbers</string>
+    <string name="config_summary_word_wrap">Word wrap</string>
+    <string name="config_summary_text_size">Text size</string>
+    <string name="config_summary_color_theme">Color theme</string>
+    <string name="config_summary_end_of_lines">End of lines</string>
+    <string name="config_summary_max_recent">Maximum recent files</string>
+    <string name="config_summary_search_wrap">Search wrap</string>
+    <string name="config_summary_search_match_case">Search match case</string>
+    <string name="config_summary_encoding">Encoding</string>
+    <string name="config_summary_scroll_fling">Décocher en cas de problèmes de performances</string>
 
     <!-- Options Menu in TED -->
     <string name="menu_new">Nouveau</string>
