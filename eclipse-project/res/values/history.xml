@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <string name="release11">1.1 (10 apr. 2012)</string>
+    <string name="release11_log">"- Fixed the crash at start caused by the last update\n
+- Added Fling to Scroll (launches the scroll to navigate in large files)\n
+- Display the active line\n
+- Added new color theme (ask for more if needed)"</string>
     <string name="release1">1.0 (27 feb. 2012)</string>
     <string name="release1_log">"- Brand new release version\n
-        - Supports multiple encoding (including UTF-8)\n
-        - Prevent data loss when saving really big files (note that Ted is not meant to open big files though)\n
-        - Added new color theme (ask for more if needed)\n
-        - Replaced the autosave with a warning and popup (prevent saving unwanted changes)"</string>
+- Supports multiple encoding (including UTF-8)\n
+- Prevent data loss when saving really big files (note that Ted is not meant to open big files though)\n
+- Added new color theme (ask for more if needed)\n
+- Replaced the autosave with a warning and popup (prevent saving unwanted changes)"</string>
     <string name="beta9">βetα 0.9 (7 jan. 2010)</string>
     <string name="beta9_log">"- Bug fixed : severall crash on start\n
 - Added a search tool\n

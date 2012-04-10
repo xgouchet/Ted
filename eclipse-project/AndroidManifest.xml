@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     android:installLocation="auto"
     package="fr.xgouchet.texteditor"
-    android:versionCode="10"
-    android:versionName="Release 1.0" >
+    android:versionCode="11"
+    android:versionName="Release 1.1" >
 
     <uses-sdk android:minSdkVersion="8" />
 
