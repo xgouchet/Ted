@@ -64,6 +64,8 @@ public interface Constants {
 	public static final String PREFERENCE_AUTO_SAVE_MODE = "auto_save_mode";
 	/** Preference tag to retrieve the Color Theme ( = {@value} ) */
 	public static final String PREFERENCE_COLOR_THEME = "color_theme";
+	/** Preference tag to retrieve the fling to scroll ( = {@value} ) */
+	public static final String PREFERENCE_FLING_TO_SCROLL = "fling_to_scroll";
 
 	/** minimum text size */
 	public static final int TEXT_SIZE_MIN = 9;

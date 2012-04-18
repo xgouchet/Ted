@@ -36,6 +36,9 @@ public class Settings implements Constants {
 	/** color setting */
 	public static int COLOR = COLOR_CLASSIC;
 
+	/** enable fling to scroll */
+	public static boolean FLING_TO_SCROLL = false;
+
 	/**
 	 * @return the end of line characters according to the current settings
 	 */
@@ -76,6 +79,8 @@ public class Settings implements Constants {
 		Settings.SEARCHMATCHCASE = settings.getBoolean(
 				PREFERENCE_SEARCH_MATCH_CASE, false);
 		Settings.ENCODING = settings.getString(PREFERENCE_ENCODING, ENC_UTF8);
+		Settings.FLING_TO_SCROLL = settings.getBoolean(
+				PREFERENCE_FLING_TO_SCROLL, true);
 
 		RecentFiles.loadRecentFiles(settings.getString(PREFERENCE_RECENTS, ""));
 	}

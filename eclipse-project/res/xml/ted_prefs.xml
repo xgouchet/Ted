@@ -60,7 +60,7 @@
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/config_cat_misc" >
         <CheckBoxPreference
-            android:defaultValue="false"
+            android:defaultValue="true"
             android:key="fling_to_scroll"
             android:summary="@string/config_summary_scroll_fling"
             android:title="@string/config_title_scroll_fling" />

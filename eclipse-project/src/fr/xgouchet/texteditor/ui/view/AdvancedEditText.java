@@ -42,7 +42,6 @@ public class AdvancedEditText extends EditText implements Constants,
 		mPaintNumbers.setAntiAlias(true);
 
 		mPaintHighlight = new Paint();
-		
 
 		scale = context.getResources().getDisplayMetrics().density;
 		mPadding = (int) (mPaddingDP * scale);
@@ -96,25 +95,28 @@ public class AdvancedEditText extends EditText implements Constants,
 		// draw line numbers
 		count = getLineCount();
 		lineX = (drawing.left + padding - (Settings.TEXT_SIZE / 2));
-		if (Settings.SHOW_LINE_NUMBERS) {
-			for (int i = 0; i < count; i++) {
-				baseline = getLineBounds(i, lineBounds);
+
+		for (int i = 0; i < count; i++) {
+			baseline = getLineBounds(i, lineBounds);
+			if (mMaxSize != null)
 				if (mMaxSize.x < lineBounds.right)
 					mMaxSize.x = lineBounds.right;
 
-				if (lineBounds.bottom < drawing.top)
-					continue;
-				if (lineBounds.top > drawing.bottom)
-					continue;
+			if (lineBounds.bottom < drawing.top)
+				continue;
+			if (lineBounds.top > drawing.bottom)
+				continue;
 
-				if (i == mHighlightedLine)
-					canvas.drawRect(lineBounds, mPaintHighlight);
+			if (i == mHighlightedLine)
+				canvas.drawRect(lineBounds, mPaintHighlight);
 
+			if (Settings.SHOW_LINE_NUMBERS) {
 				canvas.drawText("" + (i + 1), drawing.left + mPadding,
 						baseline, mPaintNumbers);
 			}
-			canvas.drawLine(lineX, drawing.top, lineX, drawing.bottom,
-					mPaintNumbers);
+			if (Settings.SHOW_LINE_NUMBERS)
+				canvas.drawLine(lineX, drawing.top, lineX, drawing.bottom,
+						mPaintNumbers);
 		}
 
 		// Log.d(TAG, (selStart + " - " + selEnd));
@@ -259,7 +261,7 @@ public class AdvancedEditText extends EditText implements Constants,
 			break;
 		}
 		mPaintHighlight.setAlpha(48);
-		
+
 		// text size
 		setTextSize(Settings.TEXT_SIZE);
 		mPaintNumbers.setTextSize(Settings.TEXT_SIZE - 2);
@@ -268,10 +270,16 @@ public class AdvancedEditText extends EditText implements Constants,
 		postInvalidate();
 		refreshDrawableState();
 
-		// TODO use Fling when scrolling settings ?
-		mGestureDetector = new GestureDetector(getContext(), this);
-		mScroller = new Scroller(getContext());
-		mMaxSize = new Point();
+		// use Fling when scrolling settings ?
+		if (Settings.FLING_TO_SCROLL) {
+			mGestureDetector = new GestureDetector(getContext(), this);
+			mScroller = new Scroller(getContext());
+			mMaxSize = new Point();
+		} else {
+			mGestureDetector = null;
+			mScroller = null;
+			mMaxSize = null;
+		}
 	}
 
 	/**
