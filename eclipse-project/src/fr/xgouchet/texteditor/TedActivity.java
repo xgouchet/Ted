@@ -61,6 +61,8 @@ public class TedActivity extends Activity implements Constants, TextWatcher,
 		findViewById(R.id.buttonSearchClose).setOnClickListener(this);
 		findViewById(R.id.buttonSearchNext).setOnClickListener(this);
 		findViewById(R.id.buttonSearchPrev).setOnClickListener(this);
+		readIntent();
+		
 	}
 
 	/**
@@ -71,7 +73,6 @@ public class TedActivity extends Activity implements Constants, TextWatcher,
 		Log.d(TAG, "onResume");
 
 		updateTitle();
-		readIntent();
 		mEditor.updateFromSettings();
 	}
 
