@@ -48,6 +48,9 @@ public class AdvancedEditText extends EditText implements Constants,
 
 		mHighlightedLine = mHighlightStart = -1;
 
+		mDrawingRect = new Rect();
+		mLineBounds = new Rect();
+
 		updateFromSettings();
 	}
 
@@ -71,7 +74,7 @@ public class AdvancedEditText extends EditText implements Constants,
 	 * @category View
 	 */
 	public void onDraw(Canvas canvas) {
-		int count, padding, lineX, baseline, selStart, selEnd;
+		int count, padding, lineX, baseline;
 
 		// padding
 		count = getLineCount();
@@ -86,45 +89,44 @@ public class AdvancedEditText extends EditText implements Constants,
 		}
 
 		// get the drawing boundaries
-		Rect lineBounds = new Rect(), drawing = new Rect();
-		getDrawingRect(drawing);
+		getDrawingRect(mDrawingRect);
 
 		// display current line
 		computeLineHighlight();
 
 		// draw line numbers
 		count = getLineCount();
-		lineX = (drawing.left + padding - (Settings.TEXT_SIZE / 2));
+		lineX = (mDrawingRect.left + padding - (Settings.TEXT_SIZE / 2));
 
 		for (int i = 0; i < count; i++) {
-			baseline = getLineBounds(i, lineBounds);
+			baseline = getLineBounds(i, mLineBounds);
 			if (mMaxSize != null)
-				if (mMaxSize.x < lineBounds.right)
-					mMaxSize.x = lineBounds.right;
+				if (mMaxSize.x < mLineBounds.right)
+					mMaxSize.x = mLineBounds.right;
 
-			if (lineBounds.bottom < drawing.top)
+			if (mLineBounds.bottom < mDrawingRect.top)
 				continue;
-			if (lineBounds.top > drawing.bottom)
+			if (mLineBounds.top > mDrawingRect.bottom)
 				continue;
 
 			if (i == mHighlightedLine)
-				canvas.drawRect(lineBounds, mPaintHighlight);
+				canvas.drawRect(mLineBounds, mPaintHighlight);
 
 			if (Settings.SHOW_LINE_NUMBERS) {
-				canvas.drawText("" + (i + 1), drawing.left + mPadding,
+				canvas.drawText("" + (i + 1), mDrawingRect.left + mPadding,
 						baseline, mPaintNumbers);
 			}
 			if (Settings.SHOW_LINE_NUMBERS)
-				canvas.drawLine(lineX, drawing.top, lineX, drawing.bottom,
-						mPaintNumbers);
+				canvas.drawLine(lineX, mDrawingRect.top, lineX,
+						mDrawingRect.bottom, mPaintNumbers);
 		}
 
-		// Log.d(TAG, (selStart + " - " + selEnd));
-
 		if (mMaxSize != null) {
-			mMaxSize.y = lineBounds.bottom;
-			mMaxSize.x = Math.max(mMaxSize.x + mPadding - drawing.width(), 0);
-			mMaxSize.y = Math.max(mMaxSize.y + mPadding - drawing.height(), 0);
+			mMaxSize.y = mLineBounds.bottom;
+			mMaxSize.x = Math.max(mMaxSize.x + mPadding - mDrawingRect.width(),
+					0);
+			mMaxSize.y = Math.max(
+					mMaxSize.y + mPadding - mDrawingRect.height(), 0);
 		}
 		super.onDraw(canvas);
 	}
@@ -331,4 +333,6 @@ public class AdvancedEditText extends EditText implements Constants,
 	/** the highlighted line index */
 	protected int mHighlightedLine;
 	protected int mHighlightStart;
+
+	protected Rect mDrawingRect, mLineBounds;
 }

@@ -11,8 +11,10 @@
         android:id="@+id/textFileName"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/file"
+        android:drawablePadding="8dp"
         android:textStyle="bold"
-        android:typeface="sans" android:drawableLeft="@drawable/file" android:drawablePadding="8dp">
+        android:typeface="sans" >
     </TextView>
 
 </LinearLayout>

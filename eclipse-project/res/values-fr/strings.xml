@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">Ted</string>
-    
+
     <!-- Titles -->
     <string name="title_save_as">Ted - Sauver sous ... </string>
     <string name="title_open">Ted - Ouvrir </string>
@@ -14,6 +14,7 @@
     <string name="config_cat_display">Affichage</string>
     <string name="config_cat_save">Sauvegarde</string>
     <string name="config_cat_search">Recherche</string>
+    <string name="config_cat_undo">Historique</string>
     <string name="config_cat_misc">Divers</string>
     <string name="config_title_line_numbers">Afficher les numéros de ligne</string>
     <string name="config_title_word_wrap">Coupure de lignes automatique</string>
@@ -25,6 +26,9 @@
     <string name="config_title_search_match_case">Recherche sensible à la casse</string>
     <string name="config_title_encoding">Encodage</string>
     <string name="config_title_scroll_fling">Défilement par lancé</string>
+    <string name="config_title_allow_undo_stack">"Activer l'option \"Annuler\""</string>
+    <string name="config_title_max_undo_stack">Nombre maximum de changements enregistrés</string>
+    <string name="config_title_back_to_undo">Utiliser le bouton retour pour annuler la dernière opération</string>
     <string name="config_summary_line_numbers">Les numéros de lignes sont affichés en début de ligne</string>
     <string name="config_summary_word_wrap">"Les lignes trop longues sont ajustées à la taille de l'écran"</string>
     <string name="config_summary_scroll_fling">"Décocher l'option en cas de problèmes de performances"</string>
@@ -38,6 +42,9 @@
     <string name="menu_settings">Paramètres</string>
     <string name="menu_about">A propos</string>
     <string name="menu_search">Rechercher</string>
+    <string name="menu_undo">Annuler</string>
+    <string name="menu_redo">Refaire</string>
+    <string name="menu_quit">Quitter</string>
 
     <!-- Misc UI strings -->
     <string name="ui_save_text">"Voulez vous sauver votre document? \nTout changement non sauvé sera perdu. "</string>

@@ -18,6 +18,7 @@
         android:typeface="monospace" >
 
         <requestFocus />
+        
     </fr.xgouchet.texteditor.ui.view.AdvancedEditText>
 
     <LinearLayout

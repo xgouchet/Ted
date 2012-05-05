@@ -26,5 +26,7 @@
     <string name="toast_search_no_input">Type a text to search in the search bar</string>
     <string name="toast_no_market">Market is not present on this device</string>
     <string name="toast_filename_empty">The filename must not be empty</string>
+    <string name="toast_warn_no_undo">Nothing to undo anymore.</string>
+    <string name="toast_warn_no_undo_will_quit">Nothing to undo anymore. Press Back one more time to quit. </string>
 
 </resources>

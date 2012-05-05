@@ -74,7 +74,7 @@ public class FileListAdapter extends ArrayAdapter<File> {
 			}
 		} else {
 			text = "";
-			icon = R.drawable.unknown;
+			icon = R.drawable.file_unknown;
 		}
 
 		textView = (TextView) v.findViewById(R.id.textFileName);

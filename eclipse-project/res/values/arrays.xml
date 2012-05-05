@@ -56,6 +56,16 @@
     </string-array>
 
     <!-- Recent files -->
+    <string-array name="max_undo_stack_values">
+        <item>10</item>
+        <item>25</item>
+        <item>50</item>
+        <item>100</item>
+        <item>200</item>
+        <item>500</item>
+    </string-array>
+
+    <!-- Recent files -->
     <string-array name="max_recent_files">
         <item>0</item>
         <item>1</item>

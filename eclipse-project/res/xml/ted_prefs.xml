@@ -19,7 +19,6 @@
             android:entries="@array/color_theme_names"
             android:entryValues="@array/color_theme_values"
             android:key="color_theme"
-            
             android:title="@string/config_title_color_theme" />
         <ListPreference
             android:defaultValue="12"
@@ -47,6 +46,24 @@
             android:entryValues="@array/max_recent_files"
             android:key="max_recent_files"
             android:title="@string/config_title_max_recent" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/config_cat_undo" >
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="allow_undo"
+            android:title="@string/config_title_allow_undo_stack" />
+
+        <ListPreference
+            android:defaultValue="25"
+            android:entries="@array/max_undo_stack_values"
+            android:entryValues="@array/max_undo_stack_values"
+            android:key="max_undo_stack"
+            android:title="@string/config_title_max_undo_stack" />
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="back_button_as_undo"
+            android:title="@string/config_title_back_to_undo" />
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/config_cat_search" >
         <CheckBoxPreference

@@ -29,6 +29,12 @@ public interface Constants {
 	public static final int MENU_ID_ABOUT = 6;
 	/** Search a string in the file ( = {@value} ) */
 	public static final int MENU_ID_SEARCH = 7;
+	/** undo last change ( = {@value} ) */
+	public static final int MENU_ID_UNDO = 8;
+	/** redo last change ( = {@value} ) */
+	public static final int MENU_ID_REDO = 9;
+	/** Quit the app ( = {@value} ) */
+	public static final int MENU_ID_QUIT = 666;
 
 	/** File of the external storage data */
 	public static final File STORAGE = Environment
@@ -66,6 +72,12 @@ public interface Constants {
 	public static final String PREFERENCE_COLOR_THEME = "color_theme";
 	/** Preference tag to retrieve the fling to scroll ( = {@value} ) */
 	public static final String PREFERENCE_FLING_TO_SCROLL = "fling_to_scroll";
+	/** Preference tag to retrieve if undo history is allowed ( = {@value} ) */
+	public static final String PREFERENCE_ALLOW_UNDO = "allow_undo";
+	/** Preference tag to retrieve the max undo stack ( = {@value} ) */
+	public static final String PREFERENCE_MAX_UNDO_STACK = "max_undo_stack";
+	/** Preference tag to retrieve the back button as undo ( = {@value} ) */
+	public static final String PREFERENCE_BACK_BUTTON_AS_UNDO = "back_button_as_undo";
 
 	/** minimum text size */
 	public static final int TEXT_SIZE_MIN = 9;

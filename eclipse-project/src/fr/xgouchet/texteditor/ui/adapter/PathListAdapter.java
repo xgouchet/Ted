@@ -55,7 +55,7 @@ public class PathListAdapter extends ArrayAdapter<String> {
 			if (path == null) {
 				compound.setText("");
 				compound.setCompoundDrawablesWithIntrinsicBounds(
-						R.drawable.unknown, 0, 0, 0);
+						R.drawable.file_unknown, 0, 0, 0);
 			} else {
 				compound.setText(path);
 				compound.setCompoundDrawablesWithIntrinsicBounds(

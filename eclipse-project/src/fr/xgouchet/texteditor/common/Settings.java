@@ -39,6 +39,13 @@ public class Settings implements Constants {
 	/** enable fling to scroll */
 	public static boolean FLING_TO_SCROLL = false;
 
+	/** Use Undo instead of quit ? */
+	public static boolean UNDO = true;
+	/** Undo stack capacity */
+	public static int UNDO_MAX_STACK = 25;
+	/** Use back button as undo */
+	public static boolean BACK_BTN_AS_UNDO = false;
+
 	/**
 	 * @return the end of line characters according to the current settings
 	 */
@@ -81,6 +88,12 @@ public class Settings implements Constants {
 		Settings.ENCODING = settings.getString(PREFERENCE_ENCODING, ENC_UTF8);
 		Settings.FLING_TO_SCROLL = settings.getBoolean(
 				PREFERENCE_FLING_TO_SCROLL, true);
+
+		Settings.BACK_BTN_AS_UNDO = settings.getBoolean(
+				PREFERENCE_BACK_BUTTON_AS_UNDO, false);
+		Settings.UNDO = settings.getBoolean(PREFERENCE_ALLOW_UNDO, true);
+		Settings.UNDO_MAX_STACK = getStringPreferenceAsInteger(settings,
+				PREFERENCE_MAX_UNDO_STACK, "25");
 
 		RecentFiles.loadRecentFiles(settings.getString(PREFERENCE_RECENTS, ""));
 	}

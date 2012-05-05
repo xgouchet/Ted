@@ -6,12 +6,15 @@ import java.io.File;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnDismissListener;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.os.Build.VERSION;
+import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -28,6 +31,7 @@ import fr.xgouchet.texteditor.common.RecentFiles;
 import fr.xgouchet.texteditor.common.Settings;
 import fr.xgouchet.texteditor.ui.dialogs.DialogSave;
 import fr.xgouchet.texteditor.ui.view.AdvancedEditText;
+import fr.xgouchet.texteditor.undo.TextChangeWatcher;
 
 public class TedActivity extends Activity implements Constants, TextWatcher,
 		OnClickListener {
@@ -46,9 +50,10 @@ public class TedActivity extends Activity implements Constants, TextWatcher,
 
 		// editor
 		mEditor = (AdvancedEditText) findViewById(R.id.editor);
-		// mEditor.setOnKeyListener(this);
 		mEditor.addTextChangedListener(this);
 		mEditor.updateFromSettings();
+		mWatcher = new TextChangeWatcher();
+		mWarnedShouldQuit = false;
 
 		// search
 		mSearchLayout = findViewById(R.id.searchLayout);
@@ -73,7 +78,9 @@ public class TedActivity extends Activity implements Constants, TextWatcher,
 	/**
 	 * @see android.app.Activity#onActivityResult(int, int,
 	 *      android.content.Intent)
+	 * 
 	 */
+	@TargetApi(11)
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		Bundle extras;
 
@@ -105,6 +112,9 @@ public class TedActivity extends Activity implements Constants, TextWatcher,
 			doOpenFile(new File(extras.getString("path")));
 			break;
 		}
+
+		if (VERSION.SDK_INT >= VERSION_CODES.HONEYCOMB)
+			invalidateOptionsMenu();
 	}
 
 	/**
@@ -121,33 +131,59 @@ public class TedActivity extends Activity implements Constants, TextWatcher,
 	public boolean onCreateOptionsMenu(Menu menu) {
 		super.onCreateOptionsMenu(menu);
 
-		menu.add(0, MENU_ID_NEW, Menu.NONE, R.string.menu_new).setIcon(
-				R.drawable.file_new);
-		menu.add(0, MENU_ID_OPEN, Menu.NONE, R.string.menu_open).setIcon(
-				R.drawable.file_open);
-		menu.add(1, MENU_ID_SAVE, Menu.NONE, R.string.menu_save).setIcon(
-				R.drawable.file_save);
-		menu.add(3, MENU_ID_SEARCH, Menu.NONE, R.string.menu_search).setIcon(
-				R.drawable.search);
-		menu.add(0, MENU_ID_OPEN_RECENT, Menu.NONE, R.string.menu_open_recent)
-				.setIcon(R.drawable.recent);
-		menu.add(1, MENU_ID_SAVE_AS, Menu.NONE, R.string.menu_save_as).setIcon(
-				R.drawable.file_save_as);
-		menu.add(2, MENU_ID_SETTINGS, Menu.NONE, R.string.menu_settings)
-				.setIcon(R.drawable.settings);
-		menu.add(2, MENU_ID_ABOUT, Menu.NONE, R.string.menu_about).setIcon(
-				R.drawable.unknown);
-
 		return true;
 	}
 
 	/**
 	 * @see android.app.Activity#onPrepareOptionsMenu(android.view.Menu)
 	 */
+	@TargetApi(11)
 	public boolean onPrepareOptionsMenu(Menu menu) {
 		super.onPrepareOptionsMenu(menu);
+		MenuItem item;
 
-		menu.findItem(MENU_ID_SAVE).setEnabled(!mReadOnly);
+		menu.clear();
+
+		addMenuItem(menu, MENU_ID_NEW, R.string.menu_new,
+				R.drawable.ic_menu_file_new);
+		addMenuItem(menu, MENU_ID_OPEN, R.string.menu_open,
+				R.drawable.ic_menu_file_open);
+
+		if (!mReadOnly)
+			addMenuItem(menu, MENU_ID_SAVE, R.string.menu_save,
+					R.drawable.ic_menu_file_save);
+
+		if ((!mReadOnly) && Settings.UNDO)
+			item = addMenuItem(menu, MENU_ID_UNDO, R.string.menu_undo,
+					R.drawable.ic_menu_undo);
+
+		addMenuItem(menu, MENU_ID_SEARCH, R.string.menu_search,
+				R.drawable.ic_menu_search);
+
+		if (RecentFiles.getRecentFiles().size() > 0)
+			addMenuItem(menu, MENU_ID_OPEN_RECENT, R.string.menu_open_recent,
+					R.drawable.ic_menu_recent);
+
+		addMenuItem(menu, MENU_ID_SAVE_AS, R.string.menu_save_as,
+				R.drawable.ic_menu_file_save_as);
+
+		addMenuItem(menu, MENU_ID_SETTINGS, R.string.menu_settings,
+				R.drawable.ic_menu_settings);
+
+		addMenuItem(menu, MENU_ID_ABOUT, R.string.menu_about,
+				R.drawable.ic_menu_about);
+
+		if (Settings.BACK_BTN_AS_UNDO && Settings.UNDO)
+			addMenuItem(menu, MENU_ID_QUIT, R.string.menu_quit,
+					R.drawable.ic_menu_quit);
+
+		if (VERSION.SDK_INT >= VERSION_CODES.HONEYCOMB) {
+			item = menu.findItem(MENU_ID_UNDO);
+			if (item == null)
+				item = menu.findItem(MENU_ID_SEARCH);
+			item.setShowAsAction(MenuItem.SHOW_AS_ACTION_WITH_TEXT
+					| MenuItem.SHOW_AS_ACTION_IF_ROOM);
+		}
 		return true;
 	}
 
@@ -155,6 +191,7 @@ public class TedActivity extends Activity implements Constants, TextWatcher,
 	 * @see android.app.Activity#onOptionsItemSelected(android.view.MenuItem)
 	 */
 	public boolean onOptionsItemSelected(MenuItem item) {
+		mWarnedShouldQuit = false;
 		switch (item.getItemId()) {
 		case MENU_ID_NEW:
 			newContent();
@@ -180,6 +217,13 @@ public class TedActivity extends Activity implements Constants, TextWatcher,
 		case MENU_ID_ABOUT:
 			aboutActivity();
 			return true;
+		case MENU_ID_QUIT:
+			quit();
+			return true;
+		case MENU_ID_UNDO:
+			if (!undo())
+				showToast(this, R.string.toast_warn_no_undo, false);
+			return true;
 		}
 		return super.onOptionsItemSelected(item);
 	}
@@ -190,6 +234,8 @@ public class TedActivity extends Activity implements Constants, TextWatcher,
 	 */
 	public void beforeTextChanged(CharSequence s, int start, int count,
 			int after) {
+		if (Settings.UNDO && (!mInUndo))
+			mWatcher.beforeChange(s, start, count, after);
 	}
 
 	/**
@@ -197,6 +243,8 @@ public class TedActivity extends Activity implements Constants, TextWatcher,
 	 *      int, int)
 	 */
 	public void onTextChanged(CharSequence s, int start, int before, int count) {
+		if (Settings.UNDO && (!mInUndo))
+			mWatcher.afterChange(s, start, before, count);
 	}
 
 	/**
@@ -213,20 +261,22 @@ public class TedActivity extends Activity implements Constants, TextWatcher,
 	 * @see android.app.Activity#onKeyUp(int, android.view.KeyEvent)
 	 */
 	public boolean onKeyUp(int keyCode, KeyEvent event) {
-		Log.d(TAG, "onKeyUp (" + keyCode + ")");
-
 		switch (keyCode) {
 		case KeyEvent.KEYCODE_BACK:
-			if (mSearchLayout.getVisibility() == View.GONE)
-				quit();
-			else
+			if (mSearchLayout.getVisibility() != View.GONE)
 				search();
+			else if (Settings.UNDO && Settings.BACK_BTN_AS_UNDO) {
+				if (!undo())
+					warnOrQuit();
+			} else
+				quit();
 			return true;
 		case KeyEvent.KEYCODE_SEARCH:
 			search();
+			mWarnedShouldQuit = false;
 			return true;
 		}
-
+		mWarnedShouldQuit = false;
 		return super.onKeyUp(keyCode, event);
 	}
 
@@ -234,6 +284,7 @@ public class TedActivity extends Activity implements Constants, TextWatcher,
 	 * @see OnClickListener#onClick(View)
 	 */
 	public void onClick(View v) {
+		mWarnedShouldQuit = false;
 		switch (v.getId()) {
 		case R.id.buttonSearchClose:
 			search();
@@ -245,6 +296,15 @@ public class TedActivity extends Activity implements Constants, TextWatcher,
 			searchPrevious();
 			break;
 		}
+	}
+
+	protected MenuItem addMenuItem(Menu menu, int id, int title, int icon) {
+		MenuItem item;
+
+		item = menu.add(0, id, Menu.NONE, title);
+		if (VERSION.SDK_INT < VERSION_CODES.HONEYCOMB)
+			item.setIcon(icon);
+		return item;
 	}
 
 	/**
@@ -292,6 +352,8 @@ public class TedActivity extends Activity implements Constants, TextWatcher,
 		Settings.END_OF_LINE = Settings.DEFAULT_END_OF_LINE;
 		mDirty = false;
 		mReadOnly = false;
+		mWarnedShouldQuit = false;
+		mWatcher = new TextChangeWatcher();
 		updateTitle();
 	}
 
@@ -314,6 +376,7 @@ public class TedActivity extends Activity implements Constants, TextWatcher,
 			text = FileUtils.readExternal(file);
 			if (text != null) {
 				mEditor.setText(text);
+				mWatcher = new TextChangeWatcher();
 				mCurrentFilePath = FileUtils.getCanonizePath(file);
 				mCurrentFileName = file.getName();
 				RecentFiles.updateRecentList(mCurrentFilePath);
@@ -374,11 +437,31 @@ public class TedActivity extends Activity implements Constants, TextWatcher,
 		RecentFiles.updateRecentList(path);
 		RecentFiles.saveRecentList(getSharedPreferences(PREFERENCES_NAME,
 				MODE_PRIVATE));
+		mReadOnly = false;
 		mDirty = false;
 		updateTitle();
 		showToast(this, R.string.toast_save_success, false);
 
 		runAfterSave();
+	}
+
+	/**
+	 * Undo the last change
+	 * 
+	 * @return if an undo was don
+	 */
+	protected boolean undo() {
+		boolean didUndo = false;
+		mInUndo = true;
+		int caret;
+		caret = mWatcher.undo(mEditor.getText());
+		if (caret >= 0) {
+			mEditor.setSelection(caret, caret);
+			didUndo = true;
+		}
+		mInUndo = false;
+
+		return didUndo;
 	}
 
 	/**
@@ -487,6 +570,19 @@ public class TedActivity extends Activity implements Constants, TextWatcher,
 		};
 
 		promptSaveDirty();
+	}
+
+	/**
+	 * Warns the user that the next back press will qui the application, or quit
+	 * if the warning has already been shown
+	 */
+	protected void warnOrQuit() {
+		if (mWarnedShouldQuit)
+			quit();
+		else {
+			showToast(this, R.string.toast_warn_no_undo_will_quit, false);
+			mWarnedShouldQuit = true;
+		}
 	}
 
 	/**
@@ -694,4 +790,8 @@ public class TedActivity extends Activity implements Constants, TextWatcher,
 	protected View mSearchLayout;
 	/** the search input */
 	protected EditText mSearchInput;
+
+	protected TextChangeWatcher mWatcher;
+	protected boolean mInUndo;
+	protected boolean mWarnedShouldQuit;
 }

@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    android:installLocation="auto"
     package="fr.xgouchet.texteditor"
-    android:versionCode="12"
-    android:versionName="Release 1.2" >
+    android:installLocation="auto"
+    android:versionCode="13"
+    android:versionName="Release 1.3" >
 
-    <uses-sdk android:minSdkVersion="8" />
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="15" />
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 

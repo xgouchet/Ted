@@ -26,5 +26,7 @@
     <string name="toast_search_no_input">"Recherche vide"</string>
     <string name="toast_no_market">"L'application Market n'est pas présente sur cet appareil"</string>
     <string name="toast_filename_empty">Le nom de fichier ne doit pas être vide</string>
+    <string name="toast_warn_no_undo">Rien à annuler</string>
+    <string name="toast_warn_no_undo_will_quit">"Rien à annuler. Pressez retour pour quitter l'application"</string>
 
 </resources>

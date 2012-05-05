@@ -55,19 +55,22 @@ public class TedSettingsActivity extends PreferenceActivity implements
 	protected void updateSummaries() {
 		ListPreference listPref;
 
-		listPref = (ListPreference) findPreference("color_theme");
+		listPref = (ListPreference) findPreference(PREFERENCE_COLOR_THEME);
 		listPref.setSummary(listPref.getEntry());
 
-		listPref = (ListPreference) findPreference("text_size");
+		listPref = (ListPreference) findPreference(PREFERENCE_TEXT_SIZE);
 		listPref.setSummary(listPref.getEntry());
 
-		listPref = (ListPreference) findPreference("end_of_lines");
+		listPref = (ListPreference) findPreference(PREFERENCE_END_OF_LINES);
 		listPref.setSummary(listPref.getEntry());
 
-		listPref = (ListPreference) findPreference("encoding");
+		listPref = (ListPreference) findPreference(PREFERENCE_ENCODING);
 		listPref.setSummary(listPref.getEntry());
 
-		listPref = (ListPreference) findPreference("max_recent_files");
+		listPref = (ListPreference) findPreference(PREFERENCE_MAX_RECENTS);
+		listPref.setSummary(listPref.getEntry());
+
+		listPref = (ListPreference) findPreference(PREFERENCE_MAX_UNDO_STACK);
 		listPref.setSummary(listPref.getEntry());
 	}
 
