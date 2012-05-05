@@ -8,6 +8,10 @@
     <string name="title_editor_dirty">Ted - %1$s *</string>
     <string name="title_editor_readonly">Ted - [%1$s]</string>
     <string name="title_save_as">Ted - Save as ... </string>
+    <string name="title_box_editor">TedBox - %1$s</string>
+    <string name="title_box_editor_dirty">TedBox - %1$s *</string>
+    <string name="title_box_editor_readonly">TedBox - [%1$s]</string>
+    <string name="title_box_save_as">TedBox - Save as ... </string>
     <string name="title_open">Ted - Open </string>
     <string name="title_open_recent">Ted - Open Recent</string>
     <string name="title_settings">Ted - Settings </string>
