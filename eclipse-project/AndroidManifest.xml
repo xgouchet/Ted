@@ -87,7 +87,8 @@
             <!-- Default Text file view / edit -->
             <intent-filter>
                 <action android:name="fr.xgouchet.texteditor.ACTION_TED_BOX_OPEN" />
- 
+                <action android:name="fr.xgouchet.texteditor.ACTION_BOX_CREATE_FILE" />
+                					
                 <category android:name="android.intent.category.DEFAULT" />
 
                 <data
@@ -189,15 +190,13 @@
 		<receiver android:name=".box.TedBoxReceiver">
 		<intent-filter>
 			<action android:name="com.box.android.EDIT_FILE"/>
-			<action android:name="com.box.android.CREATE_FILE"/>
-			<action android:name="com.box.android.VIEW_FILE"/>
+            <action android:name="com.box.android.CREATE_FILE" />
+			<category android:name="android.intent.category.DEFAULT" />
 			<data android:mimeType="text/*"/>
-			<data android:mimeType="image/*"/>
 		</intent-filter>
 		<intent-filter>
-			<action android:name="com.box.android.FILE_SAVED"/>
-			<action android:name="com.box.android.FILE_SAVING"/>
-			<action android:name="com.box.android.FILE_SAVED_ERROR"/>
+			<action android:name="com.box.android.LAUNCH"/>
+			<category android:name="android.intent.category.DEFAULT"/>
 		</intent-filter>
 		</receiver>
 </application>

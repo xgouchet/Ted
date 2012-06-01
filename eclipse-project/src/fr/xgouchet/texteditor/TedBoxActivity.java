@@ -8,21 +8,23 @@ package fr.xgouchet.texteditor;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.io.Reader;
+import java.io.UnsupportedEncodingException;
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
+import android.os.RemoteException;
 import android.util.Log;
 import android.view.Menu;
 
-import com.box.onecloud.android.Crypto.CryptoException;
-import com.box.onecloud.android.OneCloudFile;
+import com.box.onecloud.android.BoxOneCloudReceiver;
+import com.box.onecloud.android.OneCloudData;
+import com.box.onecloud.android.OneCloudData.UploadListener;
 
-import fr.xgouchet.texteditor.box.TedBoxReceiver;
 import fr.xgouchet.texteditor.common.Settings;
+
 
 /** 
  *   Replace some Ted Activity functions by the equivalent operations
@@ -32,56 +34,30 @@ import fr.xgouchet.texteditor.common.Settings;
  */
 
 public class TedBoxActivity extends TedActivity {	
-	@Override
+    OneCloudData ocd;
+    @Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
-		super.onCreate(savedInstanceState);
-    	mBoxFileNameChangedReceiver = new BroadcastReceiver() {
-
-            @Override
-            public void onReceive(final Context context, final Intent intent) {
-                if (intent.getAction().equals("com.box.onecloud.android.RENAME")) {
-        			// .d(TAG, "mFileNameCHangedReceiver " + intent.getStringExtra("BoxFileName"));	
-        			mDirty = false;
-                	mCurrentFileName = intent.getStringExtra("BoxFileName");
-                	updateTitle();
-
-                }
-                else if (intent.getAction().equals("Renamed")) {
-                    // onRenamedFile(intent);
-                }
-            }
-        };
-        Context myContext = getApplicationContext();
-        IntentFilter filter = new IntentFilter();
-        filter.addAction("com.box.onecloud.android.RENAME");
-        myContext.registerReceiver(mBoxFileNameChangedReceiver, filter);
-    }
-
-	@Override
-	protected void onResume() {
-		// TODO Auto-generated method stub
-		super.onResume();
+        ocd = (OneCloudData) getIntent().getParcelableExtra("one_cloud_data");
+		super.onCreate(savedInstanceState);	       
 	}
 
-	
 	/**
 	 * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
 	 */
 	public boolean onCreateOptionsMenu(Menu menu) {
 		super.onCreateOptionsMenu(menu);
 		menu.clear();
-
-		menu.add(0, MENU_ID_NEW, Menu.NONE, R.string.menu_new).setIcon(
-				R.drawable.file_new);
-		menu.add(0, MENU_ID_OPEN, Menu.NONE, R.string.menu_open).setIcon(
-				R.drawable.file_open);
+		
 		menu.add(1, MENU_ID_SAVE, Menu.NONE, R.string.menu_save).setIcon(
 				R.drawable.file_save);
+
+		if ( mCurrentFileName == null ) {
+			menu.findItem(MENU_ID_SAVE).setVisible(false);
+		}
+		menu.add(2, MENU_ID_SAVE_AS, Menu.NONE, R.string.menu_save_as).setIcon(
+				R.drawable.file_save_as);
 		menu.add(3, MENU_ID_SEARCH, Menu.NONE, R.string.menu_search).setIcon(
 				R.drawable.search);
-		menu.add(0, MENU_ID_OPEN_RECENT, Menu.NONE, R.string.menu_open_recent)
-				.setIcon(R.drawable.recent);
 		menu.add(2, MENU_ID_SETTINGS, Menu.NONE, R.string.menu_settings)
 				.setIcon(R.drawable.settings);
 		menu.add(2, MENU_ID_ABOUT, Menu.NONE, R.string.menu_about).setIcon(
@@ -89,42 +65,44 @@ public class TedBoxActivity extends TedActivity {
 
 		return true;
 	}
-	
-    public void onDestroy() {
-        super.onDestroy();
-        if ((mBoxFileNameChangedReceiver != null)) {        	
-        	getApplicationContext().unregisterReceiver(mBoxFileNameChangedReceiver);
-         }       
-    }
 
+	/**
+	 * @see android.app.Activity#onPrepareOptionsMenu(android.view.Menu)
+	 */
+	public boolean onPrepareOptionsMenu(Menu menu) {
+		super.onPrepareOptionsMenu(menu);		
+		menu.findItem(MENU_ID_SAVE).setVisible( (mCurrentFileName != null));		
+		return true;
+	}
+	
 	@Override
 	protected void saveContent() {
-		// Log.d(TAG, "BoxMode saveContent");
-		doSaveBoxFile(mCurrentFilePath, mOneCloudFile);
+		doSaveBoxFile(mCurrentFilePath, ocd);
 	}
 
 	@Override
 	protected void saveContentAs() {
-		// TODO Auto-generated method stub
-		// Log.d(TAG, "saveContentAs BoxMode true");
-		this.getIntent().putExtra("SaveAs", true);
-		
-			doSaveBoxFile("", mOneCloudFile);
+		this.getIntent().putExtra("SaveAs", true);		
+		doSaveBoxFile("", ocd);
 		
 	}
 
 	@Override
 	protected void readIntent() {
-		Intent intent = getIntent();
-		mOneCloudFile = (OneCloudFile) intent.getSerializableExtra("BoxOneCloudFile");
-		// Log.d(TAG, "readIntent: mOneCloudFile Uri " +  mOneCloudFile.getUri().getPath());			
-		// Log.d(TAG, "readIntent: mOneCloudFile UriOut " +  mOneCloudFile.getUriOut().getPath());			
-    	mEditor.setText(intent.getStringExtra("BoxContent")); 
-		// Log.d(TAG, "readIntent: mOneCloudFile BoxContentLenght =  " +  mEditor.length());			
-    	mDirty = false;
-    	// allow content in Intent to be garbage collected
-    	intent.putExtra("BoxContent", "");
-    	mCurrentFileName = intent.getStringExtra("BoxFileName");
+		Intent intent;
+		intent = getIntent();
+		if (intent == null) {
+			Log.d(TAG, "No intent found, ignoring");
+			return;
+		}
+        if (intent.getAction() == BoxOneCloudReceiver.ACTION_BOX_CREATE_FILE) {
+        	mCurrentFileName = null;
+        } else { // only other possibility is ACTION_BOX_EDIT_FILE
+	    	mEditor.setText(readStreamAsString(ocd)); 
+			Log.d(TAG, "readIntent: mOneCloudFile BoxContentLenght =  " +  mEditor.length());			
+	    	mDirty = false;
+	    	mCurrentFileName = ocd.getFileName();
+        }
     	updateTitle();
 	}
 	
@@ -155,25 +133,54 @@ public class TedBoxActivity extends TedActivity {
 	 *            
 	 * @return The file object of the saved file or null if error occurred
 	 */
-	protected void doSaveBoxFile(String path, OneCloudFile ocf) {
-		Log.d(TAG, "doSaveBoxFile: mOneCloudFile Uri " +  mOneCloudFile.getUri().getPath());			
-	    
-	    long boxToken = this.getIntent().getLongExtra("BoxToken", -1L);
+	protected void doSaveBoxFile(String path, final OneCloudData ocd) {
 	    boolean saveas = this.getIntent().getBooleanExtra("SaveAs", false);
 		if (!saveas) {  // Save to existing file in Box
-			writeBoxExternal (ocf, mEditor.getText().toString());
+			writeBoxExternal (ocd, mEditor.getText().toString());
 			Log.d(TAG, "doSaveBoxFile: uploadNewVersion ");						
-			TedBoxReceiver.uploadNewVersion(getApplicationContext(), boxToken, ocf);			
+			try {
+				ocd.uploadNewVersion(null);
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			mDirty = false;
+			updateTitle();
 		} else  { 
 			// Save As:  Create a new file in Box (in the same directory)
-			Log.d(TAG, "doSaveBoxFile: mOneCloudFile Uri " +  mOneCloudFile.getUri().getPath());
-			writeBoxExternal (ocf, mEditor.getText().toString());
-			TedBoxReceiver.uploadNewFile(getApplicationContext(), boxToken, ocf, this.getIntent().getStringExtra("BoxFileName"));
+			writeBoxExternal (ocd, mEditor.getText().toString());
+	        // Set up an UploadListener so we can monitor the upload (this is optional).
+	        UploadListener uploadListener = new UploadListener() {
+	            @Override
+	            public void onProgress(long bytesTransferred, long totalBytes) {
+	            }
+	            @Override
+	            public void onComplete() {
+	                Log.d(TAG, "upload to Box complete");
+	                mCurrentFileName = ocd.getFileName();
+	                Log.d(TAG, "filename " + mCurrentFileName);
+	        		TedBoxActivity.this.runOnUiThread(new Runnable () {
+	        		@Override
+						public void run() {
+	        			mDirty = false;
+	        			updateTitle();
+						}	        			 
+	        		});
+	            }
+	            @Override
+	            public void onError() {
+	                Log.d(TAG, "upload to Box failed");
+	            }
+	        };
+	 		try {
+				ocd.uploadNewFile(ocd.getFileName() == null? "TedTextFile.txt" : ocd.getFileName(), uploadListener);
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			this.getIntent().putExtra("SaveAs", false);
 			
 		}
-		mDirty = false;
-		updateTitle();
 		return;
 	}
 		 
@@ -184,9 +191,10 @@ public class TedBoxActivity extends TedActivity {
 	 * @param text
 	 * @return boolean  operation did succeed
 	 */
-	private boolean writeBoxExternal(OneCloudFile ocf, String text) {
+	private boolean writeBoxExternal(OneCloudData ocd, String text) {
 		// File file = new File(path);
 		// Log.e(TAG, "writeBoxExternal: " + ocf.getUriOut().toString() + " length of text is: "  + text.length()) ;
+		Log.e(TAG, "writeBoxExternal: " + text) ;
 		OutputStreamWriter writer;
 		BufferedWriter out;
 		String eol_text = text;
@@ -194,7 +202,7 @@ public class TedBoxActivity extends TedActivity {
 			if (Settings.END_OF_LINE != EOL_LINUX) {
 				eol_text = eol_text.replaceAll("\n", Settings.getEndOfLine());
 			}
-			writer = new OutputStreamWriter (ocf.openOutputStream());
+			writer = new OutputStreamWriter (ocd.getOutputStream());
 			out = new BufferedWriter(writer);
 			out.write(eol_text);
 			out.close();
@@ -202,18 +210,35 @@ public class TedBoxActivity extends TedActivity {
 			Log.e(TAG, "Out of memory error");
 			return false;
 		} catch (IOException e) {
-			Log.e(TAG, "Can't write to file " + ocf.getUriOut().toString());
+			Log.e(TAG, "Can't write to file " + ocd.getFileName());
 			return false;
-		} catch (CryptoException e) {
-			// TODO Auto-generated catch block
-			Log.e(TAG, "CryptoException:  Can't write to file " + ocf.getUriOut().toString());
-			e.printStackTrace();
-		}
+		} 
 		return true;
 	}
-		
-	 /** Were we started by Box and running with cloud storage only? */
-	protected OneCloudFile mOneCloudFile;
-	/**  Process NBotification of file name changes from Save As in Box */
-	private BroadcastReceiver mBoxFileNameChangedReceiver;	 
+  /**
+   * Use the OneCloudFile object passed to decrypt the file passed from Box
+   * 
+   * @param ocf OnceCloudFile
+   * @return A String containg the plain text of the file contents
+*/   
+  private static String readStreamAsString(OneCloudData ocd) {
+      StringBuilder fileData = new StringBuilder(1024);
+      char[] buf = new char[1024];
+      try {
+      	Reader in = new InputStreamReader(ocd.getInputStream(),"UTF-8");
+      	int len=0;
+       	while((len =in.read(buf)) != -1) {
+      		fileData.append(buf, 0, len);
+          }
+          in.close();
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+			return "IO UnsuportedEncodingException";
+		} catch (IOException e) {
+			e.printStackTrace();
+		   return "IO Exception";
+		}
+      return fileData.toString();
+  }
+	
 }

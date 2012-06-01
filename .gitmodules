@@ -1,0 +1,3 @@
+[submodule "submodules/box"]
+	path = submodules/box
+	url = git://github.com/box/box-android-sdk.git

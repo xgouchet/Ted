@@ -6,116 +6,70 @@ package fr.xgouchet.texteditor.box;
  *  check that out and add the library to your project
  */
 
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.io.UnsupportedEncodingException;
-
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 
-import com.box.onecloud.android.Crypto;
-import com.box.onecloud.android.OneCloudFile;
+import com.box.onecloud.android.OneCloudData;
+
 
 public class TedBoxReceiver extends com.box.onecloud.android.BoxOneCloudReceiver{
 
 	/* (non-Javadoc)
 	 * @see com.box.onecloud.android.BoxOneCloudReceiver#onEditFileRequested(android.content.Context, long, com.box.onecloud.android.OneCloudFile, java.lang.String, java.lang.String)
 	 */
+
 	@Override
-	public void onEditFileRequested(Context context, long boxToken, OneCloudFile oneCloudFile, String fileName, String type) {
-	
+	public void onEditFileRequested(Context context, OneCloudData oneCloudData) {
+		// TODO Auto-generated method stub
+		System.out.println("onEditFileRequested" + oneCloudData.getFileName());
 		Intent editIntent;
 		editIntent = new Intent("fr.xgouchet.texteditor.ACTION_TED_BOX_OPEN");
 		editIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 	    editIntent.setPackage(context.getPackageName());
-	    editIntent.putExtra("BoxToken", boxToken);
-	    editIntent.putExtra("BoxFileName", fileName);
-	    editIntent.putExtra("BoxType", type);
-	    editIntent.putExtra("BoxOneCloudFile", oneCloudFile);          
-	    editIntent.putExtra("BoxContent", readStreamAsString(oneCloudFile));
-	    editIntent.putExtra("BoxMode", true);
+	    editIntent.putExtra("one_cloud_data", oneCloudData);          
 	    editIntent.setType("text/plain");	
-		System.out.println("onEditFileRequested");
 
 		try {
 			context.startActivity(editIntent);
 			
 		} catch (ActivityNotFoundException e) {
 			e.printStackTrace();
-		}
+		}		
 	}
 
 	@Override
-	public void onCreateFileRequested(final Context context, final long boxToken, final OneCloudFile oneCloudFile, final String type) {
+	public void onCreateFileRequested(Context context, OneCloudData oneCloudData) {
 		// TODO Auto-generated method stub
-		System.out.println("onCreateFileRequested");
-		// showToast(context, "onCreateFileRequested", false);		
-	}
+		Intent createIntent;
+		createIntent = new Intent("fr.xgouchet.texteditor.ACTION_BOX_CREATE_FILE");
+		createIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+	    createIntent.setPackage(context.getPackageName());
+	    createIntent.putExtra("one_cloud_data", oneCloudData);          
+	    createIntent.setType("text/plain");
 
-	@Override
-	public void onLaunchRequested(Context context, long boxToken) {
-		// TODO Auto-generated method stub
+		try {
+			context.startActivity(createIntent);
+			
+		} catch (ActivityNotFoundException e) {
+			e.printStackTrace();
+		}		
+		System.out.println("onCreateFileRequested" + oneCloudData.getFileName());
 		
 	}
 
 	@Override
-	public void onFileSaved(Context context, long boxToken, String fileName) {	     
-		System.out.println("onFileSaved" + fileName);
-	     Intent renameIntent = new Intent();
-	     renameIntent.setAction("com.box.onecloud.android.RENAME");
-	     renameIntent.putExtra("BoxFileName", fileName);
-	     renameIntent.putExtra("BoxToken", boxToken);	     
-	     context.sendBroadcast(renameIntent);
-	}
-
-	@Override
-	public void onFileSaving(Context context, long boxToken, String fileName,
-			long bytesTransferred) {
+	public void onViewFileRequested(Context context, OneCloudData oneCloudData) {
 		// TODO Auto-generated method stub
+		System.out.println("onViewFileRequested" + oneCloudData.getFileName());
 		
 	}
 
 	@Override
-	public void onFileSavedError(Context context, long boxToken, String fileName) {
+	public void onLaunchRequested(Context context, OneCloudData oneCloudData) {
 		// TODO Auto-generated method stub
+		System.out.println("onLaunchRequested" + oneCloudData.getFileName());
 		
-	}
-
-    /**
-     * Use the OneCloudFile object passed to decrypt the file passed from Box
-     * 
-     * @param ocf OnceCloudFile
-     * @return A String containg the plain text of the file contents
-     */
-    private static String readStreamAsString(OneCloudFile ocf) {
-        StringBuilder fileData = new StringBuilder(1024);
-        char[] buf = new char[1024];
-        try {
-        	Reader in = new InputStreamReader(ocf.openInputStream(),"UTF-8");
-        	int len=0;
-         	while((len =in.read(buf)) != -1) {
-        		fileData.append(buf, 0, len);
-            }
-            in.close();
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-			return "IO UnsuportedEncodingException";
-		} catch (IOException e) {
-			e.printStackTrace();
-		   return "IO Exception";
-		} catch (Crypto.CryptoException e) {
-			e.printStackTrace();
-			return "CryptoException";			
-		}
-        return fileData.toString();
-    }
-
-    @Override
-    public void onViewFileRequested(final Context context, final long boxToken, final OneCloudFile oneCloudFile, final String fileName,
-            final String type) {
-		System.out.println("onViewFileRequested" + fileName);
-    };
+	};
 
 }
