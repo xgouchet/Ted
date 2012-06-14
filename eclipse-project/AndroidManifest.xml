@@ -69,15 +69,7 @@
             </intent-filter>
             <intent-filter>
             </intent-filter>
-        </activity>
-
-        <!-- Ted Box Activity ... Ted Activity Started from Box. The Broadcast Receiver starts this Activity -->
-        <activity
-            android:name=".TedBoxActivity"
-            android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|fontScale"
-            android:windowSoftInputMode="adjustResize" >
-        </activity>
-        
+        </activity>        
         
         <!-- Ted settings activity -->
         <activity
@@ -138,18 +130,32 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-		<receiver android:name=".box.TedBoxReceiver">
-		<intent-filter>
-			<action android:name="com.box.android.EDIT_FILE"/>
+        
+        <!-- Box OneCloud integration -->
+        
+        <!-- OneCloud BroadcastReceiver. -->
+        <receiver android:name=".box.TedBoxReceiver">
+        <intent-filter>
+            <action android:name="com.box.android.EDIT_FILE"/>
             <action android:name="com.box.android.CREATE_FILE" />
-			<category android:name="android.intent.category.DEFAULT" />
-			<data android:mimeType="text/*"/>
-		</intent-filter>
-		<intent-filter>
-			<action android:name="com.box.android.LAUNCH"/>
-			<category android:name="android.intent.category.DEFAULT"/>
-		</intent-filter>
-		</receiver>
+            <category android:name="android.intent.category.DEFAULT" />
+            <data android:mimeType="text/*"/>
+        </intent-filter>
+        <intent-filter>
+            <action android:name="com.box.android.LAUNCH"/>
+            <category android:name="android.intent.category.DEFAULT"/>
+        </intent-filter>
+        </receiver>
+        
+        <!-- Ted Box Activity -->
+        <activity
+            android:name=".box.TedBoxActivity"
+            android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|fontScale"
+            android:windowSoftInputMode="adjustResize" >
+        </activity>
+        
+		<!-- End of BoxOneCloud stuff -->
+		
 </application>
 
 </manifest>
