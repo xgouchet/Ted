@@ -37,7 +37,7 @@ public class TedActivity extends Activity implements Constants, TextWatcher,
 	 */
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		Log.d(TAG, "onCreate");
+		Log.d(TAG, "TedActivity onCreate");
 
 		setContentView(R.layout.layout_editor);
 
@@ -256,6 +256,7 @@ public class TedActivity extends Activity implements Constants, TextWatcher,
 	protected void readIntent() {
 		Intent intent;
 		String action;
+		Log.d(TAG, "TedActivity readIntent");
 
 		intent = getIntent();
 		if (intent == null) {

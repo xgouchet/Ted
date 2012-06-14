@@ -9,6 +9,7 @@ package fr.xgouchet.texteditor;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Reader;
 import java.io.UnsupportedEncodingException;
@@ -99,7 +100,6 @@ public class TedBoxActivity extends TedActivity {
         	mCurrentFileName = null;
         } else { // only other possibility is ACTION_BOX_EDIT_FILE
 	    	mEditor.setText(readStreamAsString(ocd)); 
-			Log.d(TAG, "readIntent: mOneCloudFile BoxContentLenght =  " +  mEditor.length());			
 	    	mDirty = false;
 	    	mCurrentFileName = ocd.getFileName();
         }
@@ -136,50 +136,48 @@ public class TedBoxActivity extends TedActivity {
 	protected void doSaveBoxFile(String path, final OneCloudData ocd) {
 	    boolean saveas = this.getIntent().getBooleanExtra("SaveAs", false);
 		if (!saveas) {  // Save to existing file in Box
-			writeBoxExternal (ocd, mEditor.getText().toString());
-			Log.d(TAG, "doSaveBoxFile: uploadNewVersion ");						
-			try {
-				ocd.uploadNewVersion(null);
-			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			if (writeBoxExternal (ocd, mEditor.getText().toString()) ) {
+				try {
+					ocd.uploadNewVersion(null);
+				} catch (RemoteException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				mDirty = false;
+				updateTitle();
 			}
-			mDirty = false;
-			updateTitle();
 		} else  { 
 			// Save As:  Create a new file in Box (in the same directory)
-			writeBoxExternal (ocd, mEditor.getText().toString());
-	        // Set up an UploadListener so we can monitor the upload (this is optional).
-	        UploadListener uploadListener = new UploadListener() {
-	            @Override
-	            public void onProgress(long bytesTransferred, long totalBytes) {
-	            }
-	            @Override
-	            public void onComplete() {
-	                Log.d(TAG, "upload to Box complete");
-	                mCurrentFileName = ocd.getFileName();
-	                Log.d(TAG, "filename " + mCurrentFileName);
-	        		TedBoxActivity.this.runOnUiThread(new Runnable () {
-	        		@Override
-						public void run() {
-	        			mDirty = false;
-	        			updateTitle();
-						}	        			 
-	        		});
-	            }
-	            @Override
-	            public void onError() {
-	                Log.d(TAG, "upload to Box failed");
-	            }
-	        };
-	 		try {
-				ocd.uploadNewFile(ocd.getFileName() == null? "TedTextFile.txt" : ocd.getFileName(), uploadListener);
-			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			if (writeBoxExternal (ocd, mEditor.getText().toString())) {
+		        // Set up an UploadListener so we can monitor the upload (this is optional).
+		        UploadListener uploadListener = new UploadListener() {
+		            @Override
+		            public void onProgress(long bytesTransferred, long totalBytes) {
+		            }
+		            @Override
+		            public void onComplete() {
+		                mCurrentFileName = ocd.getFileName();
+		        		TedBoxActivity.this.runOnUiThread(new Runnable () {
+		        		@Override
+							public void run() {
+		        			mDirty = false;
+		        			updateTitle();
+							}
+		        		});
+		            }
+		            @Override
+		            public void onError() {
+		                Log.d(TAG, "upload to Box failed");
+		            }
+		        };
+		 		try {
+					ocd.uploadNewFile(ocd.getFileName() == null? "TedTextFile.txt" : ocd.getFileName(), uploadListener);
+				} catch (RemoteException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				this.getIntent().putExtra("SaveAs", false);
 			}
-			this.getIntent().putExtra("SaveAs", false);
-			
 		}
 		return;
 	}
@@ -192,9 +190,7 @@ public class TedBoxActivity extends TedActivity {
 	 * @return boolean  operation did succeed
 	 */
 	private boolean writeBoxExternal(OneCloudData ocd, String text) {
-		// File file = new File(path);
-		// Log.e(TAG, "writeBoxExternal: " + ocf.getUriOut().toString() + " length of text is: "  + text.length()) ;
-		Log.e(TAG, "writeBoxExternal: " + text) ;
+		OutputStream stream;
 		OutputStreamWriter writer;
 		BufferedWriter out;
 		String eol_text = text;
@@ -202,10 +198,16 @@ public class TedBoxActivity extends TedActivity {
 			if (Settings.END_OF_LINE != EOL_LINUX) {
 				eol_text = eol_text.replaceAll("\n", Settings.getEndOfLine());
 			}
-			writer = new OutputStreamWriter (ocd.getOutputStream());
-			out = new BufferedWriter(writer);
-			out.write(eol_text);
-			out.close();
+			stream = ocd.getOutputStream();
+			if (stream != null) {
+				writer = new OutputStreamWriter (stream);
+				out = new BufferedWriter(writer);
+				out.write(eol_text);
+				out.close();
+			} else {
+				Log.e(TAG, "writeBoxExternal: ocd.getOutputStream returned null no text written" +  " length of text was: "  + text.length());
+				return false;
+			}
 		} catch (OutOfMemoryError e) {
 			Log.e(TAG, "Out of memory error");
 			return false;
@@ -224,6 +226,10 @@ public class TedBoxActivity extends TedActivity {
   private static String readStreamAsString(OneCloudData ocd) {
       StringBuilder fileData = new StringBuilder(1024);
       char[] buf = new char[1024];
+      if ( ocd == null ) {
+			Log.e(TAG, "readStreamAsString: ocd is null");
+			return "ocd was null";   	  
+      }
       try {
       	Reader in = new InputStreamReader(ocd.getInputStream(),"UTF-8");
       	int len=0;
