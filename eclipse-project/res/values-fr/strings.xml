@@ -2,13 +2,16 @@
 <resources>
 
     <string name="app_name">Ted</string>
+    <string name="app_name_full">Ted (Editeur de texte)</string>
 
     <!-- Titles -->
     <string name="title_save_as">Ted - Sauver sous ... </string>
-    <string name="title_open">Ted - Ouvrir </string>
     <string name="title_open_recent">Ted - Documents récents</string>
     <string name="title_settings">Ted - Paramètres </string>
     <string name="title_about">Ted - A propos ... </string>
+    <string name="title_editor">Ted - %1$s</string>
+    <string name="title_editor_dirty">Ted - %1$s *</string>
+    <string name="title_editor_readonly">Ted - [%1$s]</string>
 
     <!-- Config screen strings -->
     <string name="config_cat_display">Affichage</string>
@@ -29,9 +32,11 @@
     <string name="config_title_allow_undo_stack">"Activer l'option \"Annuler\""</string>
     <string name="config_title_max_undo_stack">Nombre maximum de changements enregistrés</string>
     <string name="config_title_back_to_undo">Utiliser le bouton retour pour annuler la dernière opération</string>
+    <string name="config_title_use_home_page">Utiliser un fichier par défaut</string>
     <string name="config_summary_line_numbers">Les numéros de lignes sont affichés en début de ligne</string>
     <string name="config_summary_word_wrap">"Les lignes trop longues sont ajustées à la taille de l'écran"</string>
     <string name="config_summary_scroll_fling">"Décocher l'option en cas de problèmes de performances"</string>
+    <string name="config_summary_use_home_page">Selectionner un fichier à ouvrir au démarrage de Ted</string>
 
     <!-- Options Menu in TED -->
     <string name="menu_new">Nouveau</string>
@@ -43,7 +48,6 @@
     <string name="menu_about">A propos</string>
     <string name="menu_search">Rechercher</string>
     <string name="menu_undo">Annuler</string>
-    <string name="menu_redo">Refaire</string>
     <string name="menu_quit">Quitter</string>
 
     <!-- Misc UI strings -->
@@ -51,19 +55,15 @@
     <string name="ui_save">Sauver</string>
     <string name="ui_no_save">"Ne pas sauver"</string>
     <string name="ui_cancel">Annuelr</string>
+    <string name="ui_delete">Delete</string>
     <string name="ui_hint_file_name">Nom du fichier</string>
     <string name="ui_hint_search">Rechercher</string>
-    <string name="ui_contact">Contact</string>
-    <string name="ui_licence">Licence</string>
     <string name="ui_history">Historique</string>
-    <string name="ui_mail">android@xgouchet.fr</string>
-    <string name="ui_market">"Trouver d'autres applications sur le Market"</string>
-    <string name="ui_choose_mail">Envoyer un courriel avec ... </string>
+    <string name="ui_art_licence">Licence Artistique</string>
+    <string name="ui_force_read_only">Ouvrir en lecture seule</string>
 
     <!-- Misc Strings -->
     <string name="lorem_ipsum">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas porttitor neque semper sem fermentum pretium. Sed pharetra dui faucibus massa malesuada in condimentum mi gravida."</string>
-    <string name="feedback">"N'hésitez pas à m'envoyer des retours, de demandes d'évolutions ou des rapports d'erreur.  "</string>
-    <string name="license">"Ce logiciel est fournit en l'état, sans garantie explicite ou implicite. En aucun cas l'auteur ne saurait être tenu	responsable des dommages éventuels causés par l'utilisation de ce logiciel."</string>
-    <string name="art_licence">"La plupart des icones de ce logiciel proviennent du thème pour Gnome 'Gartoon' (GNU GPL), créé par Zeus (zeussama@gmail.com). "</string>
+    <string name="art_licence">"Toutes les icônes de cette application ont été créées et appartiennent à l'auteur de l'application : Xavier Gouchet (android@xgouchet.fr)."</string>
 
 </resources>

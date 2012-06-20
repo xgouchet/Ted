@@ -81,6 +81,11 @@
             android:key="fling_to_scroll"
             android:summary="@string/config_summary_scroll_fling"
             android:title="@string/config_title_scroll_fling" />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="use_home_page"
+            android:summaryOff="@string/config_summary_use_home_page"
+            android:title="@string/config_title_use_home_page" />
     </PreferenceCategory>
 
 </PreferenceScreen>

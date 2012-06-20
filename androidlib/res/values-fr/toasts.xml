@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- FR -->
+
+
+    <!--  -->
+    <string name="toast_folder_doesnt_exist">"Impossible d'afficher le dossier car il n'existe pas"</string>
+    <string name="toast_folder_not_folder">"Impossible d'afficher le dossier"</string>
+    <string name="toast_folder_cant_read">"Impossible d'afficher le dossier car il est protegé"</string>
+
+    <!--  -->
+    <string name="toast_no_market">"L'Android Play Store n'est pas installé sur cet appareil"</string>
+
+</resources>

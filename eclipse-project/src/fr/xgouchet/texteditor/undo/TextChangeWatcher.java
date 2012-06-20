@@ -56,13 +56,26 @@ public class TextChangeWatcher implements Constants {
 	 * 
 	 */
 	public void beforeChange(CharSequence s, int start, int count, int after) {
-		if (count == 0) {
-			// ignore, will be processed after
-		} else if (after == 0) {
-			processDelete(s, start, count);
+		Log.d(TAG, "START = " + start + "; AFTER = " + after + "; COUNT > "
+				+ count);
+
+		if ((mCurrentChange != null)
+				&& (mCurrentChange.canMergeChangeBefore(s, start, count, after))) {
+			Log.d(TAG, "Merged");
 		} else {
-			// replace is like a delete and an insert !
-			processDelete(s, start, count);
+			Log.d(TAG, "New Text Change");
+			if (count == 0) {
+				// no existing character changed
+				// ignore, will be processed after
+			} else if (after == 0) {
+				// existing character replaced by none => delete
+				processDelete(s, start, count);
+			} else {
+				// n chars replaced by m other chars => replace
+				// replace is a delete AND an insert...
+				// TODO test if this will be a weird "suggestion append" replace
+				processDelete(s, start, count);
+			}
 		}
 	}
 
@@ -81,14 +94,26 @@ public class TextChangeWatcher implements Constants {
 	 *            the number of characters that will change
 	 */
 	public void afterChange(CharSequence s, int start, int before, int count) {
-		if (before == 0) {
-			processInsert(s, start, count);
-		} else if (count == 0) {
-			// ignore, should have been treated before
+		if ((mCurrentChange != null)
+				&& (mCurrentChange.canMergeChangeAfter(s, start, before, count))) {
+			Log.d(TAG, "Merged");
 		} else {
-			// replace is like a delete and an insert !
-			processInsert(s, start, count);
+			Log.d(TAG, "New Text Change");
+			if (before == 0) {
+				// 0 charactes replaced by count => insert
+				processInsert(s, start, count);
+			} else if (count == 0) {
+				// existing character replaced by none => delete, already done
+				// before
+			} else {
+				// n chars replaced by m other chars => replace
+				// replace is a delete AND an insert...
+				// TODO test if this will be a weird "suggestion append" replace
+				processInsert(s, start, count);
+			}
 		}
+		
+		printStack(); 
 	}
 
 	/**
@@ -102,16 +127,10 @@ public class TextChangeWatcher implements Constants {
 	public void processInsert(CharSequence s, int start, int count) {
 		CharSequence sub = s.subSequence(start, start + count);
 
-		if (mCurrentChange instanceof TextChangeInsert)
-			if (((TextChangeInsert) mCurrentChange).getCaret() == start)
-				((TextChangeInsert) mCurrentChange).append(sub);
-			else
-				pushCurrentChange();
-		else
+		if (mCurrentChange != null)
 			pushCurrentChange();
-
-		if (mCurrentChange == null)
-			mCurrentChange = new TextChangeInsert(sub, start);
+		
+		mCurrentChange = new TextChangeInsert(sub, start);
 	}
 
 	/**
@@ -124,17 +143,11 @@ public class TextChangeWatcher implements Constants {
 	 */
 	public void processDelete(CharSequence s, int start, int count) {
 		CharSequence sub = s.subSequence(start, start + count);
-		if (mCurrentChange instanceof TextChangeDelete)
-			if ((((TextChangeDelete) mCurrentChange).getCaret() == start)
-					&& (count == 1))
-				((TextChangeDelete) mCurrentChange).append(sub);
-			else
-				pushCurrentChange();
-		else if (mCurrentChange != null)
+
+		if (mCurrentChange != null)
 			pushCurrentChange();
 
-		if (mCurrentChange == null)
-			mCurrentChange = new TextChangeDelete(sub, start);
+		mCurrentChange = new TextChangeDelete(sub, start);
 	}
 
 	/**
@@ -154,11 +167,12 @@ public class TextChangeWatcher implements Constants {
 	/**
 	 * Prints the current stack
 	 */
-	protected void printStack() {
+	public void printStack() {
 		Log.i(TAG, "STACK");
 		for (TextChange change : mChanges) {
 			Log.d(TAG, change.toString());
 		}
+		Log.d(TAG, "Current change : " + mCurrentChange.toString());
 	}
 
 	protected TextChange mCurrentChange;

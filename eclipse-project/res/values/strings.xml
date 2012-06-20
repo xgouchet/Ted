@@ -2,17 +2,13 @@
 <resources>
 
     <string name="app_name">Ted</string>
+    <string name="app_name_full">Ted (Text Editor)</string>
 
     <!-- Titles -->
     <string name="title_editor">Ted - %1$s</string>
     <string name="title_editor_dirty">Ted - %1$s *</string>
     <string name="title_editor_readonly">Ted - [%1$s]</string>
     <string name="title_save_as">Ted - Save as ... </string>
-    <string name="title_box_editor">TedBox - %1$s</string>
-    <string name="title_box_editor_dirty">TedBox - %1$s *</string>
-    <string name="title_box_editor_readonly">TedBox - [%1$s]</string>
-    <string name="title_box_save_as">TedBox - Save as ... </string>
-    <string name="title_open">Ted - Open </string>
     <string name="title_open_recent">Ted - Open Recent</string>
     <string name="title_settings">Ted - Settings </string>
     <string name="title_about">Ted - About ... </string>
@@ -36,9 +32,11 @@
     <string name="config_title_allow_undo_stack">Allow undo</string>
     <string name="config_title_max_undo_stack">Maximum undo history</string>
     <string name="config_title_back_to_undo">Use the back button to undo previous modifications</string>
+    <string name="config_title_use_home_page">Use a default file</string>
     <string name="config_summary_line_numbers">Display the line number at the left of the page</string>
     <string name="config_summary_word_wrap">Lines will break in new lines if they are too wide for the screen</string>
     <string name="config_summary_scroll_fling">Uncheck if you have performance issues</string>
+    <string name="config_summary_use_home_page">Select a file to open when you launch Ted from your home screen</string>
 
     <!-- Options Menu in TED -->
     <string name="menu_new">New</string>
@@ -50,27 +48,22 @@
     <string name="menu_about">About</string>
     <string name="menu_search">Search</string>
     <string name="menu_undo">Undo</string>
-    <string name="menu_redo">Redo</string>
     <string name="menu_quit">Quit</string>
 
     <!-- Misc UI strings -->
     <string name="ui_save_text">"Do you want to save your document? \nAny unsaved changes will be lost. "</string>
     <string name="ui_save">Save</string>
+    <string name="ui_delete">Delete</string>
     <string name="ui_no_save">"Don't save"</string>
     <string name="ui_cancel">Cancel</string>
     <string name="ui_hint_file_name">File name</string>
     <string name="ui_hint_search">Search</string>
-    <string name="ui_contact">Contact</string>
-    <string name="ui_licence">Licence</string>
+    <string name="ui_art_licence">Artistic Licence</string>
     <string name="ui_history">History</string>
-    <string name="ui_mail">android@xgouchet.fr</string>
-    <string name="ui_market">Find other apps in market</string>
-    <string name="ui_choose_mail">Open mail using ... </string>
+    <string name="ui_force_read_only">Open as read only</string>
 
     <!-- Misc Strings -->
     <string name="lorem_ipsum">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas porttitor neque semper sem fermentum pretium. Sed pharetra dui faucibus massa malesuada in condimentum mi gravida."</string>
-    <string name="feedback">"Please feel free to contact me for any feedback, feature request or bug report. "</string>
-    <string name="license">"This software is provided 'as-is', without any express or implied warranty.	In no event will the author be held liable for any damages arising from the use of this software."</string>
-    <string name="art_licence">"Most icons for this app come from the Gartoon theme for Gnome (GNU GPL), made by Zeus (zeussama@gmail.com). "</string>
+    <string name="art_licence">"All icons for this app were created and belong to the author of the app : Xavier Gouchet (android@xgouchet.fr)."</string>
 
 </resources>

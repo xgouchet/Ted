@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="TextTitle">
+        <item name="android:paddingTop">14dp</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextSubTitle">
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="TextContent">
+        <item name="android:paddingTop">6dp</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="ButtonSmall">
+        <item name="android:padding">6dp</item>
+    </style>
+
+</resources>

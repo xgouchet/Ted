@@ -6,18 +6,24 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
+import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import fr.xgouchet.androidlib.ui.Toaster;
 import fr.xgouchet.texteditor.common.Constants;
 import fr.xgouchet.texteditor.common.RecentFiles;
 import fr.xgouchet.texteditor.ui.adapter.PathListAdapter;
 
-public class TedOpenRecentActivity extends Activity implements Constants,
-		OnClickListener, OnItemClickListener {
+public class TedOpenRecentActivity extends Activity implements Constants, OnClickListener,
+		OnItemClickListener {
 
 	/**
 	 * @see android.app.Activity#onCreate(android.os.Bundle)
@@ -32,8 +38,9 @@ public class TedOpenRecentActivity extends Activity implements Constants,
 		findViewById(R.id.buttonCancel).setOnClickListener(this);
 
 		// widgets
-		mFilesList = (ListView) findViewById(R.id.listItems);
+		mFilesList = (ListView) findViewById(android.R.id.list);
 		mFilesList.setOnItemClickListener(this);
+		mFilesList.setOnCreateContextMenuListener(this);
 	}
 
 	/**
@@ -43,6 +50,33 @@ public class TedOpenRecentActivity extends Activity implements Constants,
 		super.onResume();
 
 		fillRecentFilesView();
+	}
+
+	/**
+	 * @see android.app.Activity#onCreateContextMenu(android.view.ContextMenu,
+	 *      android.view.View, android.view.ContextMenu.ContextMenuInfo)
+	 */
+	public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
+		super.onCreateContextMenu(menu, v, menuInfo);
+		AdapterContextMenuInfo info = (AdapterContextMenuInfo) menuInfo;
+		mContextPath = (String) mFilesList.getAdapter().getItem(info.position);
+
+		menu.setHeaderTitle(mContextPath);
+		menu.add(Menu.NONE, 0, Menu.NONE, R.string.ui_delete);
+	}
+
+	/**
+	 * @see android.app.Activity#onContextItemSelected(android.view.MenuItem)
+	 */
+	public boolean onContextItemSelected(MenuItem item) {
+
+		RecentFiles.removePath(mContextPath);
+		RecentFiles.saveRecentList(getSharedPreferences(PREFERENCES_NAME, MODE_PRIVATE));
+
+		fillRecentFilesView();
+		Toaster.showToast(this, R.string.toast_recent_files_deleted, false);
+
+		return true;
 	}
 
 	/**
@@ -61,8 +95,7 @@ public class TedOpenRecentActivity extends Activity implements Constants,
 	 * @see android.widget.AdapterView.OnItemClickListener#onItemClick(android.widget.AdapterView,
 	 *      android.view.View, int, long)
 	 */
-	public void onItemClick(AdapterView<?> parent, View view, int position,
-			long id) {
+	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 		String path;
 
 		path = mList.get(position);
@@ -71,9 +104,9 @@ public class TedOpenRecentActivity extends Activity implements Constants,
 			finish();
 		} else {
 			RecentFiles.removePath(path);
-			RecentFiles.saveRecentList(getSharedPreferences(PREFERENCES_NAME,
-					MODE_PRIVATE));
+			RecentFiles.saveRecentList(getSharedPreferences(PREFERENCES_NAME, MODE_PRIVATE));
 			((PathListAdapter) mListAdapter).notifyDataSetChanged();
+			Toaster.showToast(this, R.string.toast_recent_files_invalid, true);
 		}
 
 	}
@@ -118,6 +151,8 @@ public class TedOpenRecentActivity extends Activity implements Constants,
 		setResult(RESULT_OK, result);
 		return true;
 	}
+
+	protected String mContextPath;
 
 	/** the dialog's list view */
 	protected ListView mFilesList;

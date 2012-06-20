@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- FR -->
+
+
+    <!--  -->
+    <string name="ui_ok">OK</string>
+    <string name="ui_yes">Oui</string>
+    <string name="ui_no">Non</string>
+    <string name="ui_cancel">Annuler</string>
+
+    <!--  -->
+    <string name="ui_contact_title">Contact</string>
+    <string name="ui_licence_title">License</string>
+    <string name="ui_mail">android@xgouchet.fr</string>
+    <string name="ui_choose_mail">Envoyer un mail avec ... </string>
+    <string name="ui_market_url">"https://market.android.com/developer?pub=Xavier+Gouchet"</string>
+    <string name="ui_market">"Découvrir mes autres applications"</string>
+    <string name="ui_feedback">"N'hésitez pas à me contacter pour des remarques, bug ou tout autre commentaire."</string>
+    <string name="ui_license_content">"Ce logiciel est distribué 'tel-quel', sans aucune guarantie implicite ou explicite. En aucun cas l'auteur ne pourrait être tenu responsable pour quelque dégat découlant de l'utilisation de ce logiciel."</string>
+
+</resources>

@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="fr.xgouchet.texteditor"
     android:installLocation="auto"
-    android:versionCode="13"
-    android:versionName="Release 1.3" >
+    android:versionCode="15"
+    android:versionName="Release 1.5" >
 
     <uses-sdk
         android:minSdkVersion="8"
@@ -18,7 +18,7 @@
         <!-- Ted main activity ... ie a text field :) -->
         <activity
             android:name=".TedActivity"
-            android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|fontScale"
+            android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|fontScale|screenSize"
             android:windowSoftInputMode="adjustResize" >
 
             <!-- Launcher Intent -->
@@ -32,76 +32,19 @@
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <action android:name="android.intent.action.EDIT" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-
-                <data
-                    android:mimeType="text/*"  />
-                    <!-- android:scheme="file" -->
-                    
-            </intent-filter>
-
-            <!-- File not recognized as Text Files by Android -->
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <action android:name="android.intent.action.EDIT" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-
-                <data
-                    android:host="*"
-                    android:pathPattern=".*\\.js"
-                    android:scheme="file" />
-                <data
-                    android:host="*"
-                    android:pathPattern=".*\\.htm"
-                    android:scheme="file" />
-                <data
-                    android:host="*"
-                    android:pathPattern=".*\\.html"
-                    android:scheme="file" />
-                <data
-                    android:host="*"
-                    android:pathPattern=".*\\.xhtml"
-                    android:scheme="file" />
-                <data
-                    android:host="*"
-                    android:pathPattern=".*\\.php"
-                    android:scheme="file" />
-            </intent-filter>
-            <intent-filter>
-            </intent-filter>
-        </activity>
-
-        <!-- Ted Box Activity ... Ted Activity Started from Box. The Broadcast Receiver starts this Activity -->
-        <activity
-            android:name=".TedBoxActivity"
-            android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|fontScale"
-            android:windowSoftInputMode="adjustResize" >
-
-            <!-- Launcher Intent -->
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-            <!-- Default Text file view / edit -->
-            <intent-filter>
                 <action android:name="fr.xgouchet.texteditor.ACTION_TED_BOX_OPEN" />
- 
+                <action android:name="fr.xgouchet.texteditor.ACTION_TED_WIDGET_OPEN" />
+
                 <category android:name="android.intent.category.DEFAULT" />
 
-                <data
-                    android:mimeType="text/*"  />
-                    <!-- android:scheme="file" -->
-                    
+                <data android:mimeType="text/*" />
             </intent-filter>
 
             <!-- File not recognized as Text Files by Android -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <action android:name="android.intent.action.EDIT" />
+                <action android:name="fr.xgouchet.texteditor.ACTION_TED_WIDGET_OPEN" />
 
                 <category android:name="android.intent.category.DEFAULT" />
 
@@ -125,10 +68,33 @@
                     android:host="*"
                     android:pathPattern=".*\\.php"
                     android:scheme="file" />
-            </intent-filter>
-            <intent-filter>
+                <data
+                    android:host="*"
+                    android:pathPattern=".*\\.ini"
+                    android:scheme="file" />
+                <data
+                    android:host="*"
+                    android:pathPattern=".*\\.sh"
+                    android:scheme="file" />
+                <data
+                    android:host="*"
+                    android:pathPattern=".*\\.log"
+                    android:scheme="file" />
+                <data
+                    android:host="*"
+                    android:pathPattern=".*\\.db"
+                    android:scheme="file" />
+                <data
+                    android:host="*"
+                    android:pathPattern=".*\\.conf"
+                    android:scheme="file" />
+                <data
+                    android:host="*"
+                    android:pathPattern=".*\\.cfg"
+                    android:scheme="file" />
             </intent-filter>
         </activity>
+
         <!-- Ted settings activity -->
         <activity
             android:name=".TedSettingsActivity"
@@ -156,7 +122,6 @@
         <!-- Ted open activity -->
         <activity
             android:name=".TedOpenActivity"
-            android:label="@string/title_open"
             android:windowSoftInputMode="stateHidden" >
             <intent-filter>
                 <action android:name="fr.xgouchet.texteditor.ACTION_TED_OPEN" />
@@ -188,20 +153,24 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-		<receiver android:name=".box.TedBoxReceiver">
-		<intent-filter>
-			<action android:name="com.box.android.EDIT_FILE"/>
-			<action android:name="com.box.android.CREATE_FILE"/>
-			<action android:name="com.box.android.VIEW_FILE"/>
-			<data android:mimeType="text/*"/>
-			<data android:mimeType="image/*"/>
-		</intent-filter>
-		<intent-filter>
-			<action android:name="com.box.android.FILE_SAVED"/>
-			<action android:name="com.box.android.FILE_SAVING"/>
-			<action android:name="com.box.android.FILE_SAVED_ERROR"/>
-		</intent-filter>
-		</receiver>
-</application>
+
+        <!-- Ted Configure widget activity -->
+        <activity android:name=".TedWidgetConfigActivity" >
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
+        </activity>
+
+        <!-- Widget Receiver -->
+        <receiver android:name=".TedAppWidgetProvider" >
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/ted_widget" />
+        </receiver>
+    </application>
 
 </manifest>

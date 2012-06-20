@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- EN -->
+
+
+    <!--  -->
+    <string name="toast_folder_doesnt_exist">"Can't display folder cause it doesn't exist"</string>
+    <string name="toast_folder_not_folder">"Can't display folder cause it isn't a fodler"</string>
+    <string name="toast_folder_cant_read">"Can't display folder cause it isn't readable"</string>
+
+    <!--  -->
+    <string name="toast_no_market">The Android Play Store is not present on this device</string>
+
+</resources>

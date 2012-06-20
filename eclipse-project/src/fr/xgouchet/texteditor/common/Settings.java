@@ -1,6 +1,7 @@
 package fr.xgouchet.texteditor.common;
 
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 
 public class Settings implements Constants {
 
@@ -9,9 +10,10 @@ public class Settings implements Constants {
 
 	/** Show the lines numbers */
 	public static boolean SHOW_LINE_NUMBERS = true;
-
 	/** automatic break line to fit one page */
 	public static boolean WORDWRAP = false;
+	/** color setting */
+	public static int COLOR = COLOR_CLASSIC;
 
 	/** when search reaches the end of a file, search wrap */
 	public static boolean SEARCHWRAP = false;
@@ -23,18 +25,13 @@ public class Settings implements Constants {
 
 	/** Default end of line */
 	public static int DEFAULT_END_OF_LINE = EOL_LINUX;
-
 	/** End Of Line style */
 	public static int END_OF_LINE = EOL_LINUX;
-
 	/** Encoding */
 	public static String ENCODING = ENC_UTF8;
 
 	/** Let auto save on quit be triggered */
 	public static boolean AUTO_SAVE_MODE = true;
-
-	/** color setting */
-	public static int COLOR = COLOR_CLASSIC;
 
 	/** enable fling to scroll */
 	public static boolean FLING_TO_SCROLL = false;
@@ -45,6 +42,11 @@ public class Settings implements Constants {
 	public static int UNDO_MAX_STACK = 25;
 	/** Use back button as undo */
 	public static boolean BACK_BTN_AS_UNDO = false;
+
+	/** Use a Home Page */
+	public static boolean USE_HOME_PAGE = false;
+	/** Home Page Path */
+	public static String HOME_PAGE_PATH = "";
 
 	/**
 	 * @return the end of line characters according to the current settings
@@ -69,31 +71,32 @@ public class Settings implements Constants {
 	 */
 	public static void updateFromPreferences(SharedPreferences settings) {
 
-		Settings.MAX_RECENT_FILES = getStringPreferenceAsInteger(settings,
+		MAX_RECENT_FILES = getStringPreferenceAsInteger(settings,
 				PREFERENCE_MAX_RECENTS, "10");
-		Settings.SHOW_LINE_NUMBERS = settings.getBoolean(
-				PREFERENCE_SHOW_LINE_NUMBERS, true);
-		Settings.WORDWRAP = settings.getBoolean(PREFERENCE_WORDWRAP, false);
-		Settings.TEXT_SIZE = getStringPreferenceAsInteger(settings,
+		SHOW_LINE_NUMBERS = settings.getBoolean(PREFERENCE_SHOW_LINE_NUMBERS,
+				true);
+		WORDWRAP = settings.getBoolean(PREFERENCE_WORDWRAP, false);
+		TEXT_SIZE = getStringPreferenceAsInteger(settings,
 				PREFERENCE_TEXT_SIZE, "12");
-		Settings.DEFAULT_END_OF_LINE = getStringPreferenceAsInteger(settings,
+		DEFAULT_END_OF_LINE = getStringPreferenceAsInteger(settings,
 				PREFERENCE_END_OF_LINES, ("" + EOL_LINUX));
-		Settings.AUTO_SAVE_MODE = settings.getBoolean(
-				PREFERENCE_AUTO_SAVE_MODE, true);
-		Settings.COLOR = getStringPreferenceAsInteger(settings,
-				PREFERENCE_COLOR_THEME, ("" + COLOR_CLASSIC));
-		Settings.SEARCHWRAP = settings.getBoolean(PREFERENCE_SEARCHWRAP, false);
-		Settings.SEARCHMATCHCASE = settings.getBoolean(
-				PREFERENCE_SEARCH_MATCH_CASE, false);
-		Settings.ENCODING = settings.getString(PREFERENCE_ENCODING, ENC_UTF8);
-		Settings.FLING_TO_SCROLL = settings.getBoolean(
-				PREFERENCE_FLING_TO_SCROLL, true);
+		AUTO_SAVE_MODE = settings.getBoolean(PREFERENCE_AUTO_SAVE_MODE, true);
+		COLOR = getStringPreferenceAsInteger(settings, PREFERENCE_COLOR_THEME,
+				("" + COLOR_CLASSIC));
+		SEARCHWRAP = settings.getBoolean(PREFERENCE_SEARCHWRAP, false);
+		SEARCHMATCHCASE = settings.getBoolean(PREFERENCE_SEARCH_MATCH_CASE,
+				false);
+		ENCODING = settings.getString(PREFERENCE_ENCODING, ENC_UTF8);
+		FLING_TO_SCROLL = settings.getBoolean(PREFERENCE_FLING_TO_SCROLL, true);
 
-		Settings.BACK_BTN_AS_UNDO = settings.getBoolean(
-				PREFERENCE_BACK_BUTTON_AS_UNDO, false);
-		Settings.UNDO = settings.getBoolean(PREFERENCE_ALLOW_UNDO, true);
-		Settings.UNDO_MAX_STACK = getStringPreferenceAsInteger(settings,
+		BACK_BTN_AS_UNDO = settings.getBoolean(PREFERENCE_BACK_BUTTON_AS_UNDO,
+				false);
+		UNDO = settings.getBoolean(PREFERENCE_ALLOW_UNDO, true);
+		UNDO_MAX_STACK = getStringPreferenceAsInteger(settings,
 				PREFERENCE_MAX_UNDO_STACK, "25");
+
+		USE_HOME_PAGE = settings.getBoolean(PREFERENCE_USE_HOME_PAGE, false);
+		HOME_PAGE_PATH = settings.getString(PREFERENCE_HOME_PAGE_PATH, "");
 
 		RecentFiles.loadRecentFiles(settings.getString(PREFERENCE_RECENTS, ""));
 	}
@@ -128,5 +131,18 @@ public class Settings implements Constants {
 		}
 
 		return intVal;
+	}
+
+	/**
+	 * Save the Home page settings
+	 * 
+	 * @param settings
+	 *            the settings to write to
+	 */
+	public static void saveHomePage(SharedPreferences settings) {
+		Editor editor = settings.edit();
+		editor.putString(PREFERENCE_HOME_PAGE_PATH, HOME_PAGE_PATH);
+		editor.commit();
+
 	}
 }

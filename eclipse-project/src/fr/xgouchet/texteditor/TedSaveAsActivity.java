@@ -1,30 +1,20 @@
 package fr.xgouchet.texteditor;
 
-import static fr.xgouchet.texteditor.ui.Toaster.showToast;
+import static fr.xgouchet.androidlib.ui.Toaster.showToast;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListAdapter;
-import android.widget.ListView;
-import fr.xgouchet.texteditor.common.ComparatorFilesAlpha;
+import fr.xgouchet.androidlib.ui.activity.BrowsingActivity;
 import fr.xgouchet.texteditor.common.Constants;
-import fr.xgouchet.texteditor.common.FileUtils;
-import fr.xgouchet.texteditor.ui.adapter.FileListAdapter;
 
-public class TedSaveAsActivity extends Activity implements Constants,
-		OnClickListener, OnItemClickListener {
+public class TedSaveAsActivity extends BrowsingActivity implements Constants, OnClickListener {
 
 	/**
 	 * @see android.app.Activity#onCreate(android.os.Bundle)
@@ -37,32 +27,15 @@ public class TedSaveAsActivity extends Activity implements Constants,
 
 		// buttons
 		findViewById(R.id.buttonCancel).setOnClickListener(this);
-		findViewById(R.id.buttonSave).setOnClickListener(this);
+		findViewById(R.id.buttonOk).setOnClickListener(this);
+		((Button) findViewById(R.id.buttonOk)).setText(R.string.ui_save);
 
 		// widgets
 		mFileName = (EditText) findViewById(R.id.editFileName);
-		mFoldersList = (ListView) findViewById(R.id.listItems);
-		mFoldersList.setOnItemClickListener(this);
 
 		// drawables
 		mWriteable = getResources().getDrawable(R.drawable.folder_rw);
 		mLocked = getResources().getDrawable(R.drawable.folder_r);
-	}
-
-	/**
-	 * @see android.app.Activity#onResume()
-	 */
-	protected void onResume() {
-		super.onResume();
-
-		// initial folder
-		File folder;
-		if ((STORAGE.exists()) && (STORAGE.canRead()))
-			folder = STORAGE;
-		else
-			folder = new File("/");
-
-		fillFolderView(folder);
 	}
 
 	/**
@@ -74,105 +47,32 @@ public class TedSaveAsActivity extends Activity implements Constants,
 			setResult(RESULT_CANCELED);
 			finish();
 			break;
-		case R.id.buttonSave:
+		case R.id.buttonOk:
 			if (setSaveResult())
 				finish();
 		}
 	}
 
 	/**
-	 * @see android.widget.AdapterView.OnItemClickListener#onItemClick(android.widget.AdapterView,
-	 *      android.view.View, int, long)
+	 * @see fr.xgouchet.androidlib.ui.activity.BrowserActivity#onFileClick(java.io.File)
 	 */
-	public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-		File file;
-
-		file = mList.get(position);
-
-		// safe check : null pointer exception
-		if (file == null)
-			return;
-
-		// safe check : file exists
-		if (!file.exists())
-			return;
-
-		if (file.isDirectory()) {
-			fillFolderView(file);
-		} else {
-			if (file.canWrite())
-				mFileName.setText(file.getName());
-		}
+	protected void onFileClick(File file) {
+		if (file.canWrite())
+			mFileName.setText(file.getName());
 	}
 
 	/**
-	 * Fills the files list with the specified folder
-	 * 
-	 * @param file
-	 *            the file of the folder to display
+	 * @see fr.xgouchet.androidlib.ui.activity.BrowserActivity#onFolderClick(java.io.File)
 	 */
-	protected void fillFolderView(File file) {
-		file = new File(FileUtils.getCanonizePath(file));
-
-		if (!file.exists()) {
-			showToast(this, R.string.toast_folder_doesnt_exist, true);
-			return;
-		}
-
-		if (!file.isDirectory()) {
-			showToast(this, R.string.toast_folder_not_folder, true);
-			return;
-		}
-
-		if (!file.canRead()) {
-			showToast(this, R.string.toast_folder_cant_read, true);
-			return;
-		}
-
-		listFiles(file);
-
-		// create string list adapter
-		mListAdapter = new FileListAdapter(this, mList);
-
-		// set adpater
-		mFoldersList.setAdapter(mListAdapter);
-
-		// update path
-		mCurrentFolder = file;
-
-		if (mCurrentFolder.canWrite())
-			mFileName.setCompoundDrawablesWithIntrinsicBounds(
-					R.drawable.folder_rw, 0, 0, 0);
-		else
-			mFileName.setCompoundDrawablesWithIntrinsicBounds(
-					R.drawable.folder_r, 0, 0, 0);
+	protected boolean onFolderClick(File folder) {
+		return true;
 	}
 
 	/**
-	 * List the files in the given folder and store them in the list of files to
-	 * display
-	 * 
-	 * @param folder
-	 *            the folder to analyze
+	 * @see fr.xgouchet.androidlib.ui.activity.BrowsingActivity#onFolderViewFilled()
 	 */
-	protected void listFiles(File folder) {
-		// get files list as array list
-		if ((folder == null) || (!folder.isDirectory())) {
-			mList = new ArrayList<File>();
-			return;
-		}
+	protected void onFolderViewFilled() {
 
-		mList = new ArrayList<File>(Arrays.asList(folder.listFiles()));
-
-		// Sort list
-		Collections.sort(mList, new ComparatorFilesAlpha());
-
-		// Add parent folder
-		if (folder.getParentFile() != null) {
-			mList.add(0, folder.getParentFile());
-		} else {
-			mList.add(0, folder);
-		}
 	}
 
 	/**
@@ -202,22 +102,11 @@ public class TedSaveAsActivity extends Activity implements Constants,
 		}
 
 		result = new Intent();
-		result.putExtra("path", mCurrentFolder.getAbsolutePath()
-				+ File.separator + fileName);
+		result.putExtra("path", mCurrentFolder.getAbsolutePath() + File.separator + fileName);
 
 		setResult(RESULT_OK, result);
 		return true;
 	}
-
-	/** The list of files to display */
-	protected ArrayList<File> mList;
-	/** the dialog's list view */
-	protected ListView mFoldersList;
-	/** The list adapter */
-	protected ListAdapter mListAdapter;
-
-	/** the current folder */
-	protected File mCurrentFolder;
 
 	/** the edit text input */
 	protected EditText mFileName;

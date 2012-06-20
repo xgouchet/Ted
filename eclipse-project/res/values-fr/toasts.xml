@@ -2,6 +2,8 @@
 <resources>
 
     <string name="toast_no_recent_files">"Il n'y a pas de fichier recent à charger"</string>
+    <string name="toast_recent_files_invalid">"Le fichier selectionné n'existe plus"</string>
+    <string name="toast_recent_files_deleted">Fichier supprimé de la liste </string>
     <string name="toast_intent_invalid_uri">"Impossible d'ouvrir le fichier : adresse invalide"</string>
     <string name="toast_intent_illegal">"Impossible d'ouvrir le fichier"</string>
     <string name="toast_activity_open">"Impossible d'ouvrir l'explorateur de fichier"</string>
@@ -19,8 +21,8 @@
     <string name="toast_folder_doesnt_exist">"Impossible d'ouvrir, ce dossier n'existe pas"</string>
     <string name="toast_folder_not_folder">"Impossible d'ouvrir, ce n'est pas un dossier"</string>
     <string name="toast_folder_cant_read">"Impossible d'ouvrir, le dossier est protégé en lecture"</string>
-    <string name="toast_folder_cant_write">"Impossible d'utiliser ce dossier car il est protégé en écriture"</string>
-    <string name="toast_file_cant_read">"Impossible d'ouvrir, le fichier est protégé en lecture"</string>
+    <string name="toast_folder_cant_write">"Impossible d'ouvrir, le fichier est protégé en lecture"</string>
+    <string name="toast_file_cant_read">"Can't use this file cause it isn't readable"</string>
     <string name="toast_search_not_found">"Pas de résultat dans ce fichier"</string>
     <string name="toast_search_eof">"Pas d'autre résultat dans ce fichier"</string>
     <string name="toast_search_no_input">"Recherche vide"</string>
@@ -28,5 +30,10 @@
     <string name="toast_filename_empty">Le nom de fichier ne doit pas être vide</string>
     <string name="toast_warn_no_undo">Rien à annuler</string>
     <string name="toast_warn_no_undo_will_quit">"Rien à annuler. Pressez retour pour quitter l'application"</string>
+    <string name="toast_open_home_page_error">"Fichier par défaut non trouvé. Essayez d'en sélectionner un autre dans les options"</string>
+    <string name="toast_home_page_cant_read">"Impossible d'ouvrir, le fichier par défaut est protégé en lecture"</string>
+    <string name="toast_widget_select">Sélectionnez un fichier à associer à ce widget</string>
+    <string name="toast_open_select">Sélectionnez un fichier à ouvrir</string>
+    <string name="toast_home_page_select">Sélectionnez un fichier à ouvrir au démarrage de Ted</string>
 
 </resources>

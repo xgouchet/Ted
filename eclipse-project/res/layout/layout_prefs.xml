@@ -6,7 +6,7 @@
 
     <fr.xgouchet.texteditor.ui.view.AdvancedEditText
         android:id="@+id/sampleEditor"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="64dp"
         android:gravity="top|left"
         android:scrollbarAlwaysDrawHorizontalTrack="true"
@@ -18,7 +18,7 @@
 
     <ListView
         android:id="@android:id/list"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </LinearLayout>

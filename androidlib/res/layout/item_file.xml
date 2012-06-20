@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center"
     android:orientation="horizontal"
-    android:paddingBottom="4dp"
-    android:paddingTop="4dp" >
+    android:padding="@dimen/list_item_pading" >
 
     <TextView
         android:id="@+id/textFileName"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/file"
-        android:drawablePadding="8dp"
+        android:drawablePadding="@dimen/compound_text_drawable_padding"
+        android:gravity="center_vertical"
+        android:text=""
         android:textStyle="bold"
         android:typeface="sans" >
     </TextView>

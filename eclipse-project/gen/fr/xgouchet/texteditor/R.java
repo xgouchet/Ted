@@ -12,221 +12,304 @@ public final class R {
         /**  Color themes 
  Color themes 
          */
-        public static final int color_theme_names=0x7f050000;
-        public static final int color_theme_values=0x7f050001;
+        public static final int color_theme_names=0x7f080000;
+        public static final int color_theme_values=0x7f080001;
         /**  Encoding 
          */
-        public static final int encoding_names=0x7f050008;
-        public static final int encoding_values=0x7f050009;
+        public static final int encoding_names=0x7f080008;
+        public static final int encoding_values=0x7f080009;
         /**  End of lines 
          */
-        public static final int eol_names=0x7f050004;
-        public static final int eol_values=0x7f050005;
+        public static final int eol_names=0x7f080004;
+        public static final int eol_values=0x7f080005;
         /**  Recent files 
          */
-        public static final int max_recent_files=0x7f050007;
+        public static final int max_recent_files=0x7f080007;
         /**  Recent files 
          */
-        public static final int max_undo_stack_values=0x7f050006;
+        public static final int max_undo_stack_values=0x7f080006;
         /**  Text size 
          */
-        public static final int text_size_names=0x7f050002;
-        public static final int text_size_values=0x7f050003;
+        public static final int text_size_names=0x7f080002;
+        public static final int text_size_values=0x7f080003;
     }
     public static final class attr {
     }
+    public static final class dimen {
+        public static final int compound_text_drawable_padding=0x7f050002;
+        public static final int dialog_buttons_margin=0x7f050000;
+        public static final int list_item_pading=0x7f050001;
+        /**  V14 
+         */
+        public static final int widget_margin=0x7f050003;
+        public static final int widget_size=0x7f050004;
+    }
     public static final class drawable {
-        public static final int close=0x7f020000;
-        public static final int file=0x7f020001;
-        public static final int file_locked=0x7f020002;
-        public static final int file_private=0x7f020003;
-        public static final int file_unknown=0x7f020004;
-        public static final int folder=0x7f020005;
-        public static final int folder_locked=0x7f020006;
-        public static final int folder_private=0x7f020007;
-        public static final int folder_r=0x7f020008;
-        public static final int folder_rw=0x7f020009;
-        public static final int folder_up=0x7f02000a;
-        public static final int ic_launcher=0x7f02000b;
-        public static final int ic_menu_about=0x7f02000c;
-        public static final int ic_menu_file_new=0x7f02000d;
-        public static final int ic_menu_file_open=0x7f02000e;
-        public static final int ic_menu_file_save=0x7f02000f;
-        public static final int ic_menu_file_save_as=0x7f020010;
-        public static final int ic_menu_quit=0x7f020011;
-        public static final int ic_menu_recent=0x7f020012;
-        public static final int ic_menu_search=0x7f020013;
-        public static final int ic_menu_settings=0x7f020014;
-        public static final int ic_menu_undo=0x7f020015;
-        public static final int ic_search=0x7f020016;
-        public static final int mail=0x7f020017;
-        public static final int market=0x7f020018;
-        public static final int next=0x7f020019;
-        public static final int previous=0x7f02001a;
-        public static final int textfield_black=0x7f02001b;
-        public static final int textfield_dracula=0x7f02001c;
-        public static final int textfield_matrix=0x7f02001d;
-        public static final int textfield_sky=0x7f02001e;
-        public static final int textfield_white=0x7f02001f;
+        public static final int file=0x7f020000;
+        public static final int file_apk=0x7f020001;
+        public static final int file_apk_locked=0x7f020002;
+        public static final int file_apk_private=0x7f020003;
+        public static final int file_app=0x7f020004;
+        public static final int file_app_locked=0x7f020005;
+        public static final int file_app_private=0x7f020006;
+        public static final int file_audio=0x7f020007;
+        public static final int file_audio_locked=0x7f020008;
+        public static final int file_audio_private=0x7f020009;
+        public static final int file_compressed=0x7f02000a;
+        public static final int file_compressed_locked=0x7f02000b;
+        public static final int file_compressed_private=0x7f02000c;
+        public static final int file_db=0x7f02000d;
+        public static final int file_db_locked=0x7f02000e;
+        public static final int file_db_private=0x7f02000f;
+        public static final int file_image=0x7f020010;
+        public static final int file_image_locked=0x7f020011;
+        public static final int file_image_private=0x7f020012;
+        public static final int file_locked=0x7f020013;
+        public static final int file_pdf=0x7f020014;
+        public static final int file_pdf_locked=0x7f020015;
+        public static final int file_pdf_private=0x7f020016;
+        public static final int file_private=0x7f020017;
+        public static final int file_text=0x7f020018;
+        public static final int file_text_favorite=0x7f020019;
+        public static final int file_text_favorite_readonly=0x7f02001a;
+        public static final int file_text_locked=0x7f02001b;
+        public static final int file_text_private=0x7f02001c;
+        public static final int file_unknown=0x7f02001d;
+        public static final int file_video=0x7f02001e;
+        public static final int file_video_locked=0x7f02001f;
+        public static final int file_video_private=0x7f020020;
+        public static final int folder=0x7f020021;
+        public static final int folder_downloads=0x7f020022;
+        public static final int folder_locked=0x7f020023;
+        public static final int folder_private=0x7f020024;
+        public static final int folder_r=0x7f020025;
+        public static final int folder_rw=0x7f020026;
+        public static final int folder_trash_empty=0x7f020027;
+        public static final int folder_trash_full=0x7f020028;
+        public static final int ic_launcher=0x7f020029;
+        public static final int ic_menu_file_new=0x7f02002a;
+        public static final int ic_menu_file_open=0x7f02002b;
+        public static final int ic_menu_recent=0x7f02002c;
+        public static final int ic_menu_save=0x7f02002d;
+        public static final int ic_menu_search=0x7f02002e;
+        public static final int ic_menu_undo=0x7f02002f;
+        public static final int ic_search=0x7f020030;
+        public static final int mail=0x7f020031;
+        public static final int market=0x7f020032;
+        public static final int sd_card=0x7f020033;
+        public static final int textfield_black=0x7f020034;
+        public static final int textfield_dracula=0x7f020035;
+        public static final int textfield_matrix=0x7f020036;
+        public static final int textfield_sky=0x7f020037;
+        public static final int textfield_white=0x7f020038;
+        public static final int up=0x7f020039;
+        public static final int widget_title_background=0x7f02003a;
     }
     public static final class id {
-        public static final int buttonCancel=0x7f080002;
-        public static final int buttonDontSave=0x7f080001;
-        public static final int buttonMail=0x7f080004;
-        public static final int buttonMarket=0x7f080005;
-        public static final int buttonSave=0x7f080000;
-        public static final int buttonSearchClose=0x7f080008;
-        public static final int buttonSearchNext=0x7f08000b;
-        public static final int buttonSearchPrev=0x7f08000a;
-        public static final int editFileName=0x7f08000e;
-        public static final int editor=0x7f080006;
-        public static final int listItems=0x7f08000c;
-        public static final int sampleEditor=0x7f08000d;
-        public static final int searchLayout=0x7f080007;
-        public static final int textFileName=0x7f080003;
-        public static final int textSearch=0x7f080009;
+        public static final int buttonCancel=0x7f090001;
+        public static final int buttonMail=0x7f090004;
+        public static final int buttonMarket=0x7f090005;
+        public static final int buttonNo=0x7f090003;
+        public static final int buttonOk=0x7f090000;
+        public static final int buttonSearchClose=0x7f09000c;
+        public static final int buttonSearchNext=0x7f09000f;
+        public static final int buttonSearchPrev=0x7f09000e;
+        public static final int buttonYes=0x7f090002;
+        public static final int editFileName=0x7f09000a;
+        public static final int editor=0x7f090007;
+        public static final int icon=0x7f090011;
+        public static final int readOnly=0x7f09000b;
+        public static final int sampleEditor=0x7f090009;
+        public static final int searchLayout=0x7f090008;
+        public static final int textFileName=0x7f090006;
+        public static final int textSearch=0x7f09000d;
+        public static final int widgetLayout=0x7f090010;
     }
     public static final class layout {
-        public static final int dialog_save=0x7f030000;
-        public static final int item_file=0x7f030001;
-        public static final int layout_about=0x7f030002;
-        public static final int layout_editor=0x7f030003;
-        public static final int layout_open=0x7f030004;
-        public static final int layout_prefs=0x7f030005;
-        public static final int layout_save_as=0x7f030006;
+        public static final int buttons_ok_cancel=0x7f030000;
+        public static final int buttons_yes_no_cancel=0x7f030001;
+        public static final int contact_generic=0x7f030002;
+        public static final int dialog_save=0x7f030003;
+        public static final int item_file=0x7f030004;
+        public static final int layout_about=0x7f030005;
+        public static final int layout_editor=0x7f030006;
+        public static final int layout_open=0x7f030007;
+        public static final int layout_prefs=0x7f030008;
+        public static final int layout_save_as=0x7f030009;
+        public static final int layout_widget_config=0x7f03000a;
+        public static final int search=0x7f03000b;
+        public static final int widget=0x7f03000c;
     }
     public static final class string {
-        public static final int app_name=0x7f060018;
-        public static final int art_licence=0x7f060050;
-        public static final int beta2=0x7f060016;
-        public static final int beta2_log=0x7f060017;
-        public static final int beta3=0x7f060014;
-        public static final int beta3_log=0x7f060015;
-        public static final int beta4=0x7f060012;
-        public static final int beta4_log=0x7f060013;
-        public static final int beta5=0x7f060010;
-        public static final int beta5_log=0x7f060011;
-        public static final int beta6=0x7f06000e;
-        public static final int beta6_log=0x7f06000f;
-        public static final int beta7=0x7f06000c;
-        public static final int beta7_log=0x7f06000d;
-        public static final int beta8=0x7f06000a;
-        public static final int beta8_log=0x7f06000b;
-        public static final int beta9=0x7f060008;
-        public static final int beta9_log=0x7f060009;
+        public static final int app_name=0x7f06002a;
+        public static final int app_name_full=0x7f06002b;
+        public static final int art_licence=0x7f06005e;
+        public static final int beta2=0x7f060028;
+        public static final int beta2_log=0x7f060029;
+        public static final int beta3=0x7f060026;
+        public static final int beta3_log=0x7f060027;
+        public static final int beta4=0x7f060024;
+        public static final int beta4_log=0x7f060025;
+        public static final int beta5=0x7f060022;
+        public static final int beta5_log=0x7f060023;
+        public static final int beta6=0x7f060020;
+        public static final int beta6_log=0x7f060021;
+        public static final int beta7=0x7f06001e;
+        public static final int beta7_log=0x7f06001f;
+        public static final int beta8=0x7f06001c;
+        public static final int beta8_log=0x7f06001d;
+        public static final int beta9=0x7f06001a;
+        public static final int beta9_log=0x7f06001b;
         /**  Config screen strings 
  Config screen strings 
          */
-        public static final int config_cat_display=0x7f060021;
-        public static final int config_cat_misc=0x7f060025;
-        public static final int config_cat_save=0x7f060022;
-        public static final int config_cat_search=0x7f060024;
-        public static final int config_cat_undo=0x7f060023;
-        public static final int config_summary_line_numbers=0x7f060033;
-        public static final int config_summary_scroll_fling=0x7f060035;
-        public static final int config_summary_word_wrap=0x7f060034;
-        public static final int config_title_allow_undo_stack=0x7f060030;
-        public static final int config_title_back_to_undo=0x7f060032;
-        public static final int config_title_color_theme=0x7f060029;
-        public static final int config_title_encoding=0x7f06002e;
-        public static final int config_title_end_of_lines=0x7f06002a;
-        public static final int config_title_line_numbers=0x7f060026;
-        public static final int config_title_max_recent=0x7f06002b;
-        public static final int config_title_max_undo_stack=0x7f060031;
-        public static final int config_title_scroll_fling=0x7f06002f;
-        public static final int config_title_search_match_case=0x7f06002d;
-        public static final int config_title_search_wrap=0x7f06002c;
-        public static final int config_title_text_size=0x7f060028;
-        public static final int config_title_word_wrap=0x7f060027;
-        public static final int feedback=0x7f06004e;
-        public static final int license=0x7f06004f;
+        public static final int config_cat_display=0x7f060033;
+        public static final int config_cat_misc=0x7f060037;
+        public static final int config_cat_save=0x7f060034;
+        public static final int config_cat_search=0x7f060036;
+        public static final int config_cat_undo=0x7f060035;
+        public static final int config_summary_line_numbers=0x7f060046;
+        public static final int config_summary_scroll_fling=0x7f060048;
+        public static final int config_summary_use_home_page=0x7f060049;
+        public static final int config_summary_word_wrap=0x7f060047;
+        public static final int config_title_allow_undo_stack=0x7f060042;
+        public static final int config_title_back_to_undo=0x7f060044;
+        public static final int config_title_color_theme=0x7f06003b;
+        public static final int config_title_encoding=0x7f060040;
+        public static final int config_title_end_of_lines=0x7f06003c;
+        public static final int config_title_line_numbers=0x7f060038;
+        public static final int config_title_max_recent=0x7f06003d;
+        public static final int config_title_max_undo_stack=0x7f060043;
+        public static final int config_title_scroll_fling=0x7f060041;
+        public static final int config_title_search_match_case=0x7f06003f;
+        public static final int config_title_search_wrap=0x7f06003e;
+        public static final int config_title_text_size=0x7f06003a;
+        public static final int config_title_use_home_page=0x7f060045;
+        public static final int config_title_word_wrap=0x7f060039;
         /**  Misc Strings 
  Misc Strings 
          */
-        public static final int lorem_ipsum=0x7f06004d;
-        public static final int menu_about=0x7f06003c;
+        public static final int lorem_ipsum=0x7f06005d;
+        public static final int menu_about=0x7f060050;
         /**  Options Menu in TED 
  Options Menu in TED 
          */
-        public static final int menu_new=0x7f060036;
-        public static final int menu_open=0x7f060037;
-        public static final int menu_open_recent=0x7f060038;
-        public static final int menu_quit=0x7f060040;
-        public static final int menu_redo=0x7f06003f;
-        public static final int menu_save=0x7f060039;
-        public static final int menu_save_as=0x7f06003a;
-        public static final int menu_search=0x7f06003d;
-        public static final int menu_settings=0x7f06003b;
-        public static final int menu_undo=0x7f06003e;
-        public static final int release1=0x7f060006;
-        public static final int release11=0x7f060004;
-        public static final int release11_log=0x7f060005;
-        public static final int release12=0x7f060002;
-        public static final int release12_log=0x7f060003;
-        public static final int release13=0x7f060000;
-        public static final int release13_log=0x7f060001;
-        public static final int release1_log=0x7f060007;
-        public static final int title_about=0x7f060020;
+        public static final int menu_new=0x7f06004a;
+        public static final int menu_open=0x7f06004b;
+        public static final int menu_open_recent=0x7f06004c;
+        public static final int menu_quit=0x7f060053;
+        public static final int menu_save=0x7f06004d;
+        public static final int menu_save_as=0x7f06004e;
+        public static final int menu_search=0x7f060051;
+        public static final int menu_settings=0x7f06004f;
+        public static final int menu_undo=0x7f060052;
+        public static final int release1=0x7f060018;
+        public static final int release11=0x7f060016;
+        public static final int release11_log=0x7f060017;
+        public static final int release12=0x7f060014;
+        public static final int release12_log=0x7f060015;
+        public static final int release13=0x7f060012;
+        public static final int release13_log=0x7f060013;
+        /**  EN 
+ FR 
+         */
+        public static final int release15=0x7f060010;
+        public static final int release15_log=0x7f060011;
+        public static final int release1_log=0x7f060019;
+        public static final int title_about=0x7f060032;
         /**  Titles 
          */
-        public static final int title_editor=0x7f060019;
-        public static final int title_editor_dirty=0x7f06001a;
-        public static final int title_editor_readonly=0x7f06001b;
-        public static final int title_open=0x7f06001d;
-        public static final int title_open_recent=0x7f06001e;
+        public static final int title_editor=0x7f06002c;
+        public static final int title_editor_dirty=0x7f06002d;
+        public static final int title_editor_readonly=0x7f06002e;
+        public static final int title_open_recent=0x7f060030;
         /**  Titles 
          */
-        public static final int title_save_as=0x7f06001c;
-        public static final int title_settings=0x7f06001f;
-        public static final int toast_activity_about=0x7f060058;
-        public static final int toast_activity_open=0x7f060054;
-        public static final int toast_activity_open_recent=0x7f060055;
-        public static final int toast_activity_save_as=0x7f060056;
-        public static final int toast_activity_settings=0x7f060057;
-        public static final int toast_file_cant_read=0x7f060064;
-        public static final int toast_filename_empty=0x7f060069;
-        public static final int toast_folder_cant_read=0x7f060062;
-        public static final int toast_folder_cant_write=0x7f060063;
-        public static final int toast_folder_doesnt_exist=0x7f060060;
-        public static final int toast_folder_not_folder=0x7f060061;
-        public static final int toast_intent_illegal=0x7f060053;
-        public static final int toast_intent_invalid_uri=0x7f060052;
-        public static final int toast_memory_open=0x7f060059;
-        public static final int toast_no_market=0x7f060068;
-        public static final int toast_no_recent_files=0x7f060051;
-        public static final int toast_open_error=0x7f06005a;
-        public static final int toast_save_delete=0x7f06005d;
-        public static final int toast_save_null=0x7f06005b;
-        public static final int toast_save_rename=0x7f06005e;
-        public static final int toast_save_success=0x7f06005f;
-        public static final int toast_save_temp=0x7f06005c;
-        public static final int toast_search_eof=0x7f060066;
-        public static final int toast_search_no_input=0x7f060067;
-        public static final int toast_search_not_found=0x7f060065;
-        public static final int toast_warn_no_undo=0x7f06006a;
-        public static final int toast_warn_no_undo_will_quit=0x7f06006b;
-        public static final int ui_cancel=0x7f060044;
-        public static final int ui_choose_mail=0x7f06004c;
-        public static final int ui_contact=0x7f060047;
-        public static final int ui_hint_file_name=0x7f060045;
-        public static final int ui_hint_search=0x7f060046;
-        public static final int ui_history=0x7f060049;
-        public static final int ui_licence=0x7f060048;
-        public static final int ui_mail=0x7f06004a;
-        public static final int ui_market=0x7f06004b;
-        public static final int ui_no_save=0x7f060043;
-        public static final int ui_save=0x7f060042;
+        public static final int title_save_as=0x7f06002f;
+        public static final int title_settings=0x7f060031;
+        public static final int toast_activity_about=0x7f060068;
+        public static final int toast_activity_open=0x7f060064;
+        public static final int toast_activity_open_recent=0x7f060065;
+        public static final int toast_activity_save_as=0x7f060066;
+        public static final int toast_activity_settings=0x7f060067;
+        public static final int toast_file_cant_read=0x7f060071;
+        public static final int toast_filename_empty=0x7f060075;
+        public static final int toast_folder_cant_read=0x7f06000e;
+        public static final int toast_folder_cant_write=0x7f060070;
+        /**  EN 
+  
+ FR 
+  
+         */
+        public static final int toast_folder_doesnt_exist=0x7f06000c;
+        public static final int toast_folder_not_folder=0x7f06000d;
+        public static final int toast_home_page_cant_read=0x7f060079;
+        public static final int toast_home_page_select=0x7f06007c;
+        public static final int toast_intent_illegal=0x7f060063;
+        public static final int toast_intent_invalid_uri=0x7f060062;
+        public static final int toast_memory_open=0x7f060069;
+        /**   
+  
+         */
+        public static final int toast_no_market=0x7f06000f;
+        public static final int toast_no_recent_files=0x7f06005f;
+        public static final int toast_open_error=0x7f06006a;
+        public static final int toast_open_home_page_error=0x7f060078;
+        public static final int toast_open_select=0x7f06007b;
+        public static final int toast_recent_files_deleted=0x7f060061;
+        public static final int toast_recent_files_invalid=0x7f060060;
+        public static final int toast_save_delete=0x7f06006d;
+        public static final int toast_save_null=0x7f06006b;
+        public static final int toast_save_rename=0x7f06006e;
+        public static final int toast_save_success=0x7f06006f;
+        public static final int toast_save_temp=0x7f06006c;
+        public static final int toast_search_eof=0x7f060073;
+        public static final int toast_search_no_input=0x7f060074;
+        public static final int toast_search_not_found=0x7f060072;
+        public static final int toast_warn_no_undo=0x7f060076;
+        public static final int toast_warn_no_undo_will_quit=0x7f060077;
+        public static final int toast_widget_select=0x7f06007a;
+        public static final int ui_art_licence=0x7f06005a;
+        public static final int ui_cancel=0x7f060003;
+        public static final int ui_choose_mail=0x7f060007;
+        /**   
+  
+         */
+        public static final int ui_contact_title=0x7f060004;
+        public static final int ui_delete=0x7f060056;
+        public static final int ui_feedback=0x7f06000a;
+        public static final int ui_force_read_only=0x7f06005c;
+        public static final int ui_hint_file_name=0x7f060058;
+        public static final int ui_hint_search=0x7f060059;
+        public static final int ui_history=0x7f06005b;
+        public static final int ui_licence_title=0x7f060005;
+        public static final int ui_license_content=0x7f06000b;
+        public static final int ui_mail=0x7f060006;
+        public static final int ui_market=0x7f060009;
+        public static final int ui_market_url=0x7f060008;
+        public static final int ui_no=0x7f060002;
+        public static final int ui_no_save=0x7f060057;
+        /**  EN 
+  
+ FR 
+  
+         */
+        public static final int ui_ok=0x7f060000;
+        public static final int ui_save=0x7f060055;
         /**  Misc UI strings 
  Misc UI strings 
          */
-        public static final int ui_save_text=0x7f060041;
+        public static final int ui_save_text=0x7f060054;
+        public static final int ui_yes=0x7f060001;
     }
     public static final class style {
-        public static final int TedContent=0x7f070002;
-        public static final int TedSubTitle=0x7f070001;
-        public static final int TedTitle=0x7f070000;
+        public static final int ButtonSmall=0x7f070003;
+        public static final int TextContent=0x7f070002;
+        public static final int TextSubTitle=0x7f070001;
+        public static final int TextTitle=0x7f070000;
     }
     public static final class xml {
         public static final int ted_prefs=0x7f040000;
+        public static final int ted_widget=0x7f040001;
     }
 }

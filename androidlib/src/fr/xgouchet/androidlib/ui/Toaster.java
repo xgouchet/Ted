@@ -1,4 +1,4 @@
-package fr.xgouchet.texteditor.ui;
+package fr.xgouchet.androidlib.ui;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -22,6 +22,29 @@ public class Toaster {
 		TextView v;
 
 		toast = Toast.makeText(ctx, resId, Toast.LENGTH_SHORT);
+		if (error) {
+			v = (TextView) toast.getView().findViewById(android.R.id.message);
+			v.setTextColor(mError);
+			toast.setDuration(Toast.LENGTH_LONG);
+		}
+		toast.show();
+	}
+
+	/**
+	 * Show a toast message to the user
+	 * 
+	 * @param ctx
+	 *            The context to use
+	 * @param message
+	 *            the string to display
+	 * @param error
+	 *            is the message an error (changes the text to red)
+	 */
+	public static void showToast(Context ctx, CharSequence message, boolean error) {
+		Toast toast;
+		TextView v;
+
+		toast = Toast.makeText(ctx, message, Toast.LENGTH_SHORT);
 		if (error) {
 			v = (TextView) toast.getView().findViewById(android.R.id.message);
 			v.setTextColor(mError);
