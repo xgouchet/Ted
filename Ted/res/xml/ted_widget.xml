@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    android:configure="fr.xgouchet.texteditor.TedWidgetConfigActivity"
+    android:initialLayout="@layout/widget"
+    android:minHeight="@dimen/widget_size"
+    android:minWidth="@dimen/widget_size"
+    android:updatePeriodMillis="86400000" >
+
+</appwidget-provider>

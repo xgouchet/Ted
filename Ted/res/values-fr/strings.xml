@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Ted</string>
+    <string name="app_name_full">Ted (Editeur de texte)</string>
+    <string name="permission_internal">Ted - Permission Interne</string>
+
+    <!-- Titles -->
+    <string name="title_save_as">Ted - Sauver sous ... </string>
+    <string name="title_open_recent">Ted - Documents récents</string>
+    <string name="title_settings">Ted - Paramètres </string>
+    <string name="title_about">Ted - A propos ... </string>
+    <string name="title_editor">Ted - %1$s</string>
+    <string name="title_editor_dirty">Ted - %1$s *</string>
+    <string name="title_editor_readonly">Ted - [%1$s]</string>
+
+    <!-- Config screen strings -->
+    <string name="config_cat_display">Affichage</string>
+    <string name="config_cat_save">Sauvegarde</string>
+    <string name="config_cat_search">Recherche</string>
+    <string name="config_cat_undo">Historique</string>
+    <string name="config_cat_misc">Divers</string>
+    <string name="config_title_line_numbers">Afficher les numéros de ligne</string>
+    <string name="config_title_word_wrap">Coupure de lignes automatique</string>
+    <string name="config_title_text_size">Taille du texte</string>
+    <string name="config_title_color_theme">Thèmes de couleurs</string>
+    <string name="config_title_end_of_lines">Fin de lignes</string>
+    <string name="config_title_max_recent">Fichiers récents</string>
+    <string name="config_title_search_wrap">Recherche en boucle</string>
+    <string name="config_title_search_match_case">Recherche sensible à la casse</string>
+    <string name="config_title_encoding">Encodage</string>
+    <string name="config_title_scroll_fling">Défilement par lancé</string>
+    <string name="config_title_allow_undo_stack">"Activer l'option \"Annuler\""</string>
+    <string name="config_title_max_undo_stack">Nombre maximum de changements enregistrés</string>
+    <string name="config_title_back_to_undo">Utiliser le bouton retour pour annuler la dernière opération</string>
+    <string name="config_title_use_home_page">Utiliser un fichier par défaut</string>
+    <string name="config_title_auto_save">Sauvegarde auto</string>
+    <string name="config_title_auto_save_overwrite">Ecraser les fichiers existants</string>
+    <string name="config_summary_auto_save">"Sauvegarde automatique du fichier en cours lorsque l'application passe en arrière plan"</string>
+    <string name="config_summary_line_numbers">Les numéros de lignes sont affichés en début de ligne</string>
+    <string name="config_summary_word_wrap">"Les lignes trop longues sont ajustées à la taille de l'écran"</string>
+    <string name="config_summary_scroll_fling">"Décocher l'option en cas de problèmes de performances"</string>
+    <string name="config_summary_use_home_page">Selectionner un fichier à ouvrir au démarrage de Ted</string>
+    <string name="config_summary_auto_save_overwrite_on">"La sauvegarde automatique ecrasera les fichiers existants"</string>
+    <string name="config_summary_auto_save_overwrite_on">"La sauvegarde automatique ne fonctionnera que pour les nouveaux fichiers"</string>
+
+    <!-- Options Menu in TED -->
+    <string name="menu_new">Nouveau</string>
+    <string name="menu_open">Ouvrir</string>
+    <string name="menu_open_recent">Documents récents</string>
+    <string name="menu_save">Sauver</string>
+    <string name="menu_save_as">Sauver sous</string>
+    <string name="menu_settings">Paramètres</string>
+    <string name="menu_about">A propos</string>
+    <string name="menu_search">Rechercher</string>
+    <string name="menu_undo">Annuler</string>
+    <string name="menu_quit">Quitter</string>
+
+    <!-- Misc UI strings -->
+    <string name="ui_save_text">"Voulez vous sauver votre document? \nTout changement non sauvé sera perdu. "</string>
+    <string name="ui_save">Sauver</string>
+    <string name="ui_no_save">"Ne pas sauver"</string>
+    <string name="ui_cancel">Annuler</string>
+    <string name="ui_delete">Supprimer</string>
+    <string name="ui_hint_file_name">Nom du fichier</string>
+    <string name="ui_hint_search">Rechercher</string>
+    <string name="ui_history">Historique</string>
+    <string name="ui_art_licence">Licence Artistique</string>
+    <string name="ui_force_read_only">Ouvrir en lecture seule</string>
+
+    <!-- Misc Strings -->
+    <string name="lorem_ipsum">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas porttitor neque semper sem fermentum pretium. Sed pharetra dui faucibus massa malesuada in condimentum mi gravida."</string>
+    <string name="art_licence">"Toutes les icônes de cette application ont été créées et appartiennent à l'auteur de l'application : Xavier Gouchet (android@xgouchet.fr)."</string>
+
+</resources>

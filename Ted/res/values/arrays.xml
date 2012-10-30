@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+
+    <!-- Color themes -->
+    <string-array name="color_theme_names">
+        <item>Classic</item>
+        <item>Negative</item>
+        <item>Matrix</item>
+        <item>Sky</item>
+        <item>Dracula</item>
+    </string-array>
+    <string-array name="color_theme_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+
+    <!-- Text size -->
+    <string-array name="text_size_names">
+        <item>6 pt</item>
+        <item>8 pt</item>
+        <item>10 pt</item>
+        <item>12 pt</item>
+        <item>14 pt</item>
+        <item>16 pt</item>
+        <item>18 pt</item>
+        <item>24 pt</item>
+        <item>32 pt</item>
+        <item>48 pt</item>
+    </string-array>
+    <string-array name="text_size_values">
+        <item>6</item>
+        <item>8</item>
+        <item>10</item>
+        <item>12</item>
+        <item>14</item>
+        <item>16</item>
+        <item>18</item>
+        <item>24</item>
+        <item>32</item>
+        <item>48</item>
+    </string-array>
+
+    <!-- End of lines -->
+    <string-array name="eol_names">
+        <item>Android / Linux / Unix</item>
+        <item>Windows / Symbian / Palm</item>
+        <item>Mac / iPhone</item>
+    </string-array>
+    <string-array name="eol_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+    <!-- Recent files -->
+    <string-array name="max_undo_stack_values">
+        <item>10</item>
+        <item>25</item>
+        <item>50</item>
+        <item>100</item>
+        <item>200</item>
+        <item>500</item>
+    </string-array>
+
+    <!-- Recent files -->
+    <string-array name="max_recent_files">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+    </string-array>
+
+    <!-- Encoding -->
+    <string-array name="encoding_names">
+        <item>ASCII</item>
+        <item>Latin 1</item>
+        <item>UTF 8</item>
+    </string-array>
+    <string-array name="encoding_values">
+        <item>US-ASCII</item>
+        <item>ISO-8859-1</item>
+        <item>UTF-8</item>
+    </string-array>
+
+</resources>
