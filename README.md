@@ -1,6 +1,5 @@
 
-ABOUT
------
+# ABOUT
 
 Ted is an Open Source, Ad-free, lightweight text editor for Android, meant as a Notepad application, and not meant to edit big files.
 You can create new text file, open existing files and of course save them. You can also display line numbers and open recent files. You can also search for text inside the opened file.
@@ -8,8 +7,7 @@ You can create new text file, open existing files and of course save them. You c
 The official Ted app is available on the [Google Play Store](https://play.google.com/store/apps/details?id=fr.xgouchet.texteditor).
 
 
-LICENCE
--------
+# LICENCE
 
 Copyright (C) 2012 by Xavier GOUCHET (http://xgouchet.fr, android@xgouchet.fr)
 MIT Licence / Expat
