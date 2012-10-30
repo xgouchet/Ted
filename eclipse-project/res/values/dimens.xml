@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-
-    <dimen name="widget_margin">4dp</dimen>
-    <dimen name="widget_size">72dp</dimen>
-
-</resources>
