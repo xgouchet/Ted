@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="fr.xgouchet.texteditor"
     android:installLocation="auto"
-    android:versionCode="17"
-    android:versionName="Release 1.7" >
+    android:versionCode="19"
+    android:versionName="Release 1.8.1" >
 
     <uses-sdk
         android:minSdkVersion="8"
@@ -106,70 +106,48 @@
         <activity
             android:name=".TedSettingsActivity"
             android:label="@string/title_settings"
-            android:permission="fr.xgouchet.texteditor.permission.TED_INTERNAL"
             android:windowSoftInputMode="stateHidden" >
-            <intent-filter>
-                <action android:name="fr.xgouchet.texteditor.ACTION_TED_SETTINGS" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
         </activity>
 
         <!-- Ted save as activity -->
         <activity
             android:name=".TedSaveAsActivity"
             android:label="@string/title_save_as"
-            android:permission="fr.xgouchet.texteditor.permission.TED_INTERNAL"
             android:windowSoftInputMode="adjustResize" >
-            <intent-filter>
-                <action android:name="fr.xgouchet.texteditor.ACTION_TED_SAVE_AS" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
         </activity>
 
         <!-- Ted open activity -->
         <activity
             android:name=".TedOpenActivity"
-            android:permission="fr.xgouchet.texteditor.permission.TED_INTERNAL"
             android:windowSoftInputMode="stateHidden" >
-            <intent-filter>
-                <action android:name="fr.xgouchet.texteditor.ACTION_TED_OPEN" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
         </activity>
 
         <!-- Ted open recent activity -->
         <activity
             android:name=".TedOpenRecentActivity"
             android:label="@string/title_open_recent"
-            android:permission="fr.xgouchet.texteditor.permission.TED_INTERNAL"
             android:windowSoftInputMode="stateHidden" >
-            <intent-filter>
-                <action android:name="fr.xgouchet.texteditor.ACTION_TED_OPEN_RECENT" />
+        </activity>
 
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
+        <!-- Ted Select font activity -->
+        <activity
+            android:name=".TedFontActivity"
+            android:label="@string/title_font"
+            android:windowSoftInputMode="stateHidden" >
         </activity>
 
         <!-- Ted about activity -->
         <activity
             android:name=".TedAboutActivity"
             android:label="@string/title_about"
-            android:permission="fr.xgouchet.texteditor.permission.TED_INTERNAL"
             android:windowSoftInputMode="stateHidden" >
-            <intent-filter>
-                <action android:name="fr.xgouchet.texteditor.ACTION_TED_ABOUT" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
         </activity>
 
         <!-- Ted Configure widget activity -->
         <activity
             android:name=".TedWidgetConfigActivity"
-            android:exported="true" >
+            android:exported="true"
+            android:permission="fr.xgouchet.texteditor.permission.TED_INTERNAL" >
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>

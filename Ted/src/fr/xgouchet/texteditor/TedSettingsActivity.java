@@ -1,5 +1,7 @@
 package fr.xgouchet.texteditor;
 
+import java.io.File;
+
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
@@ -8,16 +10,20 @@ import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
+import android.preference.Preference;
+import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
 import android.util.Log;
-import fr.xgouchet.androidlib.ui.Toaster;
+import de.neofonie.mobile.app.android.widget.crouton.Crouton;
+import de.neofonie.mobile.app.android.widget.crouton.Style;
+import fr.xgouchet.androidlib.data.FileUtils;
 import fr.xgouchet.texteditor.common.Constants;
 import fr.xgouchet.texteditor.common.Settings;
 import fr.xgouchet.texteditor.ui.view.AdvancedEditText;
 
 @SuppressWarnings("deprecation")
-public class TedSettingsActivity extends PreferenceActivity implements Constants,
-		OnSharedPreferenceChangeListener {
+public class TedSettingsActivity extends PreferenceActivity implements
+		Constants, OnSharedPreferenceChangeListener {
 
 	/**
 	 * @see android.preference.PreferenceActivity#onCreate(android.os.Bundle)
@@ -36,11 +42,28 @@ public class TedSettingsActivity extends PreferenceActivity implements Constants
 
 		mSampleTED = (AdvancedEditText) findViewById(R.id.sampleEditor);
 
-		Settings.updateFromPreferences(getPreferenceManager().getSharedPreferences());
+		Settings.updateFromPreferences(getPreferenceManager()
+				.getSharedPreferences());
 		mSampleTED.updateFromSettings();
 		mSampleTED.setEnabled(false);
 
 		mPreviousHP = Settings.USE_HOME_PAGE;
+
+		findPreference(PREFERENCE_SELECT_FONT).setOnPreferenceClickListener(
+				new OnPreferenceClickListener() {
+					public boolean onPreferenceClick(Preference preference) {
+						Intent selectFont = new Intent();
+						selectFont.setClass(getApplicationContext(),
+								TedFontActivity.class);
+						try {
+							startActivityForResult(selectFont, REQUEST_FONT);
+						} catch (ActivityNotFoundException e) {
+							Crouton.showText(TedSettingsActivity.this,
+									R.string.toast_activity_open, Style.ALERT);
+						}
+						return true;
+					}
+				});
 
 		updateSummaries();
 	}
@@ -49,7 +72,8 @@ public class TedSettingsActivity extends PreferenceActivity implements Constants
 	 * @see android.content.SharedPreferences.OnSharedPreferenceChangeListener#onSharedPreferenceChanged(android.content.SharedPreferences,
 	 *      java.lang.String)
 	 */
-	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
+			String key) {
 		Settings.updateFromPreferences(sharedPreferences);
 		mSampleTED.updateFromSettings();
 		updateSummaries();
@@ -58,12 +82,14 @@ public class TedSettingsActivity extends PreferenceActivity implements Constants
 		checkBox.setSummaryOn(Settings.HOME_PAGE_PATH);
 
 		if (Settings.USE_HOME_PAGE && !mPreviousHP) {
-			Intent setHomePage = new Intent(ACTION_OPEN);
+			Intent setHomePage = new Intent();
+			setHomePage.setClass(this, TedOpenActivity.class);
 			setHomePage.putExtra(EXTRA_REQUEST_CODE, REQUEST_HOME_PAGE);
 			try {
 				startActivityForResult(setHomePage, REQUEST_HOME_PAGE);
 			} catch (ActivityNotFoundException e) {
-				Toaster.showToast(this, R.string.toast_activity_open, true);
+				Crouton.showText(this, R.string.toast_activity_open,
+						Style.ALERT);
 			}
 		}
 
@@ -83,31 +109,36 @@ public class TedSettingsActivity extends PreferenceActivity implements Constants
 		if (resultCode == RESULT_CANCELED) {
 			if (BuildConfig.DEBUG)
 				Log.d(TAG, "Result canceled");
-			((CheckBoxPreference) findPreference(PREFERENCE_USE_HOME_PAGE)).setChecked(false);
+			((CheckBoxPreference) findPreference(PREFERENCE_USE_HOME_PAGE))
+					.setChecked(false);
 			return;
 		}
 
 		if ((resultCode != RESULT_OK) || (data == null)) {
 			if (BuildConfig.DEBUG)
 				Log.e(TAG, "Result error or null data! / " + resultCode);
-			((CheckBoxPreference) findPreference(PREFERENCE_USE_HOME_PAGE)).setChecked(false);
-			return;
-		}
-
-		extras = data.getExtras();
-		if (extras == null) {
-			if (BuildConfig.DEBUG)
-				Log.e(TAG, "No extra data ! ");
+			((CheckBoxPreference) findPreference(PREFERENCE_USE_HOME_PAGE))
+					.setChecked(false);
 			return;
 		}
 
 		switch (requestCode) {
 		case REQUEST_HOME_PAGE:
-			if (BuildConfig.DEBUG)
-				Log.d(TAG, "Open : " + extras.getString("path"));
-			Settings.HOME_PAGE_PATH = extras.getString("path");
-			Settings.saveHomePage(getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE));
-			updateSummaries();
+			extras = data.getExtras();
+			if (extras != null) {
+				if (BuildConfig.DEBUG)
+					Log.d(TAG, "Open : " + extras.getString("path"));
+				Settings.HOME_PAGE_PATH = extras.getString("path");
+				Settings.saveHomePage(getSharedPreferences(PREFERENCES_NAME,
+						Context.MODE_PRIVATE));
+				updateSummaries();
+			}
+			break;
+		case REQUEST_FONT:
+			Log.i(TAG, "Selected Font : " + data.getData().getPath());
+			File src = new File(data.getData().getPath());
+			FileUtils.copyFile(src, Settings.getFontFile(this));
+			mSampleTED.updateFromSettings();
 			break;
 		}
 	}

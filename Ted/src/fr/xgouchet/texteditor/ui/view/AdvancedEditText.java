@@ -24,8 +24,8 @@ import fr.xgouchet.texteditor.common.Settings;
 /**
  * TODO create a syntax highlighter
  */
-public class AdvancedEditText extends EditText implements Constants, OnKeyListener,
-		OnGestureListener {
+public class AdvancedEditText extends EditText implements Constants,
+		OnKeyListener, OnGestureListener {
 
 	/**
 	 * @param context
@@ -98,54 +98,49 @@ public class AdvancedEditText extends EditText implements Constants, OnKeyListen
 
 		// draw line numbers
 		count = getLineCount();
-		lineX = (int) (mDrawingRect.left + padding - (Settings.TEXT_SIZE * mScale * 0.5));
+		lineX = (int) (mDrawingRect.left + padding - (Settings.TEXT_SIZE
+				* mScale * 0.5));
 
 		for (int i = 0; i < count; i++) {
 			baseline = getLineBounds(i, mLineBounds);
-			if (mMaxSize != null)
-				if (mMaxSize.x < mLineBounds.right)
-					mMaxSize.x = mLineBounds.right;
+			if ((mMaxSize != null) && (mMaxSize.x < mLineBounds.right)) {
+				mMaxSize.x = mLineBounds.right;
+			}
 
-			if (mLineBounds.bottom < mDrawingRect.top)
+			if ((mLineBounds.bottom < mDrawingRect.top)
+					|| (mLineBounds.top > mDrawingRect.bottom)) {
 				continue;
-			if (mLineBounds.top > mDrawingRect.bottom)
-				continue;
+			}
 
-			if ((i == mHighlightedLine) && (!Settings.WORDWRAP))
+			if ((i == mHighlightedLine) && (!Settings.WORDWRAP)) {
 				canvas.drawRect(mLineBounds, mPaintHighlight);
+			}
 
 			if (Settings.SHOW_LINE_NUMBERS) {
-				canvas.drawText("" + (i + 1), mDrawingRect.left + mPadding, baseline, mPaintNumbers);
+				canvas.drawText("" + (i + 1), mDrawingRect.left + mPadding,
+						baseline, mPaintNumbers);
 			}
-			if (Settings.SHOW_LINE_NUMBERS)
-				canvas.drawLine(lineX, mDrawingRect.top, lineX, mDrawingRect.bottom, mPaintNumbers);
+			if (Settings.SHOW_LINE_NUMBERS) {
+				canvas.drawLine(lineX, mDrawingRect.top, lineX,
+						mDrawingRect.bottom, mPaintNumbers);
+			}
 		}
 
 		if (mMaxSize != null) {
 			mMaxSize.y = mLineBounds.bottom;
-			mMaxSize.x = Math.max(mMaxSize.x + mPadding - mDrawingRect.width(), 0);
-			mMaxSize.y = Math.max(mMaxSize.y + mPadding - mDrawingRect.height(), 0);
+			mMaxSize.x = Math.max(mMaxSize.x + mPadding - mDrawingRect.width(),
+					0);
+			mMaxSize.y = Math.max(
+					mMaxSize.y + mPadding - mDrawingRect.height(), 0);
 		}
 		super.onDraw(canvas);
 	}
 
 	/**
-	 * @see OnKeyListener#onKey(View, int, KeyEvent)
-	 * @category OnKeyListener
+	 * @see android.view.View.OnKeyListener#onKey(android.view.View, int,
+	 *      android.view.KeyEvent)
 	 */
-	public boolean onKey(View view, int keycode, KeyEvent event) {
-		if ((keycode == KeyEvent.KEYCODE_DPAD_UP) || (keycode == KeyEvent.KEYCODE_DPAD_DOWN)
-				|| (keycode == KeyEvent.KEYCODE_DPAD_LEFT)
-				|| (keycode == KeyEvent.KEYCODE_DPAD_RIGHT)
-				|| (keycode == KeyEvent.KEYCODE_DPAD_CENTER))
-			return false;
-
-		if (keycode == KeyEvent.KEYCODE_MENU)
-			return false;
-
-		if (event.getAction() == KeyEvent.ACTION_DOWN)
-			return false;
-
+	public boolean onKey(View v, int keyCode, KeyEvent event) {
 		return false;
 	}
 
@@ -156,8 +151,9 @@ public class AdvancedEditText extends EditText implements Constants, OnKeyListen
 	public boolean onTouchEvent(MotionEvent event) {
 
 		super.onTouchEvent(event);
-		if (mGestureDetector != null)
+		if (mGestureDetector != null) {
 			return mGestureDetector.onTouchEvent(event);
+		}
 
 		return true;
 	}
@@ -175,9 +171,11 @@ public class AdvancedEditText extends EditText implements Constants, OnKeyListen
 	 * @category GestureDetection
 	 */
 	public boolean onSingleTapUp(MotionEvent e) {
-		if (isEnabled())
-			((InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE))
-					.showSoftInput(this, InputMethodManager.SHOW_IMPLICIT);
+		if (isEnabled()) {
+			((InputMethodManager) getContext().getSystemService(
+					Context.INPUT_METHOD_SERVICE)).showSoftInput(this,
+					InputMethodManager.SHOW_IMPLICIT);
+		}
 		return true;
 	}
 
@@ -199,7 +197,8 @@ public class AdvancedEditText extends EditText implements Constants, OnKeyListen
 	 * @see android.view.GestureDetector.OnGestureListener#onScroll(android.view.MotionEvent,
 	 *      android.view.MotionEvent, float, float)
 	 */
-	public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+	public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX,
+			float distanceY) {
 		// mTedScroller.setFriction(0);
 		return true;
 	}
@@ -208,13 +207,15 @@ public class AdvancedEditText extends EditText implements Constants, OnKeyListen
 	 * @see android.view.GestureDetector.OnGestureListener#onFling(android.view.MotionEvent,
 	 *      android.view.MotionEvent, float, float)
 	 */
-	public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-		if (!Settings.FLING_TO_SCROLL)
+	public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
+			float velocityY) {
+		if (!Settings.FLING_TO_SCROLL) {
 			return true;
+		}
 
 		if (mTedScroller != null) {
-			mTedScroller.fling(getScrollX(), getScrollY(), -(int) velocityX, -(int) velocityY, 0,
-					mMaxSize.x, 0, mMaxSize.y);
+			mTedScroller.fling(getScrollX(), getScrollY(), -(int) velocityX,
+					-(int) velocityY, 0, mMaxSize.x, 0, mMaxSize.y);
 		}
 		return true;
 	}
@@ -226,8 +227,11 @@ public class AdvancedEditText extends EditText implements Constants, OnKeyListen
 	 */
 	public void updateFromSettings() {
 
-		if (isInEditMode())
+		if (isInEditMode()) {
 			return;
+		}
+
+		setTypeface(Settings.getTypeface(getContext()));
 
 		// wordwrap
 		setHorizontallyScrolling(!Settings.WORDWRAP);
@@ -305,10 +309,12 @@ public class AdvancedEditText extends EditText implements Constants, OnKeyListen
 			line = i = 0;
 			while (i < selStart) {
 				i = text.indexOf("\n", i);
-				if (i < 0)
+				if (i < 0) {
 					break;
-				if (i < selStart)
+				}
+				if (i < selStart) {
 					++line;
+				}
 				++i;
 			}
 

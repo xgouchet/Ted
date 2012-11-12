@@ -58,16 +58,9 @@ public class TextChangeWatcher implements Constants {
 	 * 
 	 */
 	public void beforeChange(CharSequence s, int start, int count, int after) {
-		if (BuildConfig.DEBUG)
-			Log.d(TAG, "START = " + start + "; AFTER = " + after + "; COUNT > " + count);
-
 		if ((mCurrentChange != null)
 				&& (mCurrentChange.canMergeChangeBefore(s, start, count, after))) {
-			if (BuildConfig.DEBUG)
-				Log.d(TAG, "Merged");
 		} else {
-			if (BuildConfig.DEBUG)
-				Log.d(TAG, "New Text Change");
 			if (count == 0) {
 				// no existing character changed
 				// ignore, will be processed after
@@ -99,11 +92,8 @@ public class TextChangeWatcher implements Constants {
 	public void afterChange(CharSequence s, int start, int before, int count) {
 		if ((mCurrentChange != null)
 				&& (mCurrentChange.canMergeChangeAfter(s, start, before, count))) {
-			if (BuildConfig.DEBUG)
-				Log.d(TAG, "Merged");
+
 		} else {
-			if (BuildConfig.DEBUG)
-				Log.d(TAG, "New Text Change");
 			if (before == 0) {
 				// 0 charactes replaced by count => insert
 				processInsert(s, start, count);
@@ -117,7 +107,7 @@ public class TextChangeWatcher implements Constants {
 			}
 		}
 
-		printStack();
+		// printStack();
 	}
 
 	/**

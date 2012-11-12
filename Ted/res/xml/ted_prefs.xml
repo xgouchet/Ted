@@ -26,79 +26,85 @@
             android:entryValues="@array/text_size_values"
             android:key="text_size"
             android:title="@string/config_title_text_size" />
-    </PreferenceCategory>
-    <PreferenceCategory android:title="@string/config_cat_save" >
-        <ListPreference
-            android:defaultValue="0"
-            android:entries="@array/eol_names"
-            android:entryValues="@array/eol_values"
-            android:key="end_of_lines"
-            android:title="@string/config_title_end_of_lines" />
-        <ListPreference
-            android:defaultValue="UTF-8"
-            android:entries="@array/encoding_names"
-            android:entryValues="@array/encoding_values"
-            android:key="encoding"
-            android:title="@string/config_title_encoding" />
-        <ListPreference
-            android:defaultValue="10"
-            android:entries="@array/max_recent_files"
-            android:entryValues="@array/max_recent_files"
-            android:key="max_recent_files"
-            android:title="@string/config_title_max_recent" />
 
-        <CheckBoxPreference
-            android:defaultValue="false"
-            android:key="force_auto_save"
-            android:summaryOn="@string/config_summary_auto_save"
-            android:title="@string/config_title_auto_save" />
-        <CheckBoxPreference
-            android:defaultValue="false"
-            android:dependency="force_auto_save"
-            android:key="auto_save_overwrite"
-            android:summaryOn="@string/config_summary_auto_save_overwrite_on"
-            android:summaryOff="@string/config_summary_auto_save_overwrite_off"
-            android:title="@string/config_title_auto_save_overwrite" />
+        <Preference
+            android:key="select_font"
+            android:title="@string/config_title_font" />
     </PreferenceCategory>
-    <PreferenceCategory android:title="@string/config_cat_undo" >
-        <CheckBoxPreference
-            android:defaultValue="true"
-            android:key="allow_undo"
-            android:title="@string/config_title_allow_undo_stack" />
+    <PreferenceCategory android:title="@string/config_cat_other" >
+        <PreferenceScreen android:title="@string/config_cat_save" >
+            <ListPreference
+                android:defaultValue="0"
+                android:entries="@array/eol_names"
+                android:entryValues="@array/eol_values"
+                android:key="end_of_lines"
+                android:title="@string/config_title_end_of_lines" />
+            <ListPreference
+                android:defaultValue="UTF-8"
+                android:entries="@array/encoding_names"
+                android:entryValues="@array/encoding_values"
+                android:key="encoding"
+                android:title="@string/config_title_encoding" />
+            <ListPreference
+                android:defaultValue="10"
+                android:entries="@array/max_recent_files"
+                android:entryValues="@array/max_recent_files"
+                android:key="max_recent_files"
+                android:title="@string/config_title_max_recent" />
 
-        <ListPreference
-            android:defaultValue="25"
-            android:entries="@array/max_undo_stack_values"
-            android:entryValues="@array/max_undo_stack_values"
-            android:key="max_undo_stack"
-            android:title="@string/config_title_max_undo_stack" />
+            <CheckBoxPreference
+                android:defaultValue="false"
+                android:key="force_auto_save"
+                android:summaryOn="@string/config_summary_auto_save"
+                android:title="@string/config_title_auto_save" />
+            <CheckBoxPreference
+                android:defaultValue="false"
+                android:dependency="force_auto_save"
+                android:key="auto_save_overwrite"
+                android:summaryOff="@string/config_summary_auto_save_overwrite_off"
+                android:summaryOn="@string/config_summary_auto_save_overwrite_on"
+                android:title="@string/config_title_auto_save_overwrite" />
+        </PreferenceScreen>
+        <PreferenceScreen android:title="@string/config_cat_undo" >
+            <CheckBoxPreference
+                android:defaultValue="true"
+                android:key="allow_undo"
+                android:title="@string/config_title_allow_undo_stack" />
 
-        <CheckBoxPreference
-            android:defaultValue="false"
-            android:key="back_button_as_undo"
-            android:title="@string/config_title_back_to_undo" />
-    </PreferenceCategory>
-    <PreferenceCategory android:title="@string/config_cat_search" >
-        <CheckBoxPreference
-            android:defaultValue="false"
-            android:key="search_wrap"
-            android:title="@string/config_title_search_wrap" />
-        <CheckBoxPreference
-            android:defaultValue="false"
-            android:key="search_match_case"
-            android:title="@string/config_title_search_match_case" />
-    </PreferenceCategory>
-    <PreferenceCategory android:title="@string/config_cat_misc" >
-        <CheckBoxPreference
-            android:defaultValue="true"
-            android:key="fling_to_scroll"
-            android:summary="@string/config_summary_scroll_fling"
-            android:title="@string/config_title_scroll_fling" />
-        <CheckBoxPreference
-            android:defaultValue="false"
-            android:key="use_home_page"
-            android:summaryOff="@string/config_summary_use_home_page"
-            android:title="@string/config_title_use_home_page" />
+            <ListPreference
+                android:defaultValue="25"
+                android:entries="@array/max_undo_stack_values"
+                android:entryValues="@array/max_undo_stack_values"
+                android:key="max_undo_stack"
+                android:title="@string/config_title_max_undo_stack" />
+
+            <CheckBoxPreference
+                android:defaultValue="false"
+                android:key="back_button_as_undo"
+                android:title="@string/config_title_back_to_undo" />
+        </PreferenceScreen>
+        <PreferenceScreen android:title="@string/config_cat_search" >
+            <CheckBoxPreference
+                android:defaultValue="false"
+                android:key="search_wrap"
+                android:title="@string/config_title_search_wrap" />
+            <CheckBoxPreference
+                android:defaultValue="false"
+                android:key="search_match_case"
+                android:title="@string/config_title_search_match_case" />
+        </PreferenceScreen>
+        <PreferenceScreen android:title="@string/config_cat_misc" >
+            <CheckBoxPreference
+                android:defaultValue="true"
+                android:key="fling_to_scroll"
+                android:summary="@string/config_summary_scroll_fling"
+                android:title="@string/config_title_scroll_fling" />
+            <CheckBoxPreference
+                android:defaultValue="false"
+                android:key="use_home_page"
+                android:summaryOff="@string/config_summary_use_home_page"
+                android:title="@string/config_title_use_home_page" />
+        </PreferenceScreen>
     </PreferenceCategory>
 
 </PreferenceScreen>

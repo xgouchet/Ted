@@ -13,22 +13,12 @@ public interface Constants {
 	/** Tag for the log ( = {@value} ) */
 	public static final String TAG = "TED";
 
-	/** Browser to Open */
-	public static final String ACTION_OPEN = "fr.xgouchet.texteditor.ACTION_TED_OPEN";
-	/** Browser to Open a recent file */
-	public static final String ACTION_OPEN_RECENT = "fr.xgouchet.texteditor.ACTION_TED_OPEN_RECENT";
-	/** Browse to save a file */
-	public static final String ACTION_SAVE_AS = "fr.xgouchet.texteditor.ACTION_TED_SAVE_AS";
-	/** Widget edit action */
-	public static final String ACTION_PENDING_WIDGET_OPEN = "fr.xgouchet.texteditor.ACTION_TED_PENDING_WIDGET_OPEN";
-	/** Widget edit action */
 	public static final String ACTION_WIDGET_OPEN = "fr.xgouchet.texteditor.ACTION_TED_WIDGET_OPEN";
-	/** Box edit action */
-	public static final String ACTION_BOX_OPEN = "fr.xgouchet.texteditor.ACTION_TED_BOX_OPEN";
-	/** About the app */
-	public static final String ACTION_ABOUT = "fr.xgouchet.texteditor.ACTION_TED_ABOUT";
-	/** App settings */
-	public static final String ACTION_SETTINGS = "fr.xgouchet.texteditor.ACTION_TED_SETTINGS";
+
+	/** Fonts folder */
+	public static final String FONT_FOLDER_NAME = "fonts";
+	/** Font file */
+	public static final String FONT_FILE_NAME = "ted_font.ttf";
 
 	/** clears the current text ( = {@value} ) */
 	public static final int MENU_ID_NEW = 0;
@@ -54,7 +44,8 @@ public interface Constants {
 	public static final int MENU_ID_QUIT = 666;
 
 	/** File of the external storage data */
-	public static final File STORAGE = Environment.getExternalStorageDirectory();
+	public static final File STORAGE = Environment
+			.getExternalStorageDirectory();
 	/** Path to the external storage data */
 	public static final String STORAGE_PATH = STORAGE.getAbsolutePath();
 	/** name of the backup file */
@@ -100,6 +91,10 @@ public interface Constants {
 	public static final String PREFERENCE_USE_HOME_PAGE = "use_home_page";
 	/** Preference tag to retrieve the home page path ( = {@value} ) */
 	public static final String PREFERENCE_HOME_PAGE_PATH = "home_page_path";
+	/** Preference tag to select the font ( = {@value} ) */
+	public static final String PREFERENCE_SELECT_FONT = "select_font";
+	/** Preference tag to the text font ( = {@value} ) */
+	public static final String PREFERENCE_FONT = "text_font";
 
 	/** minimum text size */
 	public static final int TEXT_SIZE_MIN = 9;
@@ -137,6 +132,8 @@ public interface Constants {
 	public static final int REQUEST_OPEN = 108;
 	/** Request code for Home Page Activity */
 	public static final int REQUEST_HOME_PAGE = 109;
+	/** Request code for Font Activity */
+	public static final int REQUEST_FONT = 110;
 
 	/** extra when browsing for file */
 	public static final String EXTRA_REQUEST_CODE = "request_code";

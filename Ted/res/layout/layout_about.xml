@@ -23,6 +23,18 @@
             style="@style/TextSubTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@string/release18" />
+
+        <TextView
+            style="@style/TextContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/release18_log" />
+
+        <TextView
+            style="@style/TextSubTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="@string/release17" />
 
         <TextView

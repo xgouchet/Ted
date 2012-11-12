@@ -2,18 +2,19 @@ package fr.xgouchet.texteditor;
 
 import java.io.File;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import de.neofonie.mobile.app.android.widget.crouton.Crouton;
+import de.neofonie.mobile.app.android.widget.crouton.Style;
 import fr.xgouchet.androidlib.R;
-import fr.xgouchet.androidlib.ui.Toaster;
 import fr.xgouchet.androidlib.ui.activity.BrowsingActivity;
 import fr.xgouchet.texteditor.common.Constants;
 
-public class TedOpenActivity extends BrowsingActivity implements OnClickListener, Constants {
+public class TedOpenActivity extends BrowsingActivity implements
+		OnClickListener, Constants {
 
 	/**
 	 * @see android.app.Activity#onCreate(android.os.Bundle)
@@ -41,10 +42,10 @@ public class TedOpenActivity extends BrowsingActivity implements OnClickListener
 
 		switch (request) {
 		case REQUEST_OPEN:
-			Toaster.showToast(this, R.string.toast_open_select, false);
+			Crouton.showText(this, R.string.toast_open_select, Style.INFO);
 			break;
 		case REQUEST_HOME_PAGE:
-			Toaster.showToast(this, R.string.toast_home_page_select, false);
+			Crouton.showText(this, R.string.toast_home_page_select, Style.INFO);
 			break;
 		}
 
@@ -108,7 +109,7 @@ public class TedOpenActivity extends BrowsingActivity implements OnClickListener
 		Intent result;
 
 		if (!file.canRead()) {
-			Toaster.showToast(this, R.string.toast_file_cant_read, true);
+			Crouton.showText(this, R.string.toast_file_cant_read, Style.ALERT);
 			return false;
 		}
 

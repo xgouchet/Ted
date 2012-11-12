@@ -10,16 +10,19 @@
     <string name="title_open_recent">Ted - Documents récents</string>
     <string name="title_settings">Ted - Paramètres </string>
     <string name="title_about">Ted - A propos ... </string>
+    <string name="title_font">Ted - Police </string>
     <string name="title_editor">Ted - %1$s</string>
     <string name="title_editor_dirty">Ted - %1$s *</string>
     <string name="title_editor_readonly">Ted - [%1$s]</string>
 
     <!-- Config screen strings -->
     <string name="config_cat_display">Affichage</string>
+    <string name="config_cat_other">Autres</string>
     <string name="config_cat_save">Sauvegarde</string>
     <string name="config_cat_search">Recherche</string>
     <string name="config_cat_undo">Historique</string>
     <string name="config_cat_misc">Divers</string>
+    <string name="config_title_font">Changer la police</string>
     <string name="config_title_line_numbers">Afficher les numéros de ligne</string>
     <string name="config_title_word_wrap">Coupure de lignes automatique</string>
     <string name="config_title_text_size">Taille du texte</string>
@@ -42,7 +45,7 @@
     <string name="config_summary_scroll_fling">"Décocher l'option en cas de problèmes de performances"</string>
     <string name="config_summary_use_home_page">Selectionner un fichier à ouvrir au démarrage de Ted</string>
     <string name="config_summary_auto_save_overwrite_on">"La sauvegarde automatique ecrasera les fichiers existants"</string>
-    <string name="config_summary_auto_save_overwrite_on">"La sauvegarde automatique ne fonctionnera que pour les nouveaux fichiers"</string>
+    <string name="config_summary_auto_save_overwrite_off">"La sauvegarde automatique ne fonctionnera que pour les nouveaux fichiers"</string>
 
     <!-- Options Menu in TED -->
     <string name="menu_new">Nouveau</string>

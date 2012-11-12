@@ -39,7 +39,8 @@ public class TextFileUtils implements Constants {
 			if (Settings.END_OF_LINE != EOL_LINUX) {
 				eol_text = eol_text.replaceAll("\n", Settings.getEndOfLine());
 			}
-			writer = new OutputStreamWriter(new FileOutputStream(file), Settings.ENCODING);
+			writer = new OutputStreamWriter(new FileOutputStream(file),
+					Settings.ENCODING);
 			out = new BufferedWriter(writer);
 			out.write(eol_text);
 			out.close();
@@ -64,7 +65,8 @@ public class TextFileUtils implements Constants {
 		StringBuffer text = new StringBuffer();
 		int c;
 		try {
-			reader = new InputStreamReader(new FileInputStream(file), Settings.ENCODING);
+			reader = new InputStreamReader(new FileInputStream(file),
+					Settings.ENCODING);
 			in = new BufferedReader(reader);
 			do {
 				c = in.read();
@@ -93,12 +95,14 @@ public class TextFileUtils implements Constants {
 			if (macos != -1) {
 				Settings.END_OF_LINE = EOL_MAC;
 				content = content.replaceAll("\r", "\n");
-			} else
+			} else {
 				Settings.END_OF_LINE = EOL_LINUX;
+			}
 		}
 
-		if (BuildConfig.DEBUG)
+		if (BuildConfig.DEBUG) {
 			Log.d(TAG, "Using End of Line : " + Settings.END_OF_LINE);
+		}
 		return content;
 	}
 
@@ -112,12 +116,14 @@ public class TextFileUtils implements Constants {
 	public static boolean writeInternal(Context context, String text) {
 		FileOutputStream fos;
 		try {
-			fos = context.openFileOutput(BACKUP_FILE_NAME, Context.MODE_PRIVATE);
+			fos = context
+					.openFileOutput(BACKUP_FILE_NAME, Context.MODE_PRIVATE);
 			fos.write(text.getBytes());
 			fos.close();
-			if (BuildConfig.DEBUG)
-				Log.i(TAG, "Saved to file " + context.getFilesDir().getPath() + File.separator
-						+ BACKUP_FILE_NAME);
+			if (BuildConfig.DEBUG) {
+				Log.i(TAG, "Saved to file " + context.getFilesDir().getPath()
+						+ File.separator + BACKUP_FILE_NAME);
+			}
 		} catch (FileNotFoundException e) {
 			Log.w(TAG, "Couldn't write to internal storage ", e);
 			return false;

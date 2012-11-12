@@ -15,8 +15,10 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog.Builder;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
@@ -31,14 +33,19 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
+import de.neofonie.mobile.app.android.widget.crouton.Crouton;
+import de.neofonie.mobile.app.android.widget.crouton.Style;
+import fr.xgouchet.androidlib.R;
 import fr.xgouchet.texteditor.common.Constants;
 import fr.xgouchet.texteditor.common.RecentFiles;
 import fr.xgouchet.texteditor.common.Settings;
+import fr.xgouchet.texteditor.common.TedChangelog;
 import fr.xgouchet.texteditor.common.TextFileUtils;
 import fr.xgouchet.texteditor.ui.view.AdvancedEditText;
 import fr.xgouchet.texteditor.undo.TextChangeWatcher;
 
-public class TedActivity extends Activity implements Constants, TextWatcher, OnClickListener {
+public class TedActivity extends Activity implements Constants, TextWatcher,
+		OnClickListener {
 
 	/**
 	 * @see android.app.Activity#onCreate(android.os.Bundle)
@@ -50,10 +57,11 @@ public class TedActivity extends Activity implements Constants, TextWatcher, OnC
 
 		setContentView(R.layout.layout_editor);
 
-		Settings.updateFromPreferences(getSharedPreferences(PREFERENCES_NAME, MODE_PRIVATE));
+		Settings.updateFromPreferences(getSharedPreferences(PREFERENCES_NAME,
+				MODE_PRIVATE));
 
 		//
-		mIsResumingFromRequest = false;
+		mReadIntent = true;
 
 		// editor
 		mEditor = (AdvancedEditText) findViewById(R.id.editor);
@@ -69,8 +77,56 @@ public class TedActivity extends Activity implements Constants, TextWatcher, OnC
 		findViewById(R.id.buttonSearchClose).setOnClickListener(this);
 		findViewById(R.id.buttonSearchNext).setOnClickListener(this);
 		findViewById(R.id.buttonSearchPrev).setOnClickListener(this);
+	}
 
-		readIntent();
+	/**
+	 * @see android.app.Activity#onStart()
+	 */
+	protected void onStart() {
+		super.onStart();
+
+		TedChangelog changeLog;
+		SharedPreferences prefs;
+
+		changeLog = new TedChangelog();
+		prefs = getSharedPreferences(Constants.PREFERENCES_NAME,
+				Context.MODE_PRIVATE);
+
+		if (changeLog.isFirstLaunch(this, prefs)) {
+			Builder builder = new Builder(this);
+			String message = getString(changeLog.getTitleResource(this))
+					+ "\n\n" + getString(changeLog.getChangeLogResource(this));
+			builder.setTitle(R.string.ui_whats_new);
+			builder.setMessage(message);
+			builder.setCancelable(true);
+			builder.setPositiveButton(android.R.string.ok,
+					new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int which) {
+							dialog.dismiss();
+						}
+					});
+
+			builder.create().show();
+		}
+
+		changeLog.saveCurrentVersion(this, prefs);
+	}
+
+	/**
+	 * @see android.app.Activity#onRestart()
+	 */
+	protected void onRestart() {
+		super.onRestart();
+		mReadIntent = false;
+	}
+
+	/**
+	 * @see android.app.Activity#onRestoreInstanceState(android.os.Bundle)
+	 */
+	protected void onRestoreInstanceState(Bundle savedInstanceState) {
+		super.onRestoreInstanceState(savedInstanceState);
+		Log.d("TED", "onRestoreInstanceState");
+		Log.v("TED", mEditor.getText().toString());
 	}
 
 	/**
@@ -81,7 +137,11 @@ public class TedActivity extends Activity implements Constants, TextWatcher, OnC
 		if (BuildConfig.DEBUG)
 			Log.d(TAG, "onResume");
 
-		mIsResumingFromRequest = false;
+		if (mReadIntent) {
+			readIntent();
+		}
+
+		mReadIntent = false;
 
 		updateTitle();
 		mEditor.updateFromSettings();
@@ -113,7 +173,7 @@ public class TedActivity extends Activity implements Constants, TextWatcher, OnC
 		Bundle extras;
 		if (BuildConfig.DEBUG)
 			Log.d(TAG, "onActivityResult");
-		mIsResumingFromRequest = true;
+		mReadIntent = false;
 
 		if (resultCode == RESULT_CANCELED) {
 			if (BuildConfig.DEBUG)
@@ -175,16 +235,21 @@ public class TedActivity extends Activity implements Constants, TextWatcher, OnC
 
 		menu.clear();
 
-		addMenuItem(menu, MENU_ID_NEW, R.string.menu_new, R.drawable.ic_menu_file_new);
-		addMenuItem(menu, MENU_ID_OPEN, R.string.menu_open, R.drawable.ic_menu_file_open);
+		addMenuItem(menu, MENU_ID_NEW, R.string.menu_new,
+				R.drawable.ic_menu_file_new);
+		addMenuItem(menu, MENU_ID_OPEN, R.string.menu_open,
+				R.drawable.ic_menu_file_open);
 
 		if (!mReadOnly)
-			addMenuItem(menu, MENU_ID_SAVE, R.string.menu_save, R.drawable.ic_menu_save);
+			addMenuItem(menu, MENU_ID_SAVE, R.string.menu_save,
+					R.drawable.ic_menu_save);
 
 		if ((!mReadOnly) && Settings.UNDO)
-			addMenuItem(menu, MENU_ID_UNDO, R.string.menu_undo, R.drawable.ic_menu_undo);
+			addMenuItem(menu, MENU_ID_UNDO, R.string.menu_undo,
+					R.drawable.ic_menu_undo);
 
-		addMenuItem(menu, MENU_ID_SEARCH, R.string.menu_search, R.drawable.ic_menu_search);
+		addMenuItem(menu, MENU_ID_SEARCH, R.string.menu_search,
+				R.drawable.ic_menu_search);
 
 		if (RecentFiles.getRecentFiles().size() > 0)
 			addMenuItem(menu, MENU_ID_OPEN_RECENT, R.string.menu_open_recent,
@@ -200,8 +265,10 @@ public class TedActivity extends Activity implements Constants, TextWatcher, OnC
 			addMenuItem(menu, MENU_ID_QUIT, R.string.menu_quit, 0);
 
 		if ((!mReadOnly) && Settings.UNDO)
-			showMenuItemAsAction(menu.findItem(MENU_ID_UNDO), R.drawable.ic_menu_undo);
-		showMenuItemAsAction(menu.findItem(MENU_ID_SEARCH), R.drawable.ic_menu_search);
+			showMenuItemAsAction(menu.findItem(MENU_ID_UNDO),
+					R.drawable.ic_menu_undo);
+		showMenuItemAsAction(menu.findItem(MENU_ID_SEARCH),
+				R.drawable.ic_menu_search);
 
 		return true;
 	}
@@ -240,8 +307,9 @@ public class TedActivity extends Activity implements Constants, TextWatcher, OnC
 			quit();
 			return true;
 		case MENU_ID_UNDO:
-			if (!undo())
-				showToast(this, R.string.toast_warn_no_undo, false);
+			if (!undo()) {
+				Crouton.showText(this, R.string.toast_warn_no_undo, Style.INFO);
+			}
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
@@ -251,7 +319,8 @@ public class TedActivity extends Activity implements Constants, TextWatcher, OnC
 	 * @see android.text.TextWatcher#beforeTextChanged(java.lang.CharSequence,
 	 *      int, int, int)
 	 */
-	public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+	public void beforeTextChanged(CharSequence s, int start, int count,
+			int after) {
 		if (Settings.UNDO && (!mInUndo) && (mWatcher != null))
 			mWatcher.beforeChange(s, start, count, after);
 	}
@@ -343,23 +412,29 @@ public class TedActivity extends Activity implements Constants, TextWatcher, OnC
 			if (BuildConfig.DEBUG)
 				Log.d(TAG, "Intent w/o action, default action");
 			doDefaultAction();
-		} else if ((action.equals(Intent.ACTION_VIEW)) || (action.equals(Intent.ACTION_EDIT))) {
+		} else if ((action.equals(Intent.ACTION_VIEW))
+				|| (action.equals(Intent.ACTION_EDIT))) {
 			try {
 				file = new File(new URI(intent.getData().toString()));
 				doOpenFile(file, false);
 			} catch (URISyntaxException e) {
-				showToast(this, R.string.toast_intent_invalid_uri, true);
+				Crouton.showText(this, R.string.toast_intent_invalid_uri,
+						Style.ALERT);
 			} catch (IllegalArgumentException e) {
-				showToast(this, R.string.toast_intent_illegal, true);
+				Crouton.showText(this, R.string.toast_intent_illegal,
+						Style.ALERT);
 			}
 		} else if (action.equals(ACTION_WIDGET_OPEN)) {
 			try {
 				file = new File(new URI(intent.getData().toString()));
-				doOpenFile(file, intent.getBooleanExtra(EXTRA_FORCE_READ_ONLY, false));
+				doOpenFile(file,
+						intent.getBooleanExtra(EXTRA_FORCE_READ_ONLY, false));
 			} catch (URISyntaxException e) {
-				showToast(this, R.string.toast_intent_invalid_uri, true);
+				Crouton.showText(this, R.string.toast_intent_invalid_uri,
+						Style.ALERT);
 			} catch (IllegalArgumentException e) {
-				showToast(this, R.string.toast_intent_illegal, true);
+				Crouton.showText(this, R.string.toast_intent_illegal,
+						Style.ALERT);
 			}
 		} else {
 			doDefaultAction();
@@ -379,11 +454,13 @@ public class TedActivity extends Activity implements Constants, TextWatcher, OnC
 
 		if ((!loaded) && Settings.USE_HOME_PAGE) {
 			file = new File(Settings.HOME_PAGE_PATH);
-			if ((file == null) || (!file.exists()))
-				showToast(this, R.string.toast_open_home_page_error, true);
-			else if (!file.canRead())
-				showToast(this, R.string.toast_home_page_cant_read, true);
-			else {
+			if ((file == null) || (!file.exists())) {
+				Crouton.showText(this, R.string.toast_open_home_page_error,
+						Style.ALERT);
+			} else if (!file.canRead()) {
+				Crouton.showText(this, R.string.toast_home_page_cant_read,
+						Style.ALERT);
+			} else {
 				loaded = doOpenFile(file, false);
 			}
 		}
@@ -443,7 +520,8 @@ public class TedActivity extends Activity implements Constants, TextWatcher, OnC
 				mCurrentFilePath = getCanonizePath(file);
 				mCurrentFileName = file.getName();
 				RecentFiles.updateRecentList(mCurrentFilePath);
-				RecentFiles.saveRecentList(getSharedPreferences(PREFERENCES_NAME, MODE_PRIVATE));
+				RecentFiles.saveRecentList(getSharedPreferences(
+						PREFERENCES_NAME, MODE_PRIVATE));
 				mDirty = false;
 				mInUndo = false;
 				mDoNotBackup = false;
@@ -459,10 +537,10 @@ public class TedActivity extends Activity implements Constants, TextWatcher, OnC
 
 				return true;
 			} else {
-				showToast(this, R.string.toast_open_error, true);
+				Crouton.showText(this, R.string.toast_open_error, Style.ALERT);
 			}
 		} catch (OutOfMemoryError e) {
-			showToast(this, R.string.toast_memory_open, true);
+			Crouton.showText(this, R.string.toast_memory_open, Style.ALERT);
 		}
 
 		return false;
@@ -498,7 +576,7 @@ public class TedActivity extends Activity implements Constants, TextWatcher, OnC
 				return false;
 			}
 		} catch (OutOfMemoryError e) {
-			showToast(this, R.string.toast_memory_open, true);
+			Crouton.showText(this, R.string.toast_memory_open, Style.ALERT);
 		}
 
 		return true;
@@ -515,35 +593,36 @@ public class TedActivity extends Activity implements Constants, TextWatcher, OnC
 		String content;
 
 		if (path == null) {
-			showToast(this, R.string.toast_save_null, true);
+			Crouton.showText(this, R.string.toast_save_null, Style.ALERT);
 			return;
 		}
 
 		content = mEditor.getText().toString();
 
 		if (!TextFileUtils.writeTextFile(path + ".tmp", content)) {
-			showToast(this, R.string.toast_save_temp, true);
+			Crouton.showText(this, R.string.toast_save_temp, Style.ALERT);
 			return;
 		}
 
 		if (!deleteItem(path)) {
-			showToast(this, R.string.toast_save_delete, true);
+			Crouton.showText(this, R.string.toast_save_delete, Style.ALERT);
 			return;
 		}
 
 		if (!renameItem(path + ".tmp", path)) {
-			showToast(this, R.string.toast_save_rename, true);
+			Crouton.showText(this, R.string.toast_save_rename, Style.ALERT);
 			return;
 		}
 
 		mCurrentFilePath = getCanonizePath(new File(path));
 		mCurrentFileName = (new File(path)).getName();
 		RecentFiles.updateRecentList(path);
-		RecentFiles.saveRecentList(getSharedPreferences(PREFERENCES_NAME, MODE_PRIVATE));
+		RecentFiles.saveRecentList(getSharedPreferences(PREFERENCES_NAME,
+				MODE_PRIVATE));
 		mReadOnly = false;
 		mDirty = false;
 		updateTitle();
-		showToast(this, R.string.toast_save_success, false);
+		Crouton.showText(this, R.string.toast_save_success, Style.CONFIRM);
 
 		runAfterSave();
 	}
@@ -557,8 +636,9 @@ public class TedActivity extends Activity implements Constants, TextWatcher, OnC
 		if (text.length() == 0)
 			return;
 
-		if (TextFileUtils.writeInternal(this, text))
+		if (TextFileUtils.writeInternal(this, text)) {
 			showToast(this, R.string.toast_file_saved_auto, false);
+		}
 	}
 
 	/**
@@ -595,23 +675,26 @@ public class TedActivity extends Activity implements Constants, TextWatcher, OnC
 		builder.setTitle(R.string.app_name);
 		builder.setMessage(R.string.ui_save_text);
 
-		builder.setPositiveButton(R.string.ui_save, new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int which) {
-				saveContent();
-				mDoNotBackup = true;
-			}
-		});
-		builder.setNegativeButton(R.string.ui_cancel, new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int which) {
+		builder.setPositiveButton(R.string.ui_save,
+				new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int which) {
+						saveContent();
+						mDoNotBackup = true;
+					}
+				});
+		builder.setNegativeButton(R.string.ui_cancel,
+				new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int which) {
 
-			}
-		});
-		builder.setNeutralButton(R.string.ui_no_save, new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int which) {
-				runAfterSave();
-				mDoNotBackup = true;
-			}
-		});
+					}
+				});
+		builder.setNeutralButton(R.string.ui_no_save,
+				new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int which) {
+						runAfterSave();
+						mDoNotBackup = true;
+					}
+				});
 
 		builder.create().show();
 
@@ -654,14 +737,15 @@ public class TedActivity extends Activity implements Constants, TextWatcher, OnC
 
 		mAfterSave = new Runnable() {
 			public void run() {
-				Intent open;
-
-				open = new Intent(ACTION_OPEN);
+				Intent open = new Intent();
+				open.setClass(getApplicationContext(), TedOpenActivity.class);
+				// open = new Intent(ACTION_OPEN);
 				open.putExtra(EXTRA_REQUEST_CODE, REQUEST_OPEN);
 				try {
 					startActivityForResult(open, REQUEST_OPEN);
 				} catch (ActivityNotFoundException e) {
-					showToast(TedActivity.this, R.string.toast_activity_open, true);
+					Crouton.showText(TedActivity.this,
+							R.string.toast_activity_open, Style.ALERT);
 				}
 			}
 		};
@@ -677,7 +761,7 @@ public class TedActivity extends Activity implements Constants, TextWatcher, OnC
 			Log.d(TAG, "openRecentFile");
 
 		if (RecentFiles.getRecentFiles().size() == 0) {
-			showToast(this, R.string.toast_no_recent_files, true);
+			Crouton.showText(this, R.string.toast_no_recent_files, Style.ALERT);
 			return;
 		}
 
@@ -685,11 +769,13 @@ public class TedActivity extends Activity implements Constants, TextWatcher, OnC
 			public void run() {
 				Intent open;
 
-				open = new Intent(ACTION_OPEN_RECENT);
+				open = new Intent();
+				open.setClass(TedActivity.this, TedOpenRecentActivity.class);
 				try {
 					startActivityForResult(open, REQUEST_OPEN);
 				} catch (ActivityNotFoundException e) {
-					showToast(TedActivity.this, R.string.toast_activity_open_recent, true);
+					Crouton.showText(TedActivity.this,
+							R.string.toast_activity_open_recent, Style.ALERT);
 				}
 			}
 		};
@@ -702,10 +788,11 @@ public class TedActivity extends Activity implements Constants, TextWatcher, OnC
 	 * if the warning has already been shown
 	 */
 	protected void warnOrQuit() {
-		if (mWarnedShouldQuit)
+		if (mWarnedShouldQuit) {
 			quit();
-		else {
-			showToast(this, R.string.toast_warn_no_undo_will_quit, false);
+		} else {
+			Crouton.showText(this, R.string.toast_warn_no_undo_will_quit,
+					Style.INFO);
 			mWarnedShouldQuit = true;
 		}
 	}
@@ -728,10 +815,11 @@ public class TedActivity extends Activity implements Constants, TextWatcher, OnC
 	 * then save it , else invoke the {@link TedActivity#saveContentAs()} method
 	 */
 	protected void saveContent() {
-		if ((mCurrentFilePath == null) || (mCurrentFilePath.length() == 0))
+		if ((mCurrentFilePath == null) || (mCurrentFilePath.length() == 0)) {
 			saveContentAs();
-		else
+		} else {
 			doSaveFile(mCurrentFilePath);
+		}
 	}
 
 	/**
@@ -742,12 +830,12 @@ public class TedActivity extends Activity implements Constants, TextWatcher, OnC
 		if (BuildConfig.DEBUG)
 			Log.d(TAG, "saveContentAs");
 		Intent saveAs;
-
-		saveAs = new Intent(ACTION_SAVE_AS);
+		saveAs = new Intent();
+		saveAs.setClass(this, TedSaveAsActivity.class);
 		try {
 			startActivityForResult(saveAs, REQUEST_SAVE_AS);
 		} catch (ActivityNotFoundException e) {
-			showToast(this, R.string.toast_activity_save_as, true);
+			Crouton.showText(this, R.string.toast_activity_save_as, Style.ALERT);
 		}
 	}
 
@@ -780,7 +868,7 @@ public class TedActivity extends Activity implements Constants, TextWatcher, OnC
 		selection = mEditor.getSelectionEnd();
 
 		if (search.length() == 0) {
-			showToast(this, R.string.toast_search_no_input, false);
+			Crouton.showText(this, R.string.toast_search_no_input, Style.INFO);
 			return;
 		}
 
@@ -803,10 +891,11 @@ public class TedActivity extends Activity implements Constants, TextWatcher, OnC
 					if (!mEditor.isFocused())
 						mEditor.requestFocus();
 				} else {
-					showToast(this, R.string.toast_search_not_found, false);
+					Crouton.showText(this, R.string.toast_search_not_found,
+							Style.INFO);
 				}
 			} else {
-				showToast(this, R.string.toast_search_eof, false);
+				Crouton.showText(this, R.string.toast_search_eof, Style.INFO);
 			}
 		}
 	}
@@ -823,7 +912,7 @@ public class TedActivity extends Activity implements Constants, TextWatcher, OnC
 		selection = mEditor.getSelectionStart() - 1;
 
 		if (search.length() == 0) {
-			showToast(this, R.string.toast_search_no_input, false);
+			Crouton.showText(this, R.string.toast_search_no_input, Style.INFO);
 			return;
 		}
 
@@ -846,10 +935,11 @@ public class TedActivity extends Activity implements Constants, TextWatcher, OnC
 					if (!mEditor.isFocused())
 						mEditor.requestFocus();
 				} else {
-					showToast(this, R.string.toast_search_not_found, false);
+					Crouton.showText(this, R.string.toast_search_not_found,
+							Style.INFO);
 				}
 			} else {
-				showToast(this, R.string.toast_search_eof, false);
+				Crouton.showText(this, R.string.toast_search_eof, Style.INFO);
 			}
 		}
 	}
@@ -859,11 +949,11 @@ public class TedActivity extends Activity implements Constants, TextWatcher, OnC
 	 */
 	protected void aboutActivity() {
 		Intent about = new Intent();
-		about.setAction(ACTION_ABOUT);
+		about.setClass(this, TedAboutActivity.class);
 		try {
 			startActivity(about);
 		} catch (ActivityNotFoundException e) {
-			showToast(this, R.string.toast_activity_about, true);
+			Crouton.showText(this, R.string.toast_activity_about, Style.ALERT);
 		}
 	}
 
@@ -875,11 +965,12 @@ public class TedActivity extends Activity implements Constants, TextWatcher, OnC
 		mAfterSave = new Runnable() {
 			public void run() {
 				Intent settings = new Intent();
-				settings.setAction(ACTION_SETTINGS);
+				settings.setClass(TedActivity.this, TedSettingsActivity.class);
 				try {
 					startActivity(settings);
 				} catch (ActivityNotFoundException e) {
-					showToast(TedActivity.this, R.string.toast_activity_settings, true);
+					Crouton.showText(TedActivity.this,
+							R.string.toast_activity_settings, Style.ALERT);
 				}
 			}
 		};
@@ -938,6 +1029,6 @@ public class TedActivity extends Activity implements Constants, TextWatcher, OnC
 	protected boolean mDoNotBackup;
 
 	/** are we in a post activity result ? */
-	protected boolean mIsResumingFromRequest;
+	protected boolean mReadIntent;
 
 }

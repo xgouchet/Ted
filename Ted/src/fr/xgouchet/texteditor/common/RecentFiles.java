@@ -26,10 +26,12 @@ public class RecentFiles implements Constants {
 		PATHS = new ArrayList<String>();
 		String[] paths = saved.split(File.pathSeparator);
 		for (String path : paths) {
-			if (path.length() > 0)
+			if (path.length() > 0) {
 				PATHS.add(path);
-			if (PATHS.size() == Settings.MAX_RECENT_FILES)
+			}
+			if (PATHS.size() == Settings.MAX_RECENT_FILES) {
 				break;
+			}
 		}
 	}
 
@@ -68,14 +70,17 @@ public class RecentFiles implements Constants {
 	 *            the path to insert
 	 */
 	public static void updateRecentList(String path) {
-		if (PATHS.contains(path))
+		if (PATHS.contains(path)) {
 			PATHS.remove(path);
+		}
 
 		PATHS.add(0, path);
-		while (PATHS.size() > Settings.MAX_RECENT_FILES)
+		while (PATHS.size() > Settings.MAX_RECENT_FILES) {
 			PATHS.remove(Settings.MAX_RECENT_FILES);
-		if (BuildConfig.DEBUG)
+		}
+		if (BuildConfig.DEBUG) {
 			Log.d(TAG, "added path to recent files : " + path);
+		}
 	}
 
 	/**
@@ -85,8 +90,9 @@ public class RecentFiles implements Constants {
 	 *            the path to remove
 	 */
 	public static void removePath(String path) {
-		if (PATHS.contains(path))
+		if (PATHS.contains(path)) {
 			PATHS.remove(path);
+		}
 	}
 
 	/** the list of paths in the recent list */
