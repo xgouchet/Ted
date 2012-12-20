@@ -76,18 +76,18 @@ public class AdvancedEditText extends EditText implements Constants,
 	 * @category View
 	 */
 	public void onDraw(Canvas canvas) {
-		int count, padding, lineX, baseline;
+		int count, lineX, baseline;
 
-		// padding
-		padding = mPadding;
 		count = getLineCount();
+
 		if (Settings.SHOW_LINE_NUMBERS) {
-			padding = (int) (Math.floor(Math.log10(count)) + 1);
+			int padding = (int) (Math.floor(Math.log10(count)) + 1);
 			padding = (int) ((padding * mPaintNumbers.getTextSize()) + mPadding + (Settings.TEXT_SIZE
 					* mScale * 0.5));
-			setPadding(padding, mPadding, mPadding, mPadding);
-		} else {
-			setPadding(mPadding, mPadding, mPadding, mPadding);
+			if (mLinePadding != padding) {
+				mLinePadding = padding;
+				setPadding(mLinePadding, mPadding, mPadding, mPadding);
+			}
 		}
 
 		// get the drawing boundaries
@@ -97,8 +97,7 @@ public class AdvancedEditText extends EditText implements Constants,
 		computeLineHighlight();
 
 		// draw line numbers
-		count = getLineCount();
-		lineX = (int) (mDrawingRect.left + padding - (Settings.TEXT_SIZE
+		lineX = (int) (mDrawingRect.left + mLinePadding - (Settings.TEXT_SIZE
 				* mScale * 0.5));
 
 		for (int i = 0; i < count; i++) {
@@ -133,6 +132,7 @@ public class AdvancedEditText extends EditText implements Constants,
 			mMaxSize.y = Math.max(
 					mMaxSize.y + mPadding - mDrawingRect.height(), 0);
 		}
+
 		super.onDraw(canvas);
 	}
 
@@ -288,6 +288,18 @@ public class AdvancedEditText extends EditText implements Constants,
 			mTedScroller = null;
 			mMaxSize = null;
 		}
+
+		// padding
+		mLinePadding = mPadding;
+		int count = getLineCount();
+		if (Settings.SHOW_LINE_NUMBERS) {
+			mLinePadding = (int) (Math.floor(Math.log10(count)) + 1);
+			mLinePadding = (int) ((mLinePadding * mPaintNumbers.getTextSize())
+					+ mPadding + (Settings.TEXT_SIZE * mScale * 0.5));
+			setPadding(mLinePadding, mPadding, mPadding, mPadding);
+		} else {
+			setPadding(mPadding, mPadding, mPadding, mPadding);
+		}
 	}
 
 	/**
@@ -329,7 +341,7 @@ public class AdvancedEditText extends EditText implements Constants,
 	/** the offset value in dp */
 	protected int mPaddingDP = 6;
 	/** the padding scaled */
-	protected int mPadding;
+	protected int mPadding, mLinePadding;
 	/** the scale for desnity pixels */
 	protected float mScale;
 
