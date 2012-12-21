@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import de.neofonie.mobile.app.android.widget.crouton.Crouton;
 import de.neofonie.mobile.app.android.widget.crouton.Style;
-import fr.xgouchet.androidlib.R;
 import fr.xgouchet.androidlib.ui.activity.BrowsingActivity;
 import fr.xgouchet.texteditor.common.Constants;
 

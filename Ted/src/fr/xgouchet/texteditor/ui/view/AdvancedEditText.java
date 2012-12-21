@@ -99,16 +99,22 @@ public class AdvancedEditText extends EditText implements Constants,
 		// draw line numbers
 		lineX = (int) (mDrawingRect.left + mLinePadding - (Settings.TEXT_SIZE
 				* mScale * 0.5));
-
-		for (int i = 0; i < count; i++) {
+		int min = 0;
+		int max = count;
+		getLineBounds(0, mLineBounds);
+		int startBottom = mLineBounds.bottom;
+		int startTop = mLineBounds.top;
+		getLineBounds(count - 1, mLineBounds);
+		int endBottom = mLineBounds.bottom;
+		int endTop = mLineBounds.top;
+		if (count > 1 && endBottom > startBottom && endTop > startTop) {
+			min = Math.max(min, ((mDrawingRect.top - startBottom) * (count - 1)) / (endBottom - startBottom));
+			max = Math.min(max, ((mDrawingRect.bottom - startTop) * (count - 1)) / (endTop - startTop) + 1);
+		}
+		for (int i = min; i < max; i++) {
 			baseline = getLineBounds(i, mLineBounds);
 			if ((mMaxSize != null) && (mMaxSize.x < mLineBounds.right)) {
 				mMaxSize.x = mLineBounds.right;
-			}
-
-			if ((mLineBounds.bottom < mDrawingRect.top)
-					|| (mLineBounds.top > mDrawingRect.bottom)) {
-				continue;
 			}
 
 			if ((i == mHighlightedLine) && (!Settings.WORDWRAP)) {
@@ -124,7 +130,7 @@ public class AdvancedEditText extends EditText implements Constants,
 						mDrawingRect.bottom, mPaintNumbers);
 			}
 		}
-
+		getLineBounds(count - 1, mLineBounds);
 		if (mMaxSize != null) {
 			mMaxSize.y = mLineBounds.bottom;
 			mMaxSize.x = Math.max(mMaxSize.x + mPadding - mDrawingRect.width(),
