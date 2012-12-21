@@ -35,7 +35,6 @@ import android.view.View.OnClickListener;
 import android.widget.EditText;
 import de.neofonie.mobile.app.android.widget.crouton.Crouton;
 import de.neofonie.mobile.app.android.widget.crouton.Style;
-import fr.xgouchet.androidlib.R;
 import fr.xgouchet.texteditor.common.Constants;
 import fr.xgouchet.texteditor.common.RecentFiles;
 import fr.xgouchet.texteditor.common.Settings;
