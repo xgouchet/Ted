@@ -11,10 +11,11 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import fr.xgouchet.androidlib.ui.activity.BrowsingActivity;
+import fr.xgouchet.androidlib.ui.activity.AbstractBrowsingActivity;
 import fr.xgouchet.texteditor.common.Constants;
 
-public class TedSaveAsActivity extends BrowsingActivity implements Constants, OnClickListener {
+public class TedSaveAsActivity extends AbstractBrowsingActivity implements
+		Constants, OnClickListener {
 
 	/**
 	 * @see android.app.Activity#onCreate(android.os.Bundle)
@@ -102,7 +103,8 @@ public class TedSaveAsActivity extends BrowsingActivity implements Constants, On
 		}
 
 		result = new Intent();
-		result.putExtra("path", mCurrentFolder.getAbsolutePath() + File.separator + fileName);
+		result.putExtra("path", mCurrentFolder.getAbsolutePath()
+				+ File.separator + fileName);
 
 		setResult(RESULT_OK, result);
 		return true;

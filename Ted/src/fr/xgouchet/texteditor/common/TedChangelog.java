@@ -1,9 +1,9 @@
 package fr.xgouchet.texteditor.common;
 
-import fr.xgouchet.androidlib.common.ChangeLog;
+import fr.xgouchet.androidlib.common.AbstractChangeLog;
 import fr.xgouchet.texteditor.R;
 
-public class TedChangelog extends ChangeLog {
+public class TedChangelog extends AbstractChangeLog {
 
 	/**
 	 * @see fr.xgouchet.androidlib.common.ChangeLog#getTitleResourceForVersion(int)

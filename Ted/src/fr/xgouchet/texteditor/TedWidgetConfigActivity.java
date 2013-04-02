@@ -10,11 +10,11 @@ import android.view.View.OnClickListener;
 import android.widget.CheckBox;
 import fr.xgouchet.androidlib.data.FileUtils;
 import fr.xgouchet.androidlib.ui.Toaster;
-import fr.xgouchet.androidlib.ui.activity.BrowsingActivity;
+import fr.xgouchet.androidlib.ui.activity.AbstractBrowsingActivity;
 import fr.xgouchet.texteditor.common.Constants;
 import fr.xgouchet.texteditor.common.WidgetPrefs;
 
-public class TedWidgetConfigActivity extends BrowsingActivity implements Constants, OnClickListener {
+public class TedWidgetConfigActivity extends AbstractBrowsingActivity implements Constants, OnClickListener {
 
 	/**
 	 * @see android.app.Activity#onCreate(android.os.Bundle)

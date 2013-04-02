@@ -91,7 +91,7 @@ public class TedActivity extends Activity implements Constants, TextWatcher,
 		prefs = getSharedPreferences(Constants.PREFERENCES_NAME,
 				Context.MODE_PRIVATE);
 
-		if (changeLog.isFirstLaunch(this, prefs)) {
+		if (changeLog.isFirstLaunchAfterUpdate(this, prefs)) {
 			Builder builder = new Builder(this);
 			String message = getString(changeLog.getTitleResource(this))
 					+ "\n\n" + getString(changeLog.getChangeLogResource(this));

@@ -3,19 +3,19 @@ package fr.xgouchet.texteditor;
 import java.io.File;
 import java.util.LinkedList;
 
-import de.neofonie.mobile.app.android.widget.crouton.Crouton;
-import de.neofonie.mobile.app.android.widget.crouton.Style;
-
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import fr.xgouchet.androidlib.ui.activity.BrowsingActivity;
+import de.neofonie.mobile.app.android.widget.crouton.Crouton;
+import de.neofonie.mobile.app.android.widget.crouton.Style;
+import fr.xgouchet.androidlib.ui.activity.AbstractBrowsingActivity;
 import fr.xgouchet.texteditor.ui.adapter.FontListAdapter;
 
-public class TedFontActivity extends BrowsingActivity implements
+public class TedFontActivity extends AbstractBrowsingActivity implements
 		OnClickListener {
 
 	/**
@@ -25,7 +25,7 @@ public class TedFontActivity extends BrowsingActivity implements
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.layout_open);
-		mExtensionsWhiteList.add("ttf");
+		mExtWhiteList.add("ttf");
 
 		// set default result
 		setResult(RESULT_CANCELED, null);

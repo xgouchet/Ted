@@ -2,6 +2,7 @@ package fr.xgouchet.texteditor;
 
 import java.io.File;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -9,10 +10,10 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import de.neofonie.mobile.app.android.widget.crouton.Crouton;
 import de.neofonie.mobile.app.android.widget.crouton.Style;
-import fr.xgouchet.androidlib.ui.activity.BrowsingActivity;
+import fr.xgouchet.androidlib.ui.activity.AbstractBrowsingActivity;
 import fr.xgouchet.texteditor.common.Constants;
 
-public class TedOpenActivity extends BrowsingActivity implements
+public class TedOpenActivity extends AbstractBrowsingActivity implements
 		OnClickListener, Constants {
 
 	/**
