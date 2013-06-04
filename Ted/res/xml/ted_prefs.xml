@@ -26,6 +26,12 @@
             android:entryValues="@array/text_size_values"
             android:key="text_size"
             android:title="@string/config_title_text_size" />
+        <ListPreference
+            android:defaultValue="normal"
+            android:entries="@array/text_style_names"
+            android:entryValues="@array/text_style_values"
+            android:key="text_style"
+            android:title="@string/config_title_text_style" />
 
         <Preference
             android:key="select_font"

@@ -40,6 +40,12 @@ public interface Constants {
 	public static final int MENU_ID_UNDO = 8;
 	/** redo last change ( = {@value} ) */
 	public static final int MENU_ID_REDO = 9;
+	/** send mail ( = {@value} ) */
+	public static final int MENU_ID_EMAIL = 10;
+	/** send sms ( = {@value} ) */
+	public static final int MENU_ID_SMS = 11;
+	/** add rating ( = {@value} ) */
+	public static final int MENU_ID_RATING = 12;		
 	/** Quit the app ( = {@value} ) */
 	public static final int MENU_ID_QUIT = 666;
 
@@ -69,6 +75,8 @@ public interface Constants {
 	public static final String PREFERENCE_HIGHLIGHT = "highlight_syntax";
 	/** Preference tag to retrieve the Text Size ( = {@value} ) */
 	public static final String PREFERENCE_TEXT_SIZE = "text_size";
+	/** Preference tag to retrieve the BOLD_ITALIC ( = {@value} ) */
+	public static final String PREFERENCE_BOLD_ITALIC = "text_style";
 	/** Preference tag to retrieve the End of lines pref ( = {@value} ) */
 	public static final String PREFERENCE_END_OF_LINES = "end_of_lines";
 	/** Preference tag to retrieve the Encoding pref ( = {@value} ) */
@@ -126,6 +134,20 @@ public interface Constants {
 	/** color theme dracula : red on black ( = {@value} ) */
 	public static final int COLOR_DRACULA = 4;
 
+	
+	/** by default */
+	public static final int NORMAL = 0;
+	/** bold italic */
+	public static final int BOLD_ITALIC = 3;
+	/** bold */
+	public static final int BOLD = 1;
+	/** italic */
+	public static final int ITALIC = 2;
+	
+	
+	
+
+	
 	/** Request code for Save As Activity */
 	public static final int REQUEST_SAVE_AS = 107;
 	/** Request code for Open Activity */

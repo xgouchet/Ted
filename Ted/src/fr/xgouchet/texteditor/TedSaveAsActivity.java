@@ -3,6 +3,9 @@ package fr.xgouchet.texteditor;
 import static fr.xgouchet.androidlib.ui.Toaster.showToast;
 
 import java.io.File;
+import java.util.regex.Pattern;
+import java.util.Arrays;
+import java.util.List; 
 
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -11,6 +14,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import fr.xgouchet.androidlib.ui.activity.AbstractBrowsingActivity;
 import fr.xgouchet.texteditor.common.Constants;
 
@@ -96,19 +100,45 @@ public class TedSaveAsActivity extends AbstractBrowsingActivity implements
 			return false;
 		}
 
+
 		fileName = mFileName.getText().toString();
 		if (fileName.length() == 0) {
 			showToast(this, R.string.toast_filename_empty, true);
 			return false;
 		}
-
+		
+		//automatically add txt as extension if the application doesn't find a known extension
+		String extension="";
+	     int dotposition= fileName.lastIndexOf(".");
+	     extension = fileName.substring(dotposition + 1, fileName.length());
+	 
+		List<String> list = Arrays.asList("doc", "docx", "log", "ascii", "txt", "html", "htm", "lst", "odt", "upd", "readme", "awp", "awt", "bean","php","ini","sh","js","db","conf","cfg");
+		
+		if (!(list.contains(extension)))
+		{
+		   fileName+=".txt";
+		}
+		
+		//save result
 		result = new Intent();
 		result.putExtra("path", mCurrentFolder.getAbsolutePath()
 				+ File.separator + fileName);
-
+		
 		setResult(RESULT_OK, result);
+		
+		//make file read-only if the radio button is checked
+		File file = new File(mCurrentFolder.getAbsolutePath()
+				+ File.separator + fileName);
+		RadioButton readOnly;
+
+		readOnly = (RadioButton) findViewById(R.id.readonly);
+	
+		if (readOnly.isChecked()) {
+			file.setWritable(false);
+		}
 		return true;
 	}
+
 
 	/** the edit text input */
 	protected EditText mFileName;
