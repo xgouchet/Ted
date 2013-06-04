@@ -19,6 +19,7 @@ import android.widget.RatingBar.OnRatingBarChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 public class RatingActivity extends Activity {
 
@@ -35,6 +36,8 @@ public class RatingActivity extends Activity {
 
 
 =======
+=======
+>>>>>>> 2c6f4c24e20f894028726ec87f4c3191b0fd7361
  
 public class RatingActivity extends Activity {
  
@@ -50,13 +53,20 @@ public class RatingActivity extends Activity {
   SQLiteDatabase db;
 
   
+<<<<<<< HEAD
+>>>>>>> 2c6f4c24e20f894028726ec87f4c3191b0fd7361
+=======
 >>>>>>> 2c6f4c24e20f894028726ec87f4c3191b0fd7361
   @Override
   public void onCreate(Bundle savedInstanceState) {
 	super.onCreate(savedInstanceState);
 	setContentView(R.layout.rating);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> 2c6f4c24e20f894028726ec87f4c3191b0fd7361
 =======
 	
 >>>>>>> 2c6f4c24e20f894028726ec87f4c3191b0fd7361
@@ -66,7 +76,11 @@ public class RatingActivity extends Activity {
 	db.setLocale(Locale.getDefault());
 	db.setLockingEnabled(true);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> 2c6f4c24e20f894028726ec87f4c3191b0fd7361
 =======
 	
 >>>>>>> 2c6f4c24e20f894028726ec87f4c3191b0fd7361
@@ -75,7 +89,11 @@ public class RatingActivity extends Activity {
 	db.execSQL(CREATE_TABLE_FILES);
 	db.execSQL("SELECT * FROM ted ORDER BY ID desc;");
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> 2c6f4c24e20f894028726ec87f4c3191b0fd7361
 =======
 	
 >>>>>>> 2c6f4c24e20f894028726ec87f4c3191b0fd7361
@@ -85,7 +103,11 @@ public class RatingActivity extends Activity {
 		Cursor c = db.rawQuery("SELECT RATING FROM ted " +
 	           "where NAME='"+path+"' LIMIT 1;", null);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> 2c6f4c24e20f894028726ec87f4c3191b0fd7361
 =======
 	
 >>>>>>> 2c6f4c24e20f894028726ec87f4c3191b0fd7361
@@ -103,17 +125,23 @@ public class RatingActivity extends Activity {
 	addListenerOnRatingBar(rating2);
 	addListenerOnButton();
 <<<<<<< HEAD
+<<<<<<< HEAD
 
   }
 
   public void addListenerOnRatingBar(float rating2) {
 
 =======
+=======
+>>>>>>> 2c6f4c24e20f894028726ec87f4c3191b0fd7361
 	
   }
  
   public void addListenerOnRatingBar(float rating2) {
  
+<<<<<<< HEAD
+>>>>>>> 2c6f4c24e20f894028726ec87f4c3191b0fd7361
+=======
 >>>>>>> 2c6f4c24e20f894028726ec87f4c3191b0fd7361
 	ratingBar = (RatingBar) findViewById(R.id.ratingBar);
 	txtRatingValue = (TextView) findViewById(R.id.txtRatingValue);
@@ -126,6 +154,7 @@ public class RatingActivity extends Activity {
 			boolean fromUser) {
 			txtRatingValue.setText(String.valueOf(rating));
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 		}
 	});
@@ -134,6 +163,8 @@ public class RatingActivity extends Activity {
   public void addListenerOnButton() {
 
 =======
+=======
+>>>>>>> 2c6f4c24e20f894028726ec87f4c3191b0fd7361
  
 		}
 	});
@@ -141,6 +172,9 @@ public class RatingActivity extends Activity {
  
   public void addListenerOnButton() {
  
+<<<<<<< HEAD
+>>>>>>> 2c6f4c24e20f894028726ec87f4c3191b0fd7361
+=======
 >>>>>>> 2c6f4c24e20f894028726ec87f4c3191b0fd7361
 	ratingBar = (RatingBar) findViewById(R.id.ratingBar);
 	btnSubmit = (Button) findViewById(R.id.btnSubmit);
@@ -148,20 +182,27 @@ public class RatingActivity extends Activity {
 	//if click on me, then display the current rating value.
 	btnSubmit.setOnClickListener(new OnClickListener() {
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 		@Override
 		public void onClick(View v) {
 
 =======
+=======
+>>>>>>> 2c6f4c24e20f894028726ec87f4c3191b0fd7361
  
 		@Override
 		public void onClick(View v) {
  
+<<<<<<< HEAD
+>>>>>>> 2c6f4c24e20f894028726ec87f4c3191b0fd7361
+=======
 >>>>>>> 2c6f4c24e20f894028726ec87f4c3191b0fd7361
 			Toast.makeText(RatingActivity.this,
 				String.valueOf(ratingBar.getRating()),
 					Toast.LENGTH_SHORT).show();
 			int ratinginsert=(int) ratingBar.getRating();
+<<<<<<< HEAD
 <<<<<<< HEAD
 			db.execSQL("INSERT INTO ted (NAME, RATING) VALUES ('"+path+"'," + ratinginsert  +");");
 
@@ -175,6 +216,8 @@ public class RatingActivity extends Activity {
 
 }
 =======
+=======
+>>>>>>> 2c6f4c24e20f894028726ec87f4c3191b0fd7361
 			db.execSQL("INSERT INTO ted (NAME, RATING) VALUES ('"+path+"'," + ratinginsert  +");");			
 
 			
@@ -185,5 +228,9 @@ public class RatingActivity extends Activity {
  
   }
 
+<<<<<<< HEAD
+}
+>>>>>>> 2c6f4c24e20f894028726ec87f4c3191b0fd7361
+=======
 }
 >>>>>>> 2c6f4c24e20f894028726ec87f4c3191b0fd7361

@@ -241,15 +241,21 @@ public class AdvancedEditText extends EditText implements Constants,
 		// wordwrap
 		setHorizontallyScrolling(!Settings.WORDWRAP);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 //bold_italic_underline
 		switch (Settings.NORMAL) {
 
 =======
+=======
+>>>>>>> 2c6f4c24e20f894028726ec87f4c3191b0fd7361
 		
 //bold_italic_underline
 		switch (Settings.NORMAL) {
 		
+<<<<<<< HEAD
+>>>>>>> 2c6f4c24e20f894028726ec87f4c3191b0fd7361
+=======
 >>>>>>> 2c6f4c24e20f894028726ec87f4c3191b0fd7361
 		case BOLD:
 			//setTypeface(Settings.getTypeface(getContext()));
@@ -267,8 +273,13 @@ public class AdvancedEditText extends EditText implements Constants,
 			setTypeface(null, Typeface.NORMAL);
 			break;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		}
 
+=======
+		}	
+			
+>>>>>>> 2c6f4c24e20f894028726ec87f4c3191b0fd7361
 =======
 		}	
 			
@@ -314,7 +325,11 @@ public class AdvancedEditText extends EditText implements Constants,
 		mPaintNumbers.setTextSize(Settings.TEXT_SIZE * mScale * 0.85f);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+		
+>>>>>>> 2c6f4c24e20f894028726ec87f4c3191b0fd7361
 =======
 		
 >>>>>>> 2c6f4c24e20f894028726ec87f4c3191b0fd7361
@@ -399,4 +414,8 @@ public class AdvancedEditText extends EditText implements Constants,
 	protected int mHighlightStart;
 
 	protected Rect mDrawingRect, mLineBounds;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 2c6f4c24e20f894028726ec87f4c3191b0fd7361
