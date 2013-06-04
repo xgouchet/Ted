@@ -4,9 +4,9 @@
     android:installLocation="auto"
     android:versionCode="19"
     android:versionName="Release 1.8.1" >
-
+    
     <uses-sdk
-        android:minSdkVersion="8"
+        android:minSdkVersion="9"
         android:targetSdkVersion="16" />
 
     <permission
@@ -17,7 +17,8 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="fr.xgouchet.texteditor.permission.TED_INTERNAL" />
-
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    
     <application
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name" >
@@ -107,6 +108,7 @@
             android:name=".TedSettingsActivity"
             android:label="@string/title_settings"
             android:windowSoftInputMode="stateHidden" >
+            
         </activity>
 
         <!-- Ted save as activity -->
@@ -152,6 +154,24 @@
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>
         </activity>
+            <activity
+            android:label="@string/title_mail"
+            android:name=".SendEmailActivity"
+            android:windowSoftInputMode="stateHidden" >
+
+        </activity>
+        <activity
+            android:label="@string/title_sms"
+            android:name=".SendSMSActivity" 
+            android:windowSoftInputMode="stateHidden" >
+            
+        </activity>
+         <activity
+            android:label="@string/title_rating"
+            android:name=".RatingActivity" 
+            android:windowSoftInputMode="stateHidden" >
+            
+        </activity>   
 
         <!-- Widget Receiver -->
         <receiver
@@ -166,5 +186,6 @@
                 android:resource="@xml/ted_widget" />
         </receiver>
     </application>
+    
 
 </manifest>

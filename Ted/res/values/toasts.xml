@@ -11,6 +11,9 @@
     <string name="toast_activity_save_as">Unable to load the file browser</string>
     <string name="toast_activity_settings">Unable to load the settings page</string>
     <string name="toast_activity_about">Unable to load the about page</string>
+    <string name="toast_activity_email">Unable to load emailing page</string>
+    <string name="toast_activity_sms">Unable to load SMS page</string>
+    <string name="toast_activity_rating">Unable to load Rating page</string>
     <string name="toast_memory_open">Unable to open the file, not enough memory</string>
     <string name="toast_open_error">Unable to open the file (maybe the file is too big, or corrupted)</string>
     <string name="toast_save_null">Unable to save, path is null</string>
@@ -32,5 +35,6 @@
     <string name="toast_open_select">Select a file to open</string>
     <string name="toast_home_page_select">Select a file to open when you launch Ted from your home screen</string>
     <string name="toast_file_saved_auto">"The opened file was saved automatically, and will be opened at next startup"</string>
+    
 
 </resources>

@@ -4,6 +4,9 @@
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
-	<classpathentry kind="lib" path="./libs/juniversalchardet-1.0.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Παύλος/Desktop/commons-lang3-3.1/commons-lang3-3.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Παύλος/Desktop/commons-lang3-3.1/commons-lang3-3.1-javadoc.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Παύλος/Desktop/commons-lang3-3.1/commons-lang3-3.1-sources.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Παύλος/Desktop/commons-lang3-3.1/commons-lang3-3.1-tests.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

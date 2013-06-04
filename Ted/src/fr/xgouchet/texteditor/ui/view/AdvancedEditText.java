@@ -236,12 +236,31 @@ public class AdvancedEditText extends EditText implements Constants,
 		if (isInEditMode()) {
 			return;
 		}
-
 		setTypeface(Settings.getTypeface(getContext()));
 
 		// wordwrap
 		setHorizontallyScrolling(!Settings.WORDWRAP);
-
+		
+//bold_italic_underline
+		switch (Settings.NORMAL) {
+		
+		case BOLD:
+			//setTypeface(Settings.getTypeface(getContext()));
+			setTypeface(null, Typeface.BOLD);
+			break;
+		case ITALIC:
+			//setTypeface(Settings.getTypeface(getContext()));
+			setTypeface(null, Typeface.ITALIC);
+			break;
+		case BOLD_ITALIC:
+			//setTypeface(Settings.getTypeface(getContext()));
+			setTypeface(null, Typeface.BOLD_ITALIC);
+			break;
+		default:
+			setTypeface(null, Typeface.NORMAL);
+			break;
+		}	
+			
 		// color Theme
 		switch (Settings.COLOR) {
 		case COLOR_NEGATIVE:
@@ -282,6 +301,7 @@ public class AdvancedEditText extends EditText implements Constants,
 		setTextSize(Settings.TEXT_SIZE);
 		mPaintNumbers.setTextSize(Settings.TEXT_SIZE * mScale * 0.85f);
 
+		
 		// refresh view
 		postInvalidate();
 		refreshDrawableState();

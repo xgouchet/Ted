@@ -11,7 +11,6 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
 import fr.xgouchet.texteditor.BuildConfig;
-import org.mozilla.universalchardet.UniversalDetector;
 
 import android.content.Context;
 import android.util.Log;
@@ -67,7 +66,7 @@ public class TextFileUtils implements Constants {
 		int c;
 		try {
 			reader = new InputStreamReader(new FileInputStream(file),
-					detectCharSet(file.getAbsolutePath()));
+					Settings.ENCODING);
 			in = new BufferedReader(reader);
 			do {
 				c = in.read();
@@ -166,30 +165,4 @@ public class TextFileUtils implements Constants {
 	public static void clearInternal(Context context) {
 		writeInternal(context, "");
 	}
-	
-	/**
-	 * Detect charset
-	 * @see    https://code.google.com/p/juniversalchardet/
-	 * @param  fileName
-	 *             the absolute path of the file to open
-	 * @return charset name
-	 *         
-	 * */
-	public static String detectCharSet(String fileName) throws IOException {
-	    byte[] buf = new byte[4096];
-	    FileInputStream fis = new FileInputStream(fileName);
-
-	    UniversalDetector detector = new UniversalDetector(null);
-
-	    int nread;
-	    while ((nread = fis.read(buf)) > 0 && !detector.isDone()) {
-	      detector.handleData(buf, 0, nread);
-	    }
-	    detector.dataEnd();
-
-	    String encoding = detector.getDetectedCharset();
-
-	    detector.reset();
-	    return encoding;
-	  }
 }
