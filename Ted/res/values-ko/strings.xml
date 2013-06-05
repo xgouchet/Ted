@@ -32,12 +32,12 @@
     <string name="config_title_end_of_lines">줄 끝 형태</string>
     <string name="config_title_max_recent">표시할 최근 문서 수</string>
     <string name="config_title_search_wrap">단어 단위로 검색</string>
-    <string name="config_title_search_match_case">대소문자 구분해서 검새</string>
+    <string name="config_title_search_match_case">대소문자 구분해서 검색</string>
     <string name="config_title_encoding">인코딩</string>
     <string name="config_title_scroll_fling">화면을 밀면 스크롤이 빨라집니다</string>
     <string name="config_title_allow_undo_stack">실행 취소 허용</string>
     <string name="config_title_max_undo_stack">최대 실행 취소 내역</string>
-    <string name="config_title_back_to_undo">뒤로가기 버튼을 실행 취소 버튼으로 사용합니다</string>
+    <string name="config_title_back_to_undo">백버튼을 실행 취소로 사용</string>
     <string name="config_title_use_home_page">기본지정 파일 사용</string>
     <string name="config_title_auto_save">자동 저장</string>
     <string name="config_title_auto_save_overwrite">현재 존재하는 파일에 덮어쓰기</string>
