@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="toast_no_recent_files">최근 불러온 파일이 없습니다</string>
+    <string name="toast_recent_files_invalid">"파일이 더 이상 존재하지 않습니다. 최근 문서 목록에서 제거합니다."</string>
+    <string name="toast_recent_files_deleted">최근 문서 목록에서 파일이 삭제되었습니다</string>
+    <string name="toast_intent_invalid_uri">파일을 열 수 없습니다. URI가 유효하지 않습니다</string>
+    <string name="toast_intent_illegal">파일을 열 수 없습니다</string>
+    <string name="toast_activity_open">파일 탐색기를 열 수 없습니다</string>
+    <string name="toast_activity_open_recent">최근 문서 목록을 열 수 없습니다</string>
+    <string name="toast_activity_save_as">파일 탐색기를 열 수 없습니다</string>
+    <string name="toast_activity_settings">설정 페이지를 열 수 없습니다</string>
+    <string name="toast_activity_about">정보 페이지를 열 수 없습니다</string>
+    <string name="toast_memory_open">메모리가 부족하여 파일을 열 수 없습니다</string>
+    <string name="toast_open_error">파일을 열 수 없습니다 (파일이 너무 크거나, 손상된 것 같습니다)</string>
+    <string name="toast_save_null">저장할 수 없습니다. 경로가 없습니다</string>
+    <string name="toast_save_temp">임시 파일을 저장할 수 없습니다</string>
+    <string name="toast_save_delete">저장할 수 없습니다 (저장할 장소로 임시파일을 복사 중 에러가 발생했습니다)</string>
+    <string name="toast_save_rename">저장할 수 없습니다 (저장할 장소로 임시파일을 복사 중 에러가 발생했습니다)</string>
+    <string name="toast_save_success">파일이 저장되었습니다</string>
+    <string name="toast_folder_cant_write">"이 폴더를 사용할 수 없습니다. 쓰기 가능하지 않습니다"</string>
+    <string name="toast_file_cant_read">"이 파일을 사용할 수 없습니다. 읽기 가능하지 않습니다"</string>
+    <string name="toast_search_not_found">현재 파일에서 일치하는 부분을 찾을 수 없습니다</string>
+    <string name="toast_search_eof">현재 파일에서 더 이상 일치하는 부분을 찾을 수 없습니다</string>
+    <string name="toast_search_no_input">검색바에서 검색하고자 하는 텍스트를 입력하세요</string>
+    <string name="toast_filename_empty">파일 이름을 지정해주세요</string>
+    <string name="toast_warn_no_undo">더 이상 실행 취소 할 내용이 없습니다.</string>
+    <string name="toast_warn_no_undo_will_quit">더 이상 실행 취소를 할 수 없습니다. 뒤로가기 버튼을 한 번 더 누르면 종료합니다. </string>
+    <string name="toast_open_home_page_error">기본 파일을 찾을 수 없습니다. 설정 메뉴에서 새로운 파일을 설정해주세요.</string>
+    <string name="toast_home_page_cant_read">"읽을 수가 없어서 기본 파일을 열수가 없습니다"</string>
+    <string name="toast_widget_select">이 새로운 위젯과 연결되는 파일을 선택해주세요</string>
+    <string name="toast_open_select">열 파일을 선택하세요</string>
+    <string name="toast_home_page_select">홈 화면에서 Ted를 실행할 때 열 파일을 선택해주세요</string>
+    <string name="toast_file_saved_auto">"열린 파일이 자동으로 저장되었습니다. 그리고 다음 번에 실행 시 자동으로 열립니다"</string>
+
+</resources>
