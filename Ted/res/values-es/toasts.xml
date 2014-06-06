@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="toast_no_recent_files">No hay archivos recientes</string>
+    <string name="toast_recent_files_invalid">"Ya no existe el archivo. Se elimina de la lista de recientes."</string>
+    <string name="toast_recent_files_deleted">Elemento eliminado de la lista de recientes</string>
+    <string name="toast_intent_invalid_uri">Error al abrir el archivo, dirección no válida</string>
+    <string name="toast_intent_illegal">Error al abrir el archivo</string>
+    <string name="toast_activity_open">Error al cargar el explorador de archivos</string>
+    <string name="toast_activity_open_recent">Error al cargar la lista de archivos recientes</string>
+    <string name="toast_activity_save_as">Error al cargar el explorador de archivos</string>
+    <string name="toast_activity_settings">Error al cargar la pantalla de configuración</string>
+    <string name="toast_activity_about">Error al cargar "Acerca de"</string>
+    <string name="toast_memory_open">Error al abrir el archivo. Memoria insuficiente</string>
+    <string name="toast_open_error">Error al abrir el archivo (Archivo demasiado grande o corrupto)</string>
+    <string name="toast_save_null">Error al guardar. Escribe un destino</string>
+    <string name="toast_save_temp">Error al guardar el archivo temporal</string>
+    <string name="toast_save_delete">Error al guardar (fallo al escribir el archivo en su ubicación definitiva)</string>
+    <string name="toast_save_rename">Error al guardar (fallo al escribir el archivo en su ubicación definitiva)</string>
+    <string name="toast_save_success">Archivo guardado</string>
+    <string name="toast_folder_cant_write">"No se puede escribir en el directorio. Permiso denegado"</string>
+    <string name="toast_file_cant_read">"No se puede leer el directorio. Permiso denegado"</string>
+    <string name="toast_search_not_found">No se encuentran coincidencias</string>
+    <string name="toast_search_eof">No se encuentran más coincidencias</string>
+    <string name="toast_search_no_input">Escribe algo en la barra de búsqueda</string>
+    <string name="toast_filename_empty">Escribe un nombre de archivo</string>
+    <string name="toast_warn_no_undo">No se puede deshacer más.</string>
+    <string name="toast_warn_no_undo_will_quit">No se puede deshacer más. Pulsa atrás otra vez para salir. </string>
+    <string name="toast_open_home_page_error">Archivo por defecto no encontrado.</string>
+    <string name="toast_home_page_cant_read">"No se puede leer el archivo por defecto"</string>
+    <string name="toast_widget_select">Elige un archivo para asociar a este widget</string>
+    <string name="toast_open_select">Elige un archivo para abrir</string>
+    <string name="toast_home_page_select">Elige un archivo para abrir desde la pantalla de inicio</string>
+    <string name="toast_file_saved_auto">"El archivo abierto se ha guardado automáticamente y será abierto en el siguiente inicio"</string>
+
+</resources>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Ted</string>
+    <string name="app_name_full">Ted (Editor de texto)</string>
+
+    <!--  -->
+    <string name="permission_internal">Ted Internal Permission</string>
+
+    <!-- Titles -->
+    <string name="title_editor">Ted - %1$s</string>
+    <string name="title_editor_dirty">Ted - %1$s *</string>
+    <string name="title_editor_readonly">Ted - [%1$s]</string>
+    <string name="title_save_as">Ted - Guardar como ... </string>
+    <string name="title_open_recent">Ted - Abrir reciente</string>
+    <string name="title_settings">Ted - Configuración </string>
+    <string name="title_about">Ted - Acerca de ... </string>
+    <string name="title_font">Ted - Fuente del texto </string>
+
+    <!-- Config screen strings -->
+    <string name="config_cat_display">Display</string>
+    <string name="config_cat_other">Otros</string>
+    <string name="config_cat_save">Guardado</string>
+    <string name="config_cat_undo">Configurar deshacer</string>
+    <string name="config_cat_search">Búsqueda</string>
+    <string name="config_cat_misc">Configuración avanzada</string>
+    <string name="config_title_line_numbers">Mostrar números en cada línea</string>
+    <string name="config_title_word_wrap">Agrupar líneas</string>
+    <string name="config_title_font">Cambiar fuente del texto</string>
+    <string name="config_title_text_size">Tamaño del texto</string>
+    <string name="config_title_color_theme">Tema de la interfaz</string>
+    <string name="config_title_end_of_lines">Retorno de carro</string>
+    <string name="config_title_max_recent">Máximo número de archivos recientes</string>
+    <string name="config_title_search_wrap">Buscar en todo el documento</string>
+    <string name="config_title_search_match_case">Respetar mayúsculas y minúsculas</string>
+    <string name="config_title_encoding">Codificación</string>
+    <string name="config_title_scroll_fling">Efecto de scroll</string>
+    <string name="config_title_allow_undo_stack">Habilitar deshacer</string>
+    <string name="config_title_max_undo_stack">Historial máximo para deshacer</string>
+    <string name="config_title_back_to_undo">Asignar "deshacer" al botón de atrás</string>
+    <string name="config_title_use_home_page">Usar un archivo por defecto</string>
+    <string name="config_title_auto_save">Autoguardado</string>
+    <string name="config_title_auto_save_overwrite">Sobreescribir archivos existentes</string>
+    <string name="config_summary_auto_save">Salva automáticamente si la aplicación pasa a segundo plano</string>
+    <string name="config_summary_line_numbers">Se muestran los números de cada línea a la izquierda de la página</string>
+    <string name="config_summary_word_wrap">Las líneas se ajustarán para que quepan en la pantalla</string>
+    <string name="config_summary_scroll_fling">Desmarcar si se experimentan problemas de rendimiento</string>
+    <string name="config_summary_use_home_page">Selecciona un archivo para abrir cada vez que se ejecute Ted</string>
+    <string name="config_summary_auto_save_overwrite_on">El autoguardado sobreescribirá los archivos existentes</string>
+    <string name="config_summary_auto_save_overwrite_off">El autoguardado sólo funcionará con los nuevos archivos</string>
+
+    <!-- Options Menu in TED -->
+    <string name="menu_new">Nuevo</string>
+    <string name="menu_open">Abrir</string>
+    <string name="menu_open_recent">Abrir reciente</string>
+    <string name="menu_save">Guardar</string>
+    <string name="menu_save_as">Guardar como</string>
+    <string name="menu_settings">Configuración</string>
+    <string name="menu_about">Acerca de</string>
+    <string name="menu_search">Buscar</string>
+    <string name="menu_undo">Deshacer</string>
+    <string name="menu_quit">Salir</string>
+
+    <!-- Misc UI strings -->
+    <string name="ui_save_text">"¿Quieres guardar el archivo? \nSe perderán los cambios no guardados. "</string>
+    <string name="ui_save">Guardar</string>
+    <string name="ui_delete">Borrar</string>
+    <string name="ui_no_save">"Descartar"</string>
+    <string name="ui_cancel">Cancelar</string>
+    <string name="ui_hint_file_name">Nombre de archivo</string>
+    <string name="ui_hint_search">Buscar</string>
+    <string name="ui_art_licence">Licencia artística</string>
+    <string name="ui_history">Historial</string>
+    <string name="ui_force_read_only">Abrir como sólo lectura</string>
+
+    <!-- Misc Strings -->
+    <string name="lorem_ipsum">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas porttitor neque semper sem fermentum pretium. Sed pharetra dui faucibus massa malesuada in condimentum mi gravida."</string>
+    <string name="art_licence">"Todos los iconos de esta aplicación fueron creados por el desarrollador de la misma. Derechos de propiedad intelectual reservados por Xavier Gouchet (android@xgouchet.fr)."</string>
+
+</resources>
