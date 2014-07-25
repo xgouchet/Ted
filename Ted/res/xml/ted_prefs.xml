@@ -6,6 +6,11 @@
     <PreferenceCategory android:title="@string/config_cat_display" >
         <CheckBoxPreference
             android:defaultValue="true"
+           	android:key="show_title_bar"
+           	android:summaryOn="@string/config_summary_title_bar"
+           	android:title="@string/config_title_title_bar" />
+        <CheckBoxPreference
+            android:defaultValue="true"
             android:key="show_line_numbers"
             android:summaryOn="@string/config_summary_line_numbers"
             android:title="@string/config_title_line_numbers" />

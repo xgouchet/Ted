@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
@@ -20,6 +21,7 @@ import android.widget.ListView;
 import fr.xgouchet.androidlib.ui.Toaster;
 import fr.xgouchet.texteditor.common.Constants;
 import fr.xgouchet.texteditor.common.RecentFiles;
+import fr.xgouchet.texteditor.common.Settings;
 import fr.xgouchet.texteditor.ui.adapter.PathListAdapter;
 
 public class TedOpenRecentActivity extends Activity implements Constants, OnClickListener,
@@ -30,6 +32,10 @@ public class TedOpenRecentActivity extends Activity implements Constants, OnClic
 	 */
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		if (!Settings.SHOW_TITLE_BAR) {
+			requestWindowFeature(Window.FEATURE_NO_TITLE);
+		}
 
 		// Setup content view
 		setContentView(R.layout.layout_open);

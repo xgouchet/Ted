@@ -12,6 +12,8 @@ public class Settings implements Constants {
 	/** Number of recent files to remember */
 	public static int MAX_RECENT_FILES = 10;
 
+	/** Show the title bar */
+	public static boolean SHOW_TITLE_BAR = true;
 	/** Show the lines numbers */
 	public static boolean SHOW_LINE_NUMBERS = true;
 	/** automatic break line to fit one page */
@@ -78,6 +80,7 @@ public class Settings implements Constants {
 
 		MAX_RECENT_FILES = getStringPreferenceAsInteger(settings,
 				PREFERENCE_MAX_RECENTS, "10");
+		SHOW_TITLE_BAR = settings.getBoolean(PREFERENCE_SHOW_TITLE_BAR, true);
 		SHOW_LINE_NUMBERS = settings.getBoolean(PREFERENCE_SHOW_LINE_NUMBERS,
 				true);
 		WORDWRAP = settings.getBoolean(PREFERENCE_WORDWRAP, false);

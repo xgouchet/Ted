@@ -8,10 +8,12 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import de.neofonie.mobile.app.android.widget.crouton.Crouton;
 import de.neofonie.mobile.app.android.widget.crouton.Style;
 import fr.xgouchet.androidlib.ui.activity.AbstractBrowsingActivity;
 import fr.xgouchet.texteditor.common.Constants;
+import fr.xgouchet.texteditor.common.Settings;
 
 public class TedOpenActivity extends AbstractBrowsingActivity implements
 		OnClickListener, Constants {
@@ -23,6 +25,10 @@ public class TedOpenActivity extends AbstractBrowsingActivity implements
 		super.onCreate(savedInstanceState);
 		int request;
 		Bundle extras;
+		
+		if (!Settings.SHOW_TITLE_BAR) {
+			requestWindowFeature(Window.FEATURE_NO_TITLE);
+		}
 
 		// Setup content view
 		setContentView(R.layout.layout_open);

@@ -9,10 +9,12 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import fr.xgouchet.androidlib.ui.activity.AbstractBrowsingActivity;
 import fr.xgouchet.texteditor.common.Constants;
+import fr.xgouchet.texteditor.common.Settings;
 
 public class TedSaveAsActivity extends AbstractBrowsingActivity implements
 		Constants, OnClickListener {
@@ -22,6 +24,10 @@ public class TedSaveAsActivity extends AbstractBrowsingActivity implements
 	 */
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		if (!Settings.SHOW_TITLE_BAR) {
+			requestWindowFeature(Window.FEATURE_NO_TITLE);
+		}
 
 		// Setup content view
 		setContentView(R.layout.layout_save_as);

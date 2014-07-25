@@ -32,6 +32,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.EditText;
 import de.neofonie.mobile.app.android.widget.crouton.Crouton;
 import de.neofonie.mobile.app.android.widget.crouton.Style;
@@ -53,11 +54,18 @@ public class TedActivity extends Activity implements Constants, TextWatcher,
 		super.onCreate(savedInstanceState);
 		if (BuildConfig.DEBUG)
 			Log.d(TAG, "onCreate");
-
-		setContentView(R.layout.layout_editor);
+		
+		getIntent().setAction("Already created");
 
 		Settings.updateFromPreferences(getSharedPreferences(PREFERENCES_NAME,
 				MODE_PRIVATE));
+		
+		if (!Settings.SHOW_TITLE_BAR) {
+			requestWindowFeature(Window.FEATURE_NO_TITLE);
+			setContentView(R.layout.layout_editor_ntb);
+		}	else {
+			setContentView(R.layout.layout_editor);
+		}
 
 		//
 		mReadIntent = true;
@@ -132,18 +140,20 @@ public class TedActivity extends Activity implements Constants, TextWatcher,
 	 * @see android.app.Activity#onResume()
 	 */
 	protected void onResume() {
-		super.onResume();
 		if (BuildConfig.DEBUG)
 			Log.d(TAG, "onResume");
+		String action = getIntent().getAction();
+		if(action == null || !action.equals("Already created")) {
+	        Log.d(TAG, "Force restart");
+	        Intent intent = new Intent(this, TedActivity.class);
+	        startActivity(intent);
+	        finish();
+	    }
+		
+		else
+	        getIntent().setAction(null);
 
-		if (mReadIntent) {
-			readIntent();
-		}
-
-		mReadIntent = false;
-
-		updateTitle();
-		mEditor.updateFromSettings();
+	    super.onResume();
 	}
 
 	/**
@@ -960,6 +970,24 @@ public class TedActivity extends Activity implements Constants, TextWatcher,
 	 * Opens the settings activity
 	 */
 	protected void settingsActivity() {
+
+		mAfterSave = new Runnable() {
+			public void run() {
+				Intent settings = new Intent();
+				settings.setClass(TedActivity.this, TedSettingsActivity.class);
+				try {
+					startActivity(settings);
+				} catch (ActivityNotFoundException e) {
+					Crouton.showText(TedActivity.this,
+							R.string.toast_activity_settings, Style.ALERT);
+				}
+			}
+		};
+
+		promptSaveDirty();
+	}
+	
+	public void openSettings (View v) {
 
 		mAfterSave = new Runnable() {
 			public void run() {

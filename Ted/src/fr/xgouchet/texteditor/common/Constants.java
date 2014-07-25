@@ -57,6 +57,8 @@ public interface Constants {
 	public static final String PREFERENCE_RECENTS = "recent_files";
 	/** Preference tag to retrieve the recent files ( = {@value} ) */
 	public static final String PREFERENCE_MAX_RECENTS = "max_recent_files";
+	/** Preference tag to retrieve the show title bar ( = {@value} ) */
+	public static final String PREFERENCE_SHOW_TITLE_BAR = "show_title_bar";
 	/** Preference tag to retrieve the show line number ( = {@value} ) */
 	public static final String PREFERENCE_SHOW_LINE_NUMBERS = "show_line_numbers";
 	/** Preference tag to retrieve the wordwrap ( = {@value} ) */
