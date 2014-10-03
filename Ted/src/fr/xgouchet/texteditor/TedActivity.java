@@ -989,20 +989,8 @@ public class TedActivity extends Activity implements Constants, TextWatcher,
 	
 	public void openSettings (View v) {
 
-		mAfterSave = new Runnable() {
-			public void run() {
-				Intent settings = new Intent();
-				settings.setClass(TedActivity.this, TedSettingsActivity.class);
-				try {
-					startActivity(settings);
-				} catch (ActivityNotFoundException e) {
-					Crouton.showText(TedActivity.this,
-							R.string.toast_activity_settings, Style.ALERT);
-				}
-			}
-		};
-
-		promptSaveDirty();
+		openOptionsMenu();
+	
 	}
 
 	/**
