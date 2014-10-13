@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Ted</string>
+    <string name="app_name_full">Ted (Textový editor)</string>
+
+    <!--  -->
+    <string name="permission_internal">Interné povolenie Ted</string>
+
+    <!-- Titles -->
+    <string name="title_editor">Ted - %1$s</string>
+    <string name="title_editor_dirty">Ted - %1$s *</string>
+    <string name="title_editor_readonly">Ted - [%1$s]</string>
+    <string name="title_save_as">Ted - Uložiť ako...</string>
+    <string name="title_open_recent">Ted - Otvoriť nedávne</string>
+    <string name="title_settings">Ted - Nastavenia</string>
+    <string name="title_about">Ted - O aplikácii ...</string>
+    <string name="title_font">Ted - Písmo textu</string>
+
+    <!-- Config screen strings -->
+    <string name="config_cat_display">Zobrazenie</string>
+    <string name="config_cat_other">Ostatné</string>
+    <string name="config_cat_save">Ukladanie</string>
+    <string name="config_cat_undo">Krok späť</string>
+    <string name="config_cat_search">Hľadať</string>
+    <string name="config_cat_misc">Rôzne</string>
+    <string name="config_title_line_numbers">Zobraziť čísla riadkov</string>
+    <string name="config_title_word_wrap">Zalomiť text</string>
+    <string name="config_title_font">Zmeniť písmo textu</string>
+    <string name="config_title_text_size">Veľkosť písma</string>
+    <string name="config_title_color_theme">Farebná téma</string>
+    <string name="config_title_end_of_lines">Koniec riadkov</string>
+    <string name="config_title_max_recent">Maximálny počet nedávnych súborov</string>
+    <string name="config_title_search_wrap">Zalomiť hľadanie</string>
+    <string name="config_title_search_match_case">Hľadať veľké a malé písmená</string>
+    <string name="config_title_encoding">Kódovanie</string>
+    <string name="config_title_scroll_fling">Vrhnúť pre rýchlejší posun</string>
+    <string name="config_title_allow_undo_stack">Povoliť krok späť</string>
+    <string name="config_title_max_undo_stack">Maximálna história pre krok späť</string>
+    <string name="config_title_back_to_undo">Použiť tlačidlo Späť pre vrátenie predchádzajúcej úpravy</string>
+    <string name="config_title_use_home_page">Použiť predvolený súbor</string>
+    <string name="config_title_auto_save">Automatické ukladanie</string>
+    <string name="config_title_auto_save_overwrite">Prepísať existujúce súbory</string>
+    <string name="config_summary_auto_save">Automaticky uložiť editovaný súbor, keď je aplikácia prepnutá do pozadia</string>
+    <string name="config_summary_line_numbers">Zobraziť číslo riadku v ľavej časti stránky</string>
+    <string name="config_summary_word_wrap">Riadky sa rozdelia do nových riadkov, ak sú príliš široké na obrazovke</string>
+    <string name="config_summary_scroll_fling">Zakážte, ak máte problémy s výkonom</string>
+    <string name="config_summary_use_home_page">Vybrať súbor, ktorý chcete otvoriť pri spustení Teda z domovskej obrazovky</string>
+    <string name="config_summary_auto_save_overwrite_on">Automatické ukladanie prepíše existujúce súbory</string>
+    <string name="config_summary_auto_save_overwrite_off">Automatické ukladanie bude pracovať iba s novými súbormi</string>
+
+    <!-- Options Menu in TED -->
+    <string name="menu_new">Nový</string>
+    <string name="menu_open">Otvoriť</string>
+    <string name="menu_open_recent">Nedávne súbory</string>
+    <string name="menu_save">Uložiť</string>
+    <string name="menu_save_as">Uložiť ako</string>
+    <string name="menu_settings">Nastavenia</string>
+    <string name="menu_about">O aplikácii</string>
+    <string name="menu_search">Hľadať</string>
+    <string name="menu_undo">Krok späť</string>
+    <string name="menu_quit">Ukončiť</string>
+
+    <!-- Misc UI strings -->
+    <string name="ui_save_text">Chcete uložiť dokument?\nAkékoľvek neuložené zmeny budú stratené.</string>
+    <string name="ui_save">Uložiť</string>
+    <string name="ui_delete">Vymazať</string>
+    <string name="ui_no_save">Neukladať</string>
+    <string name="ui_cancel">Zrušiť</string>
+    <string name="ui_hint_file_name">Názov súboru</string>
+    <string name="ui_hint_search">Hľadať</string>
+    <string name="ui_art_licence">Umelecká licencia</string>
+    <string name="ui_history">História</string>
+    <string name="ui_force_read_only">Otvoriť len na čítanie</string>
+
+    <!-- Misc Strings -->
+    <string name="lorem_ipsum">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas porttitor neque semper sem fermentum pretium. Sed pharetra dui faucibus massa malesuada in condimentum mi gravida."</string>
+    <string name="art_licence">"Všetky ikony pre túto aplikáciu boli vytvorené a patria autorovi aplikácie: Xavier Gouchet (android@xgouchet.fr)."</string>
+
+</resources>

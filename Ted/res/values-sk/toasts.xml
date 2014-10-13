@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="toast_no_recent_files">Žiadne nedávne súbory na načítanie</string>
+    <string name="toast_recent_files_invalid">"Súbor už neexistuje, vymaže sa zo zoznamu nedávnych súborov."</string>
+    <string name="toast_recent_files_deleted">Súbor bol vymazaný zo zoznamu nedávnych súborov</string>
+    <string name="toast_intent_invalid_uri">Nemožno otvoriť súbor, URI je neplatné</string>
+    <string name="toast_intent_illegal">Nemožno otvoriť súbor</string>
+    <string name="toast_activity_open">Nemožno načítať prehliadač súborov</string>
+    <string name="toast_activity_open_recent">Nemožno otvoriť zoznam nedávnych súborov</string>
+    <string name="toast_activity_save_as">Nemožno načítať prehliadač súborov</string>
+    <string name="toast_activity_settings">Nemožno načítať stránku s nastaveniami</string>
+    <string name="toast_activity_about">Nemožno načítať stránku o aplikácii</string>
+    <string name="toast_memory_open">Nemožno otvoriť súbor, nedostatok pamäte</string>
+    <string name="toast_open_error">Nemožno otvoriť súbor (súbor je možno príliš veľký alebo poškodený)</string>
+    <string name="toast_save_null">Nemožno uložiť, cesta nie je určená</string>
+    <string name="toast_save_temp">Nemožno uložiť do dočasného súboru</string>
+    <string name="toast_save_delete">Nemožno uložiť (chyba pri kopírovaní dočasného súbora do umiestnenia na uloženie)</string>
+    <string name="toast_save_rename">Nemožno uložiť (chyba pri kopírovaní dočasného súbora do umiestnenia na uloženie)</string>
+    <string name="toast_save_success">Súbor bol uložený</string>
+    <string name="toast_folder_cant_write">"Nemožno použiť tento priečinok, pretože nie je na zapisovanie"</string>
+    <string name="toast_file_cant_read">"Nemožno použiť tento súbor, pretože nie je na čítanie"</string>
+    <string name="toast_search_not_found">Nenašla sa žiadna zhoda v súčasnom súbore</string>
+    <string name="toast_search_eof">Nenašla sa žiadna ďalšia zhoda v súčasnom súbore</string>
+    <string name="toast_search_no_input">Zadajte text dp vyhľadávacieho riadku, ktorý chcete vyhľadať</string>
+    <string name="toast_filename_empty">Názov súboru nesmie byť prázdny</string>
+    <string name="toast_warn_no_undo">Nič na vrátenie.</string>
+    <string name="toast_warn_no_undo_will_quit">Nič na vrátenie. Stlačte tlačidlo Späť ešte raz pre ukončenie. </string>
+    <string name="toast_open_home_page_error">Predvolený súbor nebol nájdený, skúste nastaviť nový v nastaveniach.</string>
+    <string name="toast_home_page_cant_read">"Nemožno otvoriť predvolený súbor, pretože nie je na čítanie"</string>
+    <string name="toast_widget_select">Vyberte súbor, ktorý chcete spojiť s touto novou miniaplikáciou</string>
+    <string name="toast_open_select">Vyberte súbor na otvorenie</string>
+    <string name="toast_home_page_select">Vyberte súbor, ktorý chcete otvoriť pri spustení Teda z domovskej obrazovky</string>
+    <string name="toast_file_saved_auto">"Otvorený súbor sa uložil automaticky a bude otvorený pri ďalšom spustení"</string>
+
+</resources>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+
+    <string-array name="color_theme_names">
+        <item>Klasická</item>
+        <item>Negatív</item>
+        <item>Matrix</item>
+        <item>Obloha</item>
+        <item>Drakula</item>
+    </string-array>
+    
+	<string-array name="text_size_names">
+        <item>6 bodov</item>
+        <item>8 bodov</item>
+        <item>10 bodov</item>
+        <item>12 bodov</item>
+        <item>14 bodov</item>
+        <item>16 bodov</item>
+        <item>18 bodov</item>
+        <item>24 bodov</item>
+        <item>32 bodov</item>
+        <item>48 bodov</item>
+    </string-array>
+	
+	<string-array name="eol_names">
+        <item>Android/Linux/Unix</item>
+        <item>Windows/Symbian/Palm</item>
+        <item>Mac/iPhone</item>
+    </string-array>
+	
+	<string-array name="encoding_names">
+        <item>ASCII</item>
+        <item>Latin 1</item>
+        <item>UTF 8</item>
+    </string-array>
+
+</resources>
