@@ -34,16 +34,20 @@ public class TextFileUtils implements Constants {
 	public static boolean writeTextFile(String path, String text) {
 		File file = new File(path);
 		OutputStreamWriter writer;
+		FileOutputStream stream;
 		BufferedWriter out;
 		String eol_text = text;
 		try {
 			if (Settings.END_OF_LINE != EOL_LINUX) {
 				eol_text = eol_text.replaceAll("\n", Settings.getEndOfLine());
 			}
-			writer = new OutputStreamWriter(new FileOutputStream(file),
-					Settings.ENCODING);
+
+			stream = new FileOutputStream(file);
+			writer = new OutputStreamWriter(stream, Settings.ENCODING);
 			out = new BufferedWriter(writer);
 			out.write(eol_text);
+			out.flush();
+			stream.getFD().sync();
 			out.close();
 		} catch (OutOfMemoryError e) {
 			Log.w(TAG, "Out of memory error", e);
