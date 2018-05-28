@@ -6,6 +6,10 @@ You can create new text file, open existing files and of course save them. You c
 
 The official Ted app is available on the [Google Play Store](https://play.google.com/store/apps/details?id=fr.xgouchet.texteditor).
 
+## Icons
+
+All the icons and graphics used in Ted are licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+
 
 # LICENCE
 
