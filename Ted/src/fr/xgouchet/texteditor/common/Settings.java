@@ -26,6 +26,9 @@ public class Settings implements Constants {
 
 	/** Text size setting */
 	public static int TEXT_SIZE = 12;
+	
+	/** Text change */
+	public static int NORMAL = 0; 
 
 	/** Default end of line */
 	public static int DEFAULT_END_OF_LINE = EOL_LINUX;
@@ -83,6 +86,8 @@ public class Settings implements Constants {
 		WORDWRAP = settings.getBoolean(PREFERENCE_WORDWRAP, false);
 		TEXT_SIZE = getStringPreferenceAsInteger(settings,
 				PREFERENCE_TEXT_SIZE, "12");
+		NORMAL = getStringPreferenceAsInteger(settings, 
+				PREFERENCE_BOLD_ITALIC,("" + NORMAL));
 		DEFAULT_END_OF_LINE = getStringPreferenceAsInteger(settings,
 				PREFERENCE_END_OF_LINES, ("" + EOL_LINUX));
 		FORCE_AUTO_SAVE = settings.getBoolean(PREFERENCE_AUTO_SAVE, false);
@@ -167,3 +172,4 @@ public class Settings implements Constants {
 		return res;
 	}
 }
+

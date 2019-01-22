@@ -155,6 +155,9 @@ public class TedSettingsActivity extends PreferenceActivity implements
 
 		listPref = (ListPreference) findPreference(PREFERENCE_TEXT_SIZE);
 		listPref.setSummary(listPref.getEntry());
+		
+		listPref = (ListPreference) findPreference(PREFERENCE_BOLD_ITALIC);
+		listPref.setSummary(listPref.getEntry());
 
 		listPref = (ListPreference) findPreference(PREFERENCE_END_OF_LINES);
 		listPref.setSummary(listPref.getEntry());

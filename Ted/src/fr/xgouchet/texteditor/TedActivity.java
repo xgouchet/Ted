@@ -258,7 +258,15 @@ public class TedActivity extends Activity implements Constants, TextWatcher,
 
 		addMenuItem(menu, MENU_ID_SETTINGS, R.string.menu_settings, 0);
 
+		addMenuItem(menu, MENU_ID_EMAIL,R.string.menu_email,0);
+		
+		addMenuItem(menu, MENU_ID_SMS,R.string.menu_sms,0);
+
+		addMenuItem(menu, MENU_ID_RATING, R.string.menu_rating, 0);
+
 		addMenuItem(menu, MENU_ID_ABOUT, R.string.menu_about, 0);
+
+	
 
 		if (Settings.BACK_BTN_AS_UNDO && Settings.UNDO)
 			addMenuItem(menu, MENU_ID_QUIT, R.string.menu_quit, 0);
@@ -305,6 +313,15 @@ public class TedActivity extends Activity implements Constants, TextWatcher,
 		case MENU_ID_QUIT:
 			quit();
 			return true;
+		case MENU_ID_EMAIL:
+			email();
+			return true;
+		case MENU_ID_SMS:
+			sms();
+			return true;			
+		case MENU_ID_RATING:
+			rating();			
+			return true;			
 		case MENU_ID_UNDO:
 			if (!undo()) {
 				Crouton.showText(this, R.string.toast_warn_no_undo, Style.INFO);
@@ -956,6 +973,40 @@ public class TedActivity extends Activity implements Constants, TextWatcher,
 		}
 	}
 
+	protected void email() {
+		Intent mail = new Intent();
+		mail.setClass(this, SendEmailActivity.class);
+		try {
+			mail.putExtra("textofmail", mEditor.getText().toString());
+			startActivity(mail);
+		} catch (ActivityNotFoundException e) {
+			Crouton.showText(this, R.string.toast_activity_email, Style.ALERT);
+
+		}
+	}	
+	protected void sms() {
+		Intent sms = new Intent();
+		sms.setClass(this, SendSMSActivity.class);
+		try {
+			sms.putExtra("textofsms", mEditor.getText().toString());
+			startActivity(sms);
+		} catch (ActivityNotFoundException e) {
+			Crouton.showText(this, R.string.toast_activity_sms, Style.ALERT);
+
+		}
+	}	
+	
+	protected void rating() {
+		Intent rating = new Intent();
+		rating.setClass(this, RatingActivity.class);
+		try {
+			startActivity(rating);
+		} catch (ActivityNotFoundException e) {
+			Crouton.showText(this, R.string.toast_activity_rating, Style.ALERT);
+
+		}
+	}	
+	
 	/**
 	 * Opens the settings activity
 	 */
@@ -1005,7 +1056,7 @@ public class TedActivity extends Activity implements Constants, TextWatcher,
 	/** the text editor */
 	protected AdvancedEditText mEditor;
 	/** the path of the file currently opened */
-	protected String mCurrentFilePath;
+	protected static String mCurrentFilePath;
 	/** the name of the file currently opened */
 	protected String mCurrentFileName;
 	/** the runable to run after a save */

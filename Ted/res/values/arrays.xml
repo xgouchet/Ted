@@ -17,8 +17,7 @@
         <item>4</item>
     </string-array>
 
-    <!-- Text size -->
-    <string-array name="text_size_names">
+    <!-- Text size --><string-array name="text_size_names">
         <item>6 pt</item>
         <item>8 pt</item>
         <item>10 pt</item>
@@ -43,6 +42,20 @@
         <item>48</item>
     </string-array>
 
+    <!-- fontstyle --><string-array name="text_style_names">
+        <item>Normal</item>
+        <item>Bold</item>
+        <item>Italic</item>
+        <item>Bold_Italic</item>
+        
+         </string-array>
+    <string-array name="text_style_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+    
     <!-- End of lines -->
     <string-array name="eol_names">
         <item>Android / Linux / Unix</item>
@@ -96,5 +109,7 @@
         <item>ISO-8859-1</item>
         <item>UTF-8</item>
     </string-array>
+    
+    
 
 </resources>

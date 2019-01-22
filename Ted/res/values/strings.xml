@@ -16,6 +16,9 @@
     <string name="title_settings">Ted - Settings </string>
     <string name="title_about">Ted - About ... </string>
     <string name="title_font">Ted - Text Font </string>
+    <string name="title_mail">Ted - Email </string>
+    <string name="title_sms">Ted - SMS </string>
+    <string name="title_rating">Ted - Rating </string>    
 
     <!-- Config screen strings -->
     <string name="config_cat_display">Display</string>
@@ -48,7 +51,9 @@
     <string name="config_summary_use_home_page">Select a file to open when you launch Ted from your home screen</string>
     <string name="config_summary_auto_save_overwrite_on">Auto save will overwrite existing files</string>
     <string name="config_summary_auto_save_overwrite_off">Auto save will only work with new files</string>
-
+	<string name="config_title_text_font">Text Font</string>
+	<string name="config_title_text_style">Text style</string>
+	
     <!-- Options Menu in TED -->
     <string name="menu_new">New</string>
     <string name="menu_open">Open</string>
@@ -60,7 +65,10 @@
     <string name="menu_search">Search</string>
     <string name="menu_undo">Undo</string>
     <string name="menu_quit">Quit</string>
-
+    <string name="menu_email">Email</string>
+    <string name="menu_sms">SMS</string>
+    <string name="menu_rating">Rating</string>
+    
     <!-- Misc UI strings -->
     <string name="ui_save_text">"Do you want to save your document? \nAny unsaved changes will be lost. "</string>
     <string name="ui_save">Save</string>
@@ -76,5 +84,6 @@
     <!-- Misc Strings -->
     <string name="lorem_ipsum">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas porttitor neque semper sem fermentum pretium. Sed pharetra dui faucibus massa malesuada in condimentum mi gravida."</string>
     <string name="art_licence">"All icons for this app were created and belong to the author of the app : Xavier Gouchet (android@xgouchet.fr)."</string>
+
 
 </resources>

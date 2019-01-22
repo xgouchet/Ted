@@ -228,7 +228,7 @@ public class AdvancedEditText extends EditText implements Constants,
 
 	/**
 	 * Update view settings from the app preferences
-	 * 
+	 *
 	 * @category Custom
 	 */
 	public void updateFromSettings() {
@@ -236,12 +236,54 @@ public class AdvancedEditText extends EditText implements Constants,
 		if (isInEditMode()) {
 			return;
 		}
-
 		setTypeface(Settings.getTypeface(getContext()));
 
 		// wordwrap
 		setHorizontallyScrolling(!Settings.WORDWRAP);
+<<<<<<< HEAD
+<<<<<<< HEAD
 
+//bold_italic_underline
+		switch (Settings.NORMAL) {
+
+=======
+=======
+>>>>>>> 2c6f4c24e20f894028726ec87f4c3191b0fd7361
+		
+//bold_italic_underline
+		switch (Settings.NORMAL) {
+		
+<<<<<<< HEAD
+>>>>>>> 2c6f4c24e20f894028726ec87f4c3191b0fd7361
+=======
+>>>>>>> 2c6f4c24e20f894028726ec87f4c3191b0fd7361
+		case BOLD:
+			//setTypeface(Settings.getTypeface(getContext()));
+			setTypeface(null, Typeface.BOLD);
+			break;
+		case ITALIC:
+			//setTypeface(Settings.getTypeface(getContext()));
+			setTypeface(null, Typeface.ITALIC);
+			break;
+		case BOLD_ITALIC:
+			//setTypeface(Settings.getTypeface(getContext()));
+			setTypeface(null, Typeface.BOLD_ITALIC);
+			break;
+		default:
+			setTypeface(null, Typeface.NORMAL);
+			break;
+<<<<<<< HEAD
+<<<<<<< HEAD
+		}
+
+=======
+		}	
+			
+>>>>>>> 2c6f4c24e20f894028726ec87f4c3191b0fd7361
+=======
+		}	
+			
+>>>>>>> 2c6f4c24e20f894028726ec87f4c3191b0fd7361
 		// color Theme
 		switch (Settings.COLOR) {
 		case COLOR_NEGATIVE:
@@ -282,6 +324,15 @@ public class AdvancedEditText extends EditText implements Constants,
 		setTextSize(Settings.TEXT_SIZE);
 		mPaintNumbers.setTextSize(Settings.TEXT_SIZE * mScale * 0.85f);
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+=======
+		
+>>>>>>> 2c6f4c24e20f894028726ec87f4c3191b0fd7361
+=======
+		
+>>>>>>> 2c6f4c24e20f894028726ec87f4c3191b0fd7361
 		// refresh view
 		postInvalidate();
 		refreshDrawableState();
@@ -363,4 +414,8 @@ public class AdvancedEditText extends EditText implements Constants,
 	protected int mHighlightStart;
 
 	protected Rect mDrawingRect, mLineBounds;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 2c6f4c24e20f894028726ec87f4c3191b0fd7361
